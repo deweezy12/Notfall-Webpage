@@ -48,8 +48,13 @@ function SideDots({ active, pastHero }: { active: string; pastHero: boolean }) {
   };
   return (
     <div
-      className="fixed left-7 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-4 transition-opacity duration-500 hidden md:flex"
-      style={{ opacity: pastHero ? 1 : 0, pointerEvents: pastHero ? "auto" : "none" }}
+      className="fixed left-7 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-2 hidden md:flex"
+      style={{
+        opacity: pastHero ? 1 : 0,
+        transform: `translateY(-50%) translateX(${pastHero ? 0 : -8}px)`,
+        pointerEvents: pastHero ? "auto" : "none",
+        transition: "opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)",
+      }}
     >
       {SECTIONS.map((s) => {
         const isActive = active === s.id;
@@ -59,15 +64,17 @@ function SideDots({ active, pastHero }: { active: string; pastHero: boolean }) {
             onClick={() => scrollTo(s.id)}
             title={s.label}
             className="group relative flex items-center justify-center"
-            style={{ width: 20, height: 20 }}
+            style={{ width: 24, height: 24 }}
           >
             <span
-              className="block rounded-full transition-all duration-300"
+              className="block rounded-full"
               style={{
-                width:  isActive ? 8 : 5,
-                height: isActive ? 8 : 5,
-                background: isActive ? "#fff" : "rgba(255,255,255,0.25)",
-                boxShadow: isActive ? "0 0 0 2px rgba(255,255,255,0.15)" : "none",
+                width:  isActive ? 12 : 10,
+                height: isActive ? 12 : 10,
+                background:   isActive ? "#fff" : "transparent",
+                border:       isActive ? "none" : "1.5px solid rgba(255,255,255,0.4)",
+                boxShadow:    isActive ? "0 0 0 3px rgba(255,255,255,0.12)" : "none",
+                transition:   "all 0.4s cubic-bezier(0.34,1.56,0.64,1)",
               }}
             />
             {/* Tooltip */}
@@ -127,10 +134,10 @@ export default function Home() {
 
         .reveal-block {
           opacity: 0;
-          transform: translateY(28px);
-          transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1);
+          transform: translateY(24px) scale(0.99);
+          transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1);
         }
-        .reveal-block.revealed { opacity: 1; transform: translateY(0); }
+        .reveal-block.revealed { opacity: 1; transform: translateY(0) scale(1); }
 
         .pill-tag {
           display: inline-block;
