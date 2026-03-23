@@ -1,6 +1,5 @@
 import { StitchBackground } from "@/components/StitchBackground";
-import { Nav } from "@/components/Nav";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -42,11 +41,29 @@ function RevealBlock({ children, className = "" }: { children: React.ReactNode; 
 }
 
 export default function Home() {
+  const [fadeOpacity, setFadeOpacity] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const heroEl = heroRef.current;
+      if (!heroEl) return;
+      const heroH = heroEl.offsetHeight;
+      const scrollY = window.scrollY;
+      // Start fading at 20% scroll through hero, fully black by 85%
+      const start = heroH * 0.2;
+      const end = heroH * 0.85;
+      const progress = Math.min(1, Math.max(0, (scrollY - start) / (end - start)));
+      setFadeOpacity(progress);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <>
       <style>{`
         html { scroll-behavior: smooth; }
-
         body { background: #0a0a0a; }
 
         .reveal-block {
@@ -79,37 +96,42 @@ export default function Home() {
           border-color: rgba(255,255,255,0.14);
         }
 
-        .link-arrow::after {
-          content: " →";
-        }
-
         section + section {
           border-top: 1px solid rgba(255,255,255,0.06);
         }
       `}</style>
 
-      <Nav />
-
       {/* ── HELLO ────────────────────────────────────── */}
-      <section id="hello" className="relative w-full h-screen overflow-hidden flex flex-col">
+      <section ref={heroRef} id="hello" className="relative w-full h-screen overflow-hidden">
         <StitchBackground />
-        <div className="absolute inset-0 flex flex-col items-start justify-end z-10 pb-20 px-8 md:px-20">
-          <div>
-            <p className="text-white/60 text-sm tracking-widest uppercase mb-4 font-mono">
-              Computer Vision &amp; AI Engineer
-            </p>
-            <h1
-              className="font-bold text-white leading-none tracking-tight"
-              style={{ fontSize: "clamp(3.5rem, 10vw, 9rem)", textShadow: "0 0 80px rgba(0,0,0,0.6)" }}
-            >
-              Oliver<br />Jan<br />Jarosik
-            </h1>
-          </div>
-          <div className="mt-12 animate-bounce">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white/40">
-              <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
+
+        {/* Scroll-driven fade-to-black overlay */}
+        <div
+          className="absolute inset-0 z-10 pointer-events-none"
+          style={{ background: "#0a0a0a", opacity: fadeOpacity, transition: "opacity 0.05s linear" }}
+        />
+
+        {/* Hero content — centered */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-center px-6">
+          <h1
+            className="font-bold text-white leading-none tracking-tight"
+            style={{ fontSize: "clamp(3.8rem, 11vw, 10rem)", textShadow: "0 4px 60px rgba(0,0,0,0.4)" }}
+          >
+            Oliver<br />Jan<br />Jarosik
+          </h1>
+          <p
+            className="mt-6 text-white/70 tracking-widest uppercase font-mono"
+            style={{ fontSize: "clamp(0.65rem, 1.4vw, 0.95rem)", letterSpacing: "0.22em" }}
+          >
+            Computer Vision &amp; AI Engineer
+          </p>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={{ color: `rgba(255,255,255,${0.5 - fadeOpacity * 0.5})` }}>
+            <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </div>
       </section>
 
