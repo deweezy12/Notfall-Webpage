@@ -1,5 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 
+@font-face {
+  font-family: "Area Normal";
+  src: url("/fonts/Area-Normal-Thin.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Area Normal";
+  src: url("/fonts/Area-Normal-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Area Normal";
+  src: url("/fonts/Area-Normal-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
   --blue: #c7362e;
@@ -40,6 +64,7 @@
   --surface-border: var(--cloud);
   --surface-border-strong: var(--line);
   --surface-shadow: var(--panel-shadow);
+  --card-lift-shadow: rgba(0, 0, 0, 0.22) 3px 5px 30px 0px;
   --glass-surface: rgba(255, 255, 255, 0.06);
   --glass-border: rgba(255, 255, 255, 0.1);
   --secondary-button-bg: var(--white);
@@ -48,7 +73,7 @@
   --secondary-button-hover: var(--ash);
   --footer-bg: var(--carbon);
   font-family:
-    "Universal Sans Text",
+    "Area Normal",
     "Inter",
     -apple-system,
     Arial,
@@ -57,7 +82,7 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --page-bg: #171a20;
+  --page-bg: #0a0a0a;
   --text-primary: #f5f7fb;
   --text-body: rgba(245, 247, 251, 0.8);
   --text-muted: rgba(245, 247, 251, 0.68);
@@ -66,19 +91,20 @@
   --hero-bg:
     radial-gradient(circle at 15% 18%, rgba(62, 106, 225, 0.24), transparent 28%),
     radial-gradient(circle at 82% 14%, rgba(255, 255, 255, 0.06), transparent 22%),
-    linear-gradient(180deg, #171a20 0%, #111418 100%);
+    linear-gradient(180deg, #0a0a0a 0%, #0a0a0a 100%);
   --hero-glow: radial-gradient(circle, rgba(62, 106, 225, 0.22) 0%, rgba(62, 106, 225, 0) 70%);
-  --hero-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(23, 26, 32, 0));
-  --topbar-bg: rgba(23, 26, 32, 0.78);
-  --topbar-scrolled-bg: rgba(23, 26, 32, 0.92);
+  --hero-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(10, 10, 10, 0));
+  --topbar-bg: rgba(10, 10, 10, 0.78);
+  --topbar-scrolled-bg: rgba(10, 10, 10, 0.92);
   --topbar-border: rgba(255, 255, 255, 0.08);
   --nav-hover-bg: rgba(255, 255, 255, 0.06);
   --section-dark-bg: linear-gradient(180deg, #111418 0%, #171a20 100%);
-  --surface-bg: #1b2027;
+  --surface-bg: #0a0a0a;
   --surface-alt-bg: #151920;
   --surface-border: rgba(255, 255, 255, 0.08);
   --surface-border-strong: rgba(255, 255, 255, 0.16);
   --surface-shadow: none;
+  --card-lift-shadow: rgba(0, 0, 0, 0.22) 3px 5px 30px 0px;
   --glass-surface: rgba(255, 255, 255, 0.04);
   --glass-border: rgba(255, 255, 255, 0.1);
   --secondary-button-bg: rgba(255, 255, 255, 0.04);
@@ -342,7 +368,7 @@ h1,
 h2,
 h3 {
   font-family:
-    "Universal Sans Display",
+    "Area Normal",
     "Inter",
     -apple-system,
     Arial,
@@ -454,7 +480,7 @@ span {
   border-radius: 24px;
   background: var(--surface-bg);
   border: 1px solid var(--surface-border);
-  box-shadow: var(--surface-shadow);
+  box-shadow: var(--card-lift-shadow);
 }
 
 .gallery-card--reverse {
@@ -604,7 +630,7 @@ span {
   border-radius: 22px;
   background: var(--surface-bg);
   border: 1px solid var(--surface-border);
-  box-shadow: var(--surface-shadow);
+  box-shadow: var(--card-lift-shadow);
 }
 
 .slide img {
@@ -639,7 +665,7 @@ span {
   border-radius: 28px;
   background: var(--surface-bg);
   border: 1px solid var(--surface-border);
-  box-shadow: var(--surface-shadow);
+  box-shadow: var(--card-lift-shadow);
 }
 
 .trust__copy p:last-of-type {

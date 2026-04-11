@@ -129,7 +129,6 @@ export function DotRasterBackground({ theme }: DotRasterBackgroundProps) {
           const baseAlpha = brightDot ? palette.brightAlpha : palette.dimAlpha;
           const alpha =
             baseAlpha + (palette.hoverAlpha - baseAlpha) * falloff;
-
           context.beginPath();
           context.fillStyle = `rgba(${brightDot ? palette.bright : palette.dim}, ${alpha})`;
           context.arc(x, y, dotSize, 0, Math.PI * 2);

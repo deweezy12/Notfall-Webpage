@@ -1,13 +1,32 @@
+import { useEffect, useRef } from "react";
 import { DotRasterBackground } from "@/components/DotRasterBackground";
 import { serviceLinks } from "@/lib/site";
 import { useTheme } from "@/lib/theme";
 
 export function LandingPage() {
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
+  const forcedDarkRef = useRef(false);
+
+  useEffect(() => {
+    if (!forcedDarkRef.current && theme === "light") {
+      forcedDarkRef.current = true;
+      toggleTheme();
+    }
+  }, [theme, toggleTheme]);
 
   return (
     <div className="landing-page">
       <DotRasterBackground theme={theme} />
+      <button
+        type="button"
+        className="landing-theme-hotspot"
+        onClick={toggleTheme}
+        aria-label={
+          theme === "dark"
+            ? "Zum hellen Modus wechseln"
+            : "Zum dunklen Modus wechseln"
+        }
+      />
 
       <main className="landing-main">
         <section className="landing-hero">
