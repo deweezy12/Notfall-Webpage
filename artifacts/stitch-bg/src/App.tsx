@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 
+type Theme = "light" | "dark";
+
+const themeStorageKey = "schluesseldienst-theme";
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${baseUrl}${path.replace(/^\/+/, "")}`;
+
 const prices = [
   {
     time: "Mo-Fr | 08:00-18:00",
@@ -25,39 +31,40 @@ const prices = [
 
 const galleryCards = [
   {
-    image: "/images/1.jpg",
-    title: "Wohnungstür schnell und sauber geöffnet",
-    text: "Bei zugefallenen Türen steht die schonende Öffnung im Vordergrund. Ziel ist immer, schnell wieder Zugang zu schaffen, ohne unnötigen Materialtausch ausgelöst zu haben.",
+    image: withBase("/images/1.jpg"),
+    title: "Zugefallene Tür schnell geöffnet",
+    text: "Wenn deine Tür nur zugefallen ist, öffnen wir sie in der Regel schnell und möglichst ohne Schäden. So kommst du zügig wieder in deine Wohnung oder dein Haus.",
   },
   {
-    image: "/images/2.jpg",
-    title: "Werkzeug statt Gewalt",
-    text: "Für abgeschlossene Türen oder defekte Zylinder braucht es Erfahrung, das richtige Werkzeug und eine saubere Einschätzung vor Ort. Genau das schafft Vertrauen in stressigen Situationen.",
+    image: withBase("/images/2.jpg"),
+    title: "Auch bei abgeschlossener Tür vor Ort",
+    text: "Ist die Tür abgeschlossen oder der Zylinder defekt, arbeiten wir mit Erfahrung und dem passenden Werkzeug. Wir prüfen die Situation vor Ort und sagen dir klar, was möglich ist.",
   },
 ];
 
 const slides = [
-  "/images/a.jpg",
-  "/images/b.png",
-  "/images/c.png",
-  "/images/d.png",
-  "/images/e.png",
-  "/images/f.png",
+  withBase("/images/a.jpg"),
+  withBase("/images/b.png"),
+  withBase("/images/c.png"),
+  withBase("/images/d.png"),
+  withBase("/images/e.png"),
+  withBase("/images/f.png"),
 ];
 
 const contactCards = [
   {
-    title: "Klare Abwicklung",
-    text: "Vor Arbeitsbeginn steht ein nachvollziehbarer Preisrahmen. Geöffnet wird mit Blick auf eine möglichst saubere Lösung und ohne unnötige Zusatzarbeiten.",
+    title: "Klare Preise, klare Abwicklung",
+    text: "Du erfährst vor Arbeitsbeginn, in welchem Preisrahmen sich die Türöffnung bewegt. Wir arbeiten sauber, erklären den Ablauf und empfehlen nur, was wirklich nötig ist.",
   },
   {
-    title: "Rechtlicher Hinweis",
-    text: "Zur Vermeidung unberechtigter Öffnungen kann vor Ort ein Nachweis der Zugangsberechtigung verlangt werden, etwa per Ausweis mit Anschrift. Bei dringenden, ausdrücklich angeforderten Notöffnungen kann das Widerrufsrecht nach § 312g Abs. 2 Nr. 11 BGB ausgeschlossen sein; weitergehende Arbeiten erfolgen nur nach gesonderter Zustimmung.",
+    title: "Wichtiger Hinweis",
+    text: "Damit wir keine unberechtigten Öffnungen durchführen, können wir vor Ort einen Nachweis deiner Zugangsberechtigung verlangen, zum Beispiel deinen Ausweis mit passender Anschrift. Bei ausdrücklich angeforderten Notöffnungen kann das Widerrufsrecht nach § 312g Abs. 2 Nr. 11 BGB ausgeschlossen sein; zusätzliche Arbeiten erfolgen nur nach deiner Zustimmung.",
   },
 ];
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
     const onScroll = () => {
@@ -68,6 +75,22 @@ function App() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem(themeStorageKey);
+
+    if (savedTheme === "light" || savedTheme === "dark") {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+    window.localStorage.setItem(themeStorageKey, theme);
+  }, [theme]);
+
+  const isDark = theme === "dark";
 
   return (
     <>
@@ -83,6 +106,17 @@ function App() {
               <a href="#preise">Preise</a>
               <a href="#kontakt">Kontakt</a>
             </nav>
+            <button
+              type="button"
+              className="theme-toggle"
+              onClick={() => setTheme(isDark ? "light" : "dark")}
+              aria-pressed={isDark}
+              aria-label={
+                isDark ? "Zum hellen Modus wechseln" : "Zum dunklen Modus wechseln"
+              }
+            >
+              {isDark ? "Hell" : "Dunkel"}
+            </button>
             <a className="call-pill" href="tel:+493012345678">
               030 123 45 678
             </a>
@@ -97,12 +131,11 @@ function App() {
               <p className="eyebrow eyebrow--dark">
                 24/7 Schlüsseldienst in Berlin
               </p>
-              <h1>Schnelle Türöffnung, wenn Sie nicht mehr reinkommen.</h1>
+              <h1>Schnelle Türöffnung. Wir helfen sofort.</h1>
               <p className="hero__lead">
-                Hilfe bei zugefallenen oder abgeschlossenen Türen,
-                nachvollziehbare Preise und eine klare Kommunikation vom ersten
-                Anruf bis zur Öffnung. Kein Mischangebot, kein Umweg, sondern
-                ein fokussierter Schlüsseldienst für akute Situationen.
+                Ob zugefallene Tür, abgeschlossene Tür oder defektes Schloss:
+                Wir sind schnell vor Ort, nennen dir den Preisrahmen vorab und
+                sorgen dafür, dass du wieder reinkommst.
               </p>
 
               <div className="hero__actions">
@@ -121,26 +154,25 @@ function App() {
           <div className="section-shell about__layout">
             <div className="about__copy">
               <p className="eyebrow">Leistungen</p>
-              <h2>Schlüsseldienst mit einem klaren Fokus: wieder sicher hinein.</h2>
+              <h2>Schnelle Hilfe, wenn du nicht mehr reinkommst.</h2>
               <p>
-                Wer vor der eigenen Tür steht, braucht keine breite
-                Notdienst-Plattform, sondern einen Dienst, der genau diesen
-                Einsatzfall beherrscht. Deshalb ist die Seite konsequent auf
-                Türöffnung, Schlossprobleme und Zylinderwechsel ausgerichtet.
+                Ob die Tür nur zugefallen ist oder der Schlüssel von innen
+                steckt: Wir sorgen dafür, dass du schnell und möglichst
+                beschädigungsfrei wieder in deine Wohnung oder dein Haus
+                gelangst.
               </p>
               <p>
-                Die Struktur führt erst zur akuten Hilfe, dann zu Leistungen,
-                Referenzen und Preisen. So bekommen Besucher schnell die
-                Information, die in einer Stresssituation wirklich zählt.
+                Wir öffnen Türen fachgerecht und mit größter Sorgfalt. In vielen
+                Fällen gelingt die Öffnung ohne Schäden, schnell, sauber und
+                zuverlässig.
               </p>
               <p>
-                Im Mittelpunkt stehen <strong>zugefallene Türen</strong>,{" "}
-                <strong>abgeschlossene Türen</strong> und{" "}
-                <strong>Schloss- und Zylinderwechsel</strong>, wenn eine saubere
-                Öffnung nicht mehr ausreicht oder zusätzliche Sicherheit
-                gebraucht wird. Die Sprache bleibt bewusst ruhig und klar, weil
-                Besucher in dieser Situation vor allem Orientierung,
-                Verlässlichkeit und einen schnellen nächsten Schritt brauchen.
+                Wir helfen bei <strong>zugefallenen Türen</strong>,{" "}
+                <strong>abgeschlossenen Türen</strong>,{" "}
+                <strong>Schlüsselproblemen</strong> sowie beim{" "}
+                <strong>Schloss- und Zylinderwechsel</strong>, wenn ein Austausch
+                nötig ist oder du dir wieder ein sicheres Gefühl verschaffen
+                willst.
               </p>
             </div>
           </div>
@@ -150,10 +182,11 @@ function App() {
           <div className="section-shell">
             <div className="section-heading">
               <p className="eyebrow">Referenzen</p>
-              <h2>Typische Einsatzbilder für einen Schlüsseldienst.</h2>
+              <h2>Typische Einsätze aus unserem Alltag.</h2>
               <p>
-                Die Bildsprache bleibt dicht am Thema: Türöffnung, Werkzeug
-                und saubere Arbeit vor Ort statt beliebiger Stock-Optik.
+                Wenn es schnell gehen muss, zählen Erfahrung, das richtige
+                Werkzeug und eine saubere Arbeitsweise. Genau darauf kannst du
+                dich bei uns verlassen.
               </p>
             </div>
 
@@ -199,7 +232,10 @@ function App() {
                 </div>
               </div>
 
-              <div className="pricing__column pricing__column--insights" id="einblicke">
+              <div
+                className="pricing__column pricing__column--insights"
+                id="einblicke"
+              >
                 <div className="pricing__aside-copy">
                   <h2>Einblicke</h2>
                 </div>
@@ -208,7 +244,10 @@ function App() {
                   <div className="slider__track">
                     {[...slides, ...slides].map((slide, index) => (
                       <div className="slide" key={`${slide}-${index}`}>
-                        <img src={slide} alt={`Werkzeug und Einsatzbild ${index + 1}`} />
+                        <img
+                          src={slide}
+                          alt={`Werkzeug und Einsatzbild ${index + 1}`}
+                        />
                       </div>
                     ))}
                   </div>
@@ -222,11 +261,11 @@ function App() {
           <div className="section-shell trust__layout">
             <div className="trust__copy">
               <p className="eyebrow">Kontakt</p>
-              <h2>Wenn es schnell gehen muss, sollte der nächste Schritt klar sein.</h2>
+              <h2>Ruf uns an, wir kümmern uns um den Rest.</h2>
               <p>
-                Kurz anrufen, Situation schildern, Preisrahmen einordnen und
-                den Einsatz starten. Genau so sollte ein Schlüsseldienst im
-                Ernstfall funktionieren.
+                Du schilderst kurz die Situation, wir ordnen den Einsatz ein und
+                machen uns auf den Weg. So bekommst du im Notfall schnell Hilfe,
+                ohne lange Umwege.
               </p>
 
               <div className="hero__actions trust__actions">
@@ -234,7 +273,7 @@ function App() {
                   030 123 45 678
                 </a>
                 <a className="button button--secondary" href="#referenzen">
-                  Referenzen ansehen
+                  Einsätze ansehen
                 </a>
               </div>
             </div>

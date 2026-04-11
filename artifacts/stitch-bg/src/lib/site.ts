@@ -22,8 +22,8 @@ export function asset(path: string): string {
 export const serviceLinks: ServiceLink[] = [
   {
     key: "schluessel",
-    label: "Schluessel",
-    title: "Notfall Schluesseldienst",
+    label: "Schlüssel",
+    title: "Notfall Schlüsseldienst",
     href: withBase("schluessel/"),
     note: "Die bestehende Originalseite bleibt hier bewusst unveraendert.",
   },

@@ -15,7 +15,7 @@ export function LandingPage() {
             <h1 className="landing-title">
               Willkommen bei
               <br />
-              SchanzWebMedia
+              Spacefield Media
             </h1>
 
             <div className="landing-actions" aria-label="Services">
