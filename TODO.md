@@ -1,21 +1,49 @@
 # TODO
 
-## Vor Livegang prüfen
+## Foundation
 
-- `Impressum` und `Datenschutz` ergänzen und von der Website aus leicht erreichbar verlinken.
-- Footer mit echten Unternehmensdaten ersetzen. Die aktuelle Adresse und E-Mail sind noch Platzhalter.
-- Prüfen, ob der rechtliche Hinweis im Kontaktbereich mit dem finalen Geschäftsmodell und tatsächlichen Ablauf exakt übereinstimmt.
+- [x] Site auf eine statische Multi-Page-Struktur fuer GitHub Pages umstellen.
+- [x] Landingpage und Service-Routen technisch voneinander trennen.
+- [ ] Weitere Service-Seiten separat aufbauen, nicht als gemeinsames System ueber die bestehende Schluessel-Seite legen.
 
-## Design
+## Landing Page
 
-- Hero-Farbwelt final vereinheitlichen. Die CTAs sind rot, der Hero-Hintergrund trägt noch blaue Akzente.
-- Überschriften bei `Preise` und `Einblicke` noch einmal überarbeiten. Die aktuelle Hierarchie wirkt nicht ganz kohärent zum restlichen Design der Seite.
-- Prüfen, ob der Slider visuell etwas ruhiger werden soll, damit er neben der Preistabelle nicht zu dominant wirkt.
+- [x] Neue Startseite auf `/` nach der Referenz `ladningpage.png` aufbauen.
+- [x] Dunkles Raster aus Punkten als Hintergrund umsetzen.
+- [x] Mouse-Hover-Reaktion fuer das Punkt-Raster mit Helligkeitsverlauf umsetzen.
+- [x] Vier grosse Launch-Karten fuer die Unterseiten verlinken.
+- [ ] Landingpage visuell weiter an die Referenz angleichen, falls noch Feintuning bei Typografie oder Abstaenden noetig ist.
 
-## UX und Accessibility
+## Schluessel
 
-- Für den Slider einen `prefers-reduced-motion`-Fallback ergänzen oder die Bewegung reduzierbar machen.
-- Prüfen, ob `Impressum` und `Datenschutz` zusätzlich schon im Kontaktbereich erwähnt oder im Footer direkt verlinkt werden sollen.
+- [x] Originale Schluesseldienst-Seite unveraendert auf `/schluessel/` legen.
+- [x] Fuer diese Seite bewusst keine gestalterischen oder strukturellen Aenderungen mehr machen.
+- [ ] Nur noch bei ausdruecklicher Anweisung an der Schluessel-Seite arbeiten.
+
+## Rohr
+
+- [ ] `/rohr/` voll ausbauen.
+- [ ] Design entlang `DESIGNROHR.md` umsetzen.
+- [ ] Dunkle und helle Variante mit dem globalen Theme-System abstimmen.
+
+## Elektrik
+
+- [ ] `/elektrik/` voll ausbauen.
+- [ ] Design entlang `DESIGNELEKTRIK.md` umsetzen.
+- [ ] Dunkle und helle Variante mit dem globalen Theme-System abstimmen.
+
+## Heizung
+
+- [ ] `/heizung/` voll ausbauen.
+- [ ] Design entlang `DESIGNHEIZUNG.md` umsetzen.
+- [ ] Dunkle und helle Variante mit dem globalen Theme-System abstimmen.
+
+## Shared Polish
+
+- [ ] `Impressum` und `Datenschutz` ergaenzen und gut erreichbar verlinken.
+- [ ] Footer- und Kontaktangaben mit finalen echten Daten ersetzen.
+- [ ] Rechtlichen Hinweis im Kontaktbereich gegen das finale Geschaeftsmodell pruefen.
+- [ ] Noch einmal pruefen, wie direkt die Unterseiten untereinander verlinkt sein sollen.
 
 ## Rechtlicher Kontext
 
