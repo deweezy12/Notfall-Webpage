@@ -730,11 +730,6 @@ span {
 }
 
 @media (max-width: 960px) {
-  .top-bar {
-    position: static;
-    top: auto;
-  }
-
   .pricing__split,
   .gallery-card,
   .gallery-card--reverse,
@@ -776,6 +771,11 @@ span {
 }
 
 @media (max-width: 640px) {
+  .top-bar {
+    position: static !important;
+    top: auto !important;
+  }
+
   .section-shell,
   .top-bar__inner {
     width: min(100% - 20px, 1280px);
