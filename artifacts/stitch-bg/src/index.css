@@ -730,6 +730,11 @@ span {
 }
 
 @media (max-width: 960px) {
+  .top-bar {
+    position: static;
+    top: auto;
+  }
+
   .pricing__split,
   .gallery-card,
   .gallery-card--reverse,
@@ -776,6 +781,10 @@ span {
     width: min(100% - 20px, 1280px);
   }
 
+  .top-bar__inner {
+    gap: 12px;
+  }
+
   .hero,
   .about,
   .gallery,
@@ -789,6 +798,10 @@ span {
     min-height: auto;
   }
 
+  .hero__copy {
+    padding-top: 8px;
+  }
+
   h1 {
     font-size: clamp(2.3rem, 11vw, 3rem);
   }
@@ -797,34 +810,54 @@ span {
     font-size: clamp(1.8rem, 8vw, 2.2rem);
   }
 
-  .button,
-  .call-pill {
+  .button {
     width: 100%;
   }
 
   .top-bar__actions {
     gap: 10px;
+    align-items: stretch;
+    justify-content: flex-start;
   }
 
   .top-nav {
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .top-nav::-webkit-scrollbar {
+    display: none;
   }
 
   .top-nav a {
-    padding-inline: 0;
-    min-height: auto;
-    background: transparent;
+    flex: 0 0 auto;
+    padding: 6px 12px;
+    min-height: 32px;
   }
 
   .theme-toggle {
     width: auto;
     margin-left: 0;
+    align-self: flex-start;
+  }
+
+  .call-pill {
+    width: 100%;
+    min-height: 42px;
   }
 
   .gallery-card__body,
   .trust-card {
     padding: 20px;
+  }
+
+  .gallery-card img {
+    min-height: 260px;
   }
 
   .price-table__head {
@@ -852,5 +885,9 @@ span {
 
   .trust__actions {
     justify-content: center;
+  }
+
+  .section-heading__title--nowrap {
+    white-space: normal;
   }
 }
