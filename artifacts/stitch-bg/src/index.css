@@ -451,6 +451,10 @@ span {
   margin-bottom: 32px;
 }
 
+.section-heading__title--nowrap {
+  white-space: nowrap;
+}
+
 .gallery .section-heading {
   margin-left: auto;
   margin-right: auto;

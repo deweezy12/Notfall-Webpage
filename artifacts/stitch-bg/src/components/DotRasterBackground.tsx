@@ -93,6 +93,13 @@ export function DotRasterBackground({ theme }: DotRasterBackgroundProps) {
 
     const draw = () => {
       frameId = window.requestAnimationFrame(draw);
+      const now = performance.now();
+      const breath =
+        theme === "dark" && !reducedMotionQuery.matches
+          ? 0.86 + 0.14 * ((Math.sin(now * 0.0014) + 1) / 2)
+          : 1;
+      const hueShift =
+        theme === "dark" && !reducedMotionQuery.matches ? now * 0.012 : 0;
 
       context.fillStyle = palette.background;
       context.fillRect(0, 0, width, height);
@@ -128,9 +135,21 @@ export function DotRasterBackground({ theme }: DotRasterBackgroundProps) {
               : 0;
           const baseAlpha = brightDot ? palette.brightAlpha : palette.dimAlpha;
           const alpha =
-            baseAlpha + (palette.hoverAlpha - baseAlpha) * falloff;
+            (baseAlpha + (palette.hoverAlpha - baseAlpha) * falloff) * breath;
+          const darkGradientHue =
+            (((x / Math.max(width, 1)) * 220 +
+              (y / Math.max(height, 1)) * 140 +
+              hueShift) %
+              360);
+          const darkGradientColor =
+            theme === "dark"
+              ? brightDot
+                ? `hsla(${darkGradientHue} 92% 72% / ${Math.min(alpha, 1)})`
+                : `hsla(${darkGradientHue} 88% 64% / ${Math.min(alpha, 1)})`
+              : `rgba(${brightDot ? palette.bright : palette.dim}, ${alpha})`;
+
           context.beginPath();
-          context.fillStyle = `rgba(${brightDot ? palette.bright : palette.dim}, ${alpha})`;
+          context.fillStyle = darkGradientColor;
           context.arc(x, y, dotSize, 0, Math.PI * 2);
           context.fill();
 

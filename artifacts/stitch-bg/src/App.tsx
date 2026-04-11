@@ -182,12 +182,9 @@ function App() {
           <div className="section-shell">
             <div className="section-heading">
               <p className="eyebrow">Referenzen</p>
-              <h2>Typische Einsätze aus unserem Alltag.</h2>
-              <p>
-                Wenn es schnell gehen muss, zählen Erfahrung, das richtige
-                Werkzeug und eine saubere Arbeitsweise. Genau darauf kannst du
-                dich bei uns verlassen.
-              </p>
+              <h2 className="section-heading__title--nowrap">
+                Typische Einsätze aus unserem Alltag.
+              </h2>
             </div>
 
             <div className="gallery__stack">
