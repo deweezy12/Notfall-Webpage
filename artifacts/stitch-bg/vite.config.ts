@@ -25,6 +25,18 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(import.meta.dirname, "index.html"),
+        schluessel: path.resolve(
+          import.meta.dirname,
+          "schluessel/index.html",
+        ),
+        rohr: path.resolve(import.meta.dirname, "rohr/index.html"),
+        elektrik: path.resolve(import.meta.dirname, "elektrik/index.html"),
+        heizung: path.resolve(import.meta.dirname, "heizung/index.html"),
+      },
+    },
   },
   server: {
     port,
