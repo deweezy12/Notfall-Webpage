@@ -152,7 +152,7 @@ function App() {
       <header className={`top-bar ${isScrolled ? "top-bar--scrolled" : ""}`}>
         <div className="top-bar__inner">
           <a className="brand" href="#start">
-            Schlüsseldienst Berlin
+            Schluesseldienst Wuppertal
           </a>
           <div className="top-bar__actions">
             <nav className="top-nav" aria-label="Seitenbereiche">
@@ -172,8 +172,8 @@ function App() {
             >
               {isDark ? "Hell" : "Dunkel"}
             </button>
-            <a className="call-pill" href="tel:+493012345678">
-              030 123 45 678
+            <a className="call-pill" href="tel:+4920212345678">
+              0202 123 45 678
             </a>
           </div>
         </div>
@@ -184,7 +184,7 @@ function App() {
           <div className="section-shell hero__layout">
             <div className="hero__copy">
               <p className="eyebrow eyebrow--dark">
-                24/7 Schlüsseldienst in Berlin
+                24/7 Schluesseldienst in Wuppertal
               </p>
               <h1>Schnelle Türöffnung. Wir helfen sofort.</h1>
               <p className="hero__lead">
@@ -194,7 +194,7 @@ function App() {
               </p>
 
               <div className="hero__actions">
-                <a className="button button--primary" href="tel:+493012345678">
+                <a className="button button--primary" href="tel:+4920212345678">
                   Jetzt anrufen
                 </a>
                 <a className="button button--secondary" href="#preise">
@@ -348,8 +348,8 @@ function App() {
               </p>
 
               <div className="hero__actions trust__actions">
-                <a className="button button--primary" href="tel:+493012345678">
-                  030 123 45 678
+                <a className="button button--primary" href="tel:+4920212345678">
+                  0202 123 45 678
                 </a>
                 <a className="button button--secondary" href="#referenzen">
                   Einsätze ansehen
@@ -370,10 +370,36 @@ function App() {
       </main>
 
       <footer className="footer">
+        <div className="section-shell business-footer__grid">
+          <div className="business-footer__column">
+            <strong>Schluesseldienst Wuppertal</strong>
+            <p>Varresbecker Str. 193</p>
+            <p>42115 Wuppertal</p>
+            <a href="tel:+4920212345678">0202 123 45 678</a>
+            <a href="mailto:Notdienst@example.de">Notdienst@example.de</a>
+          </div>
+          <div className="business-footer__column">
+            <strong>Links</strong>
+            <a href="#leistungen">Leistung</a>
+            <a href="#kontakt">Angebot einholen</a>
+          </div>
+          <div className="business-footer__column">
+            <strong>Folge uns auf</strong>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+          </div>
+          <div className="business-footer__column">
+            <strong>Rechtliches</strong>
+            <a href="#start">Impressum</a>
+            <a href="#start">Datenschutzerklärung</a>
+            <a href="#start">AGB</a>
+          </div>
+        </div>
         <div className="section-shell footer__meta">
           <div>
-            <strong>Schlüsseldienst Berlin</strong>
-            <p>Musterstraße 12, 10115 Berlin</p>
+            <strong>Schluesseldienst Wuppertal</strong>
+            <p>Varresbecker Str. 193, 42115 Wuppertal</p>
           </div>
           <div>
             <strong>Leistungen</strong>
@@ -381,7 +407,7 @@ function App() {
           </div>
           <div>
             <strong>Kontakt</strong>
-            <p>24/7 erreichbar | 030 123 45 678 | info@example.de</p>
+            <p>24/7 erreichbar | 0202 123 45 678 | Notdienst@example.de</p>
           </div>
         </div>
       </footer>

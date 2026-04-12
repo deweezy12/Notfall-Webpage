@@ -29,10 +29,10 @@ export const serviceLinks: ServiceLink[] = [
   },
   {
     key: "rohr",
-    label: "Rohr",
-    title: "Notfall Rohrreinigung",
+    label: "Sanitär",
+    title: "Sanitär Notdienst",
     href: withBase("rohr/"),
-    note: "Klare Rohrreinigungs-Seite mit schneller Hilfe bei Verstopfungen.",
+    note: "Klare Sanitär-Notdienst-Seite fuer akute Probleme in Bad, Kueche und Leitung.",
   },
   {
     key: "elektrik",

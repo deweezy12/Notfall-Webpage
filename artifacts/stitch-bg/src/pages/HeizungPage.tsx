@@ -76,7 +76,7 @@ export function HeizungPage() {
       <header className="heizung-topbar">
         <div className="site-shell heizung-topbar__inner">
           <a className="heizung-brand" href="#start">
-            Notfall Heizungsdienst Berlin
+            Notfall Heizungsdienst Wuppertal
           </a>
 
           <div className="heizung-topbar__actions">
@@ -103,8 +103,8 @@ export function HeizungPage() {
               <span className="theme-toggle__thumb" />
             </button>
 
-            <a className="heizung-call" href="tel:+493012345681">
-              030 123 45 681
+            <a className="heizung-call" href="tel:+4920212345681">
+              0202 123 45 681
             </a>
           </div>
         </div>
@@ -123,7 +123,7 @@ export function HeizungPage() {
               </p>
 
               <div className="heizung-hero__actions">
-                <a className="heizung-button heizung-button--primary" href="tel:+493012345681">
+                <a className="heizung-button heizung-button--primary" href="tel:+4920212345681">
                   Jetzt anrufen
                 </a>
                 <a className="heizung-button heizung-button--secondary" href="#preise">
@@ -227,8 +227,8 @@ export function HeizungPage() {
               </p>
 
               <div className="heizung-hero__actions">
-                <a className="heizung-button heizung-button--primary" href="tel:+493012345681">
-                  030 123 45 681
+                <a className="heizung-button heizung-button--primary" href="tel:+4920212345681">
+                  0202 123 45 681
                 </a>
                 <a className="heizung-button heizung-button--secondary" href={withBase()}>
                   Zur Landingpage
@@ -249,10 +249,36 @@ export function HeizungPage() {
       </main>
 
       <footer className="heizung-footer">
+        <div className="site-shell business-footer__grid">
+          <div className="business-footer__column">
+            <strong>Notfall Heizungsdienst Wuppertal</strong>
+            <p>Varresbecker Str. 193</p>
+            <p>42115 Wuppertal</p>
+            <a href="tel:+4920212345681">0202 123 45 681</a>
+            <a href="mailto:Notdienst@example.de">Notdienst@example.de</a>
+          </div>
+          <div className="business-footer__column">
+            <strong>Links</strong>
+            <a href="#stoerungen">Leistung</a>
+            <a href="#kontakt">Angebot einholen</a>
+          </div>
+          <div className="business-footer__column">
+            <strong>Folge uns auf</strong>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+          </div>
+          <div className="business-footer__column">
+            <strong>Rechtliches</strong>
+            <a href="#start">Impressum</a>
+            <a href="#start">Datenschutzerklärung</a>
+            <a href="#start">AGB</a>
+          </div>
+        </div>
         <div className="site-shell heizung-footer__meta">
           <div>
-            <strong>Notfall Heizungsdienst Berlin</strong>
-            <p>Beispielallee 22, 10115 Berlin</p>
+            <strong>Notfall Heizungsdienst Wuppertal</strong>
+            <p>Varresbecker Str. 193, 42115 Wuppertal</p>
           </div>
           <div>
             <strong>Leistungen</strong>
@@ -260,7 +286,7 @@ export function HeizungPage() {
           </div>
           <div>
             <strong>Kontakt</strong>
-            <p>24/7 erreichbar | 030 123 45 681 | heizung@example.de</p>
+            <p>24/7 erreichbar | 0202 123 45 681 | Notdienst@example.de</p>
           </div>
         </div>
       </footer>

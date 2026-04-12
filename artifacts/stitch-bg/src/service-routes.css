@@ -109,8 +109,8 @@
 
 .rohr-call,
 .rohr-button--primary {
-  background: var(--rohr-cta-bg);
-  color: var(--rohr-cta-text);
+  background: var(--rohr-text);
+  color: #ffffff;
   border: 1px solid transparent;
 }
 
@@ -425,6 +425,244 @@
 .rohr-footer__meta strong {
   display: block;
   margin-bottom: 8px;
+}
+
+.rohr-page {
+  --rohr-hero:
+    radial-gradient(circle at 18% 24%, rgba(173, 140, 255, 0.18), transparent 26%),
+    radial-gradient(circle at 82% 18%, rgba(255, 189, 140, 0.22), transparent 28%),
+    linear-gradient(135deg, #fbf9f5 0%, #f4ede4 54%, #ece3d7 100%);
+  --rohr-hero-border: rgba(41, 40, 39, 0.1);
+  --rohr-hero-surface: rgba(255, 255, 255, 0.82);
+  --rohr-topbar: rgba(255, 255, 255, 0.92);
+}
+
+[data-theme="dark"] .rohr-page {
+  --rohr-hero: linear-gradient(180deg, #18142f 0%, #100e1f 100%);
+  --rohr-hero-border: rgba(255, 255, 255, 0.16);
+  --rohr-hero-surface: rgba(255, 255, 255, 0.05);
+  --rohr-topbar: rgba(17, 16, 25, 0.84);
+}
+
+.rohr-hero h1,
+.rohr-hero__lead,
+.rohr-section--pricing h2,
+.rohr-section--pricing p,
+.rohr-section--pricing span,
+.rohr-section--pricing strong {
+  color: var(--rohr-text);
+}
+
+[data-theme="dark"] .rohr-hero h1,
+[data-theme="dark"] .rohr-hero__lead,
+[data-theme="dark"] .rohr-section--pricing h2,
+[data-theme="dark"] .rohr-section--pricing p,
+[data-theme="dark"] .rohr-section--pricing span,
+[data-theme="dark"] .rohr-section--pricing strong {
+  color: #ffffff;
+}
+
+.rohr-nav a,
+.rohr-page .theme-toggle,
+.rohr-brand {
+  color: var(--rohr-text);
+}
+
+.rohr-hero__layout {
+  grid-template-columns: 1fr;
+  padding: 56px 0 76px;
+  justify-items: center;
+}
+
+.rohr-hero__copy {
+  max-width: 40rem;
+  text-align: center;
+}
+
+.rohr-hero__copy .rohr-hero__actions {
+  justify-content: center;
+}
+
+.rohr-hero h1 {
+  max-width: 7ch;
+  font-size: clamp(3.2rem, 7vw, 5rem);
+  line-height: 0.92;
+  color: var(--rohr-text);
+}
+
+.rohr-hero__lead {
+  max-width: 42ch;
+  margin-inline: auto;
+  color: var(--rohr-muted);
+}
+
+.rohr-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--rohr-hero);
+  background-size: 140% 140%;
+  animation: rohrHeroDrift 16s ease-in-out infinite alternate;
+}
+
+.rohr-story {
+  grid-template-columns: 1fr;
+}
+
+.rohr-story__intro {
+  max-width: 720px;
+}
+
+.rohr-story__intro p:last-child,
+.rohr-editorial__copy p,
+.rohr-contact__copy p {
+  color: var(--rohr-muted);
+}
+
+.rohr-service-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.rohr-service-photo-card {
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid var(--rohr-border);
+  background: var(--rohr-surface);
+}
+
+.rohr-service-photo-card img {
+  width: 100%;
+  aspect-ratio: 1.05 / 0.92;
+  object-fit: cover;
+}
+
+.rohr-service-photo-card__body {
+  padding: 22px;
+}
+
+.rohr-service-photo-card__body h3 {
+  margin: 0 0 10px;
+  font-size: 1.45rem;
+  line-height: 1.04;
+}
+
+.rohr-service-photo-card__body p {
+  margin: 0;
+  color: var(--rohr-muted);
+  line-height: 1.65;
+}
+
+.rohr-editorial__copy {
+  max-width: 720px;
+}
+
+.rohr-process {
+  margin-top: 8px;
+}
+
+.rohr-section--pricing {
+  background: color-mix(in srgb, var(--rohr-surface-soft) 90%, var(--rohr-bg));
+}
+
+.rohr-pricing {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+}
+
+.rohr-price-table {
+  border-color: var(--rohr-border);
+  background: var(--rohr-surface);
+}
+
+.rohr-price-table__head {
+  border-bottom-color: var(--rohr-border);
+}
+
+.rohr-price-table__row + .rohr-price-table__row {
+  border-top-color: var(--rohr-border);
+}
+
+.rohr-carousel {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.rohr-carousel__viewport {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.rohr-carousel__track {
+  display: flex;
+  width: 100%;
+  transition: transform var(--transition);
+}
+
+.rohr-carousel__slide {
+  flex: 0 0 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid var(--rohr-border);
+  background: var(--rohr-surface);
+}
+
+.rohr-carousel__slide img {
+  width: 100%;
+  aspect-ratio: 1.1 / 0.92;
+  object-fit: cover;
+}
+
+.rohr-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.rohr-carousel__dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(41, 40, 39, 0.22);
+  cursor: pointer;
+  transition: transform var(--transition), background-color var(--transition);
+}
+
+.rohr-carousel__dot:hover,
+.rohr-carousel__dot:focus-visible {
+  transform: scale(1.12);
+  background: rgba(41, 40, 39, 0.5);
+  outline: none;
+}
+
+.rohr-carousel__dot--active {
+  background: #292827;
+}
+
+[data-theme="dark"] .rohr-carousel__dot {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+[data-theme="dark"] .rohr-carousel__dot:hover,
+[data-theme="dark"] .rohr-carousel__dot:focus-visible,
+[data-theme="dark"] .rohr-carousel__dot--active {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+@media (max-width: 960px) {
+  .rohr-service-grid,
+  .rohr-pricing {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes rohrHeroDrift {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
 }
 
 .elektrik-page {
@@ -1174,5 +1412,302 @@
   .heizung-price-pill,
   .heizung-contact-card {
     padding: 20px;
+  }
+}
+
+.rohr-footer__meta,
+.elektrik-footer__meta,
+.heizung-footer__meta {
+  display: none;
+}
+
+.business-footer__grid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.25fr)
+    minmax(0, 0.25fr)
+    minmax(0, 0.25fr)
+    minmax(0, 0.25fr);
+  gap: 24px;
+  padding: 32px 0;
+}
+
+.business-footer__column {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.business-footer__column strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1.02rem;
+  color: inherit;
+}
+
+.business-footer__column p,
+.business-footer__column a {
+  margin: 0;
+  color: inherit;
+  opacity: 0.76;
+  line-height: 1.55;
+}
+
+.business-footer__column a:hover,
+.business-footer__column a:focus-visible {
+  opacity: 1;
+}
+
+/* Final Sanitär page overrides */
+.rohr-page {
+  --rohr-hero:
+    radial-gradient(circle at 18% 24%, rgba(173, 140, 255, 0.18), transparent 26%),
+    radial-gradient(circle at 82% 18%, rgba(255, 189, 140, 0.22), transparent 28%),
+    linear-gradient(135deg, #fbf9f5 0%, #f4ede4 54%, #ece3d7 100%);
+  --rohr-topbar: rgba(255, 255, 255, 0.92);
+}
+
+[data-theme="dark"] .rohr-page {
+  --rohr-hero:
+    radial-gradient(circle at 18% 24%, rgba(173, 140, 255, 0.18), transparent 26%),
+    radial-gradient(circle at 82% 18%, rgba(255, 189, 140, 0.18), transparent 28%),
+    linear-gradient(180deg, #1c1930 0%, #12101f 100%);
+}
+
+.rohr-page .rohr-nav a,
+.rohr-page .rohr-brand,
+.rohr-page .theme-toggle {
+  color: var(--rohr-text);
+}
+
+.rohr-page .rohr-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--rohr-hero);
+  background-size: 140% 140%;
+  animation: rohrHeroDrift 16s ease-in-out infinite alternate;
+}
+
+.rohr-page .rohr-hero__layout {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  min-height: calc(100vh - 72px);
+  padding: 64px 0 88px;
+}
+
+.rohr-page .rohr-hero__copy {
+  max-width: 52rem;
+  text-align: center;
+}
+
+.rohr-page .rohr-hero__copy .rohr-hero__actions {
+  justify-content: center;
+}
+
+.rohr-page .rohr-hero h1 {
+  max-width: none;
+  margin: 0 auto 16px;
+  font-size: clamp(3.4rem, 8vw, 5.4rem);
+  line-height: 0.92;
+  color: var(--rohr-text);
+}
+
+.rohr-page .rohr-hero__lead {
+  max-width: 54ch;
+  margin: 0 auto;
+  color: var(--rohr-muted);
+}
+
+.rohr-page .rohr-story {
+  grid-template-columns: 1fr;
+}
+
+.rohr-page .rohr-story__intro {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.rohr-page .rohr-service-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.rohr-page .rohr-service-photo-card {
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid var(--rohr-border);
+  background: var(--rohr-surface);
+}
+
+.rohr-page .rohr-service-photo-card img {
+  width: 100%;
+  aspect-ratio: 1.05 / 0.92;
+  object-fit: cover;
+}
+
+.rohr-page .rohr-service-photo-card__body {
+  padding: 22px;
+  text-align: center;
+}
+
+.rohr-page .rohr-service-photo-card__body h3 {
+  margin: 0 0 10px;
+  font-size: 1.42rem;
+  line-height: 1.04;
+}
+
+.rohr-page .rohr-service-photo-card__body p {
+  margin: 0;
+  color: var(--rohr-muted);
+  line-height: 1.65;
+}
+
+.rohr-page .rohr-section--pricing {
+  background: color-mix(in srgb, var(--rohr-surface-soft) 90%, var(--rohr-bg));
+}
+
+.rohr-page .rohr-pricing {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.86fr);
+  align-items: start;
+}
+
+.rohr-page .rohr-section--pricing .section-eyebrow,
+.rohr-page .rohr-section--pricing h2,
+.rohr-page .rohr-section--pricing p,
+.rohr-page .rohr-section--pricing span,
+.rohr-page .rohr-section--pricing strong {
+  color: var(--rohr-text);
+}
+
+.rohr-page .rohr-price-table {
+  border-color: var(--rohr-border);
+  background: var(--rohr-surface);
+}
+
+.rohr-page .rohr-price-table__head {
+  border-bottom-color: var(--rohr-border);
+}
+
+.rohr-page .rohr-price-table__row + .rohr-price-table__row {
+  border-top-color: var(--rohr-border);
+}
+
+.rohr-page .rohr-pricing__aside p {
+  display: none;
+}
+
+.rohr-page .rohr-carousel {
+  display: grid;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.rohr-page .rohr-carousel__viewport {
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.rohr-page .rohr-carousel__track {
+  display: flex;
+  width: 100%;
+  transition: transform var(--transition);
+}
+
+.rohr-page .rohr-carousel__viewport--dragging {
+  cursor: grabbing;
+}
+
+.rohr-page .rohr-carousel__viewport--dragging .rohr-carousel__track {
+  transition: none;
+}
+
+.rohr-page .rohr-carousel__slide {
+  flex: 0 0 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid var(--rohr-border);
+  background: var(--rohr-surface);
+}
+
+.rohr-page .rohr-carousel__slide img {
+  width: 100%;
+  aspect-ratio: 1.1 / 0.92;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.rohr-page .rohr-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.rohr-page .rohr-carousel__dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(41, 40, 39, 0.24);
+  cursor: pointer;
+  transition: transform var(--transition), background-color var(--transition);
+}
+
+.rohr-page .rohr-carousel__dot:hover,
+.rohr-page .rohr-carousel__dot:focus-visible {
+  transform: scale(1.12);
+  background: rgba(41, 40, 39, 0.52);
+  outline: none;
+}
+
+.rohr-page .rohr-carousel__dot--active {
+  background: #292827;
+}
+
+.rohr-page .rohr-contact {
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  align-items: stretch;
+}
+
+.rohr-page .rohr-map-card {
+  overflow: hidden;
+  min-height: 100%;
+  border-radius: 22px;
+  border: 1px solid var(--rohr-border);
+  background: var(--rohr-surface);
+}
+
+.rohr-page .rohr-map-frame {
+  min-height: 360px;
+  border: 0;
+}
+
+.rohr-page .rohr-map-linkbar {
+  display: flex;
+  justify-content: flex-start;
+  padding: 16px;
+  border-top: 1px solid var(--rohr-border);
+}
+
+@media (max-width: 960px) {
+  .rohr-page .rohr-service-grid,
+  .rohr-page .rohr-pricing,
+  .rohr-page .rohr-contact,
+  .business-footer__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes rohrHeroDrift {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
   }
 }

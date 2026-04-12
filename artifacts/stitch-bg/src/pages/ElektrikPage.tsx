@@ -85,7 +85,7 @@ export function ElektrikPage() {
       <header className="elektrik-topbar">
         <div className="site-shell elektrik-topbar__inner">
           <a className="elektrik-brand" href="#start">
-            Notfall Elektriker Berlin
+            Notfall Elektriker Wuppertal
           </a>
 
           <div className="elektrik-topbar__actions">
@@ -112,8 +112,8 @@ export function ElektrikPage() {
               <span className="theme-toggle__thumb" />
             </button>
 
-            <a className="elektrik-call" href="tel:+493012345680">
-              030 123 45 680
+            <a className="elektrik-call" href="tel:+4920212345680">
+              0202 123 45 680
             </a>
           </div>
         </div>
@@ -123,7 +123,7 @@ export function ElektrikPage() {
         <section className="elektrik-hero">
           <div className="site-shell elektrik-hero__layout">
             <div className="elektrik-hero__copy">
-              <p className="section-eyebrow">24/7 Elektriker-Notdienst in Berlin</p>
+              <p className="section-eyebrow">24/7 Elektriker-Notdienst in Wuppertal</p>
               <h1>Stromausfall oder Defekt? Wir helfen sofort.</h1>
               <p className="elektrik-hero__lead">
                 Die Elektrik-Seite wirkt absichtlich wie ein browsebares
@@ -132,7 +132,7 @@ export function ElektrikPage() {
               </p>
 
               <div className="elektrik-hero__actions">
-                <a className="elektrik-button elektrik-button--primary" href="tel:+493012345680">
+                <a className="elektrik-button elektrik-button--primary" href="tel:+4920212345680">
                   Jetzt anrufen
                 </a>
                 <a className="elektrik-button elektrik-button--secondary" href="#preise">
@@ -254,8 +254,8 @@ export function ElektrikPage() {
             </div>
 
             <div className="elektrik-contact__actions">
-              <a className="elektrik-button elektrik-button--primary" href="tel:+493012345680">
-                030 123 45 680
+              <a className="elektrik-button elektrik-button--primary" href="tel:+4920212345680">
+                0202 123 45 680
               </a>
               <a className="elektrik-button elektrik-button--secondary" href={withBase()}>
                 Zur Landingpage
@@ -266,10 +266,36 @@ export function ElektrikPage() {
       </main>
 
       <footer className="elektrik-footer">
+        <div className="site-shell business-footer__grid">
+          <div className="business-footer__column">
+            <strong>Notfall Elektriker Wuppertal</strong>
+            <p>Varresbecker Str. 193</p>
+            <p>42115 Wuppertal</p>
+            <a href="tel:+4920212345680">0202 123 45 680</a>
+            <a href="mailto:Notdienst@example.de">Notdienst@example.de</a>
+          </div>
+          <div className="business-footer__column">
+            <strong>Links</strong>
+            <a href="#leistungen">Leistung</a>
+            <a href="#kontakt">Angebot einholen</a>
+          </div>
+          <div className="business-footer__column">
+            <strong>Folge uns auf</strong>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+          </div>
+          <div className="business-footer__column">
+            <strong>Rechtliches</strong>
+            <a href="#start">Impressum</a>
+            <a href="#start">Datenschutzerklärung</a>
+            <a href="#start">AGB</a>
+          </div>
+        </div>
         <div className="site-shell elektrik-footer__meta">
           <div>
-            <strong>Notfall Elektriker Berlin</strong>
-            <p>Beispielweg 8, 10115 Berlin</p>
+            <strong>Notfall Elektriker Wuppertal</strong>
+            <p>Varresbecker Str. 193, 42115 Wuppertal</p>
           </div>
           <div>
             <strong>Leistungen</strong>
@@ -277,7 +303,7 @@ export function ElektrikPage() {
           </div>
           <div>
             <strong>Kontakt</strong>
-            <p>24/7 erreichbar | 030 123 45 680 | elektrik@example.de</p>
+            <p>24/7 erreichbar | 0202 123 45 680 | Notdienst@example.de</p>
           </div>
         </div>
       </footer>
