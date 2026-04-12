@@ -1,45 +1,40 @@
+import {
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import { useTheme } from "@/lib/theme";
 import { asset, withBase } from "@/lib/site";
 
-const issueTags = [
-  "Stromausfall",
-  "FI loest aus",
-  "Sicherungskasten",
-  "Kurzschluss",
-  "Steckdose",
-  "Leitung pruefen",
-];
-
 const serviceCards = [
   {
-    title: "Stoerung in Wohnung oder Haus",
-    text: "Wenn ploetzlich nichts mehr funktioniert, pruefen wir Stromkreise, Sicherungen und naheliegende Fehlerquellen direkt vor Ort.",
-    image: asset("images/a.jpg"),
+    title: "Stromausfall und Sicherung sauber eingegrenzt",
+    text: "Wenn plötzlich ganze Bereiche ausfallen oder Sicherungen nicht mehr halten, prüfen wir Stromkreise, Verteilung und naheliegende Fehlerquellen direkt vor Ort. So bekommst du schnell eine klare Einschätzung, statt lange im Dunkeln zu stehen.",
+    image: asset("images/elektrik/elektriker1.png"),
   },
   {
-    title: "FI oder Sicherung loest wiederholt aus",
-    text: "Wir grenzen den Fehler ein und sagen dir ehrlich, ob eine schnelle Reparatur reicht oder weitere Arbeiten noetig werden.",
-    image: asset("images/2.jpg"),
-  },
-  {
-    title: "Auffaellige Steckdose oder Schalter",
-    text: "Geruch, Hitze oder Ausfall sind ein klares Signal. Wir priorisieren Sicherheit und eine nachvollziehbare Loesung.",
-    image: asset("images/f.png"),
+    title: "FI-Fehler, Steckdosen und Schalter direkt geprüft",
+    text: "Wenn der FI wiederholt auslöst, Steckdosen auffällig werden oder einzelne Anschlüsse plötzlich ausfallen, arbeiten wir strukturiert und nachvollziehbar. Wir sagen dir klar, was sofort gelöst werden kann und wo weitere Arbeiten sinnvoll sind.",
+    image: asset("images/elektrik/elektriker2.jpg"),
   },
 ];
 
-const highlights = [
+const carouselSlides = [
   {
-    title: "Heute besonders gefragt",
-    text: "Strom weg in einzelnen Raeumen, FI faellt, Technik steht still.",
+    image: asset("images/elektrik/elektriker3.png"),
+    alt: "Elektriker Notdienst Einblick 1",
   },
   {
-    title: "Vertrauenssignal",
-    text: "Klare Sprache statt Panik. Wir beschreiben, was pruefbar ist und was nicht.",
+    image: asset("images/elektrik/elektriker4.png"),
+    alt: "Elektriker Notdienst Einblick 2",
   },
   {
-    title: "Einsatzlogik",
-    text: "Sicherheit zuerst, dann Eingrenzung, dann Reparatur oder belastbare Empfehlung.",
+    image: asset("images/elektrik/elektriker5.png"),
+    alt: "Elektriker Notdienst Einblick 3",
+  },
+  {
+    image: asset("images/elektrik/elektriker6.png"),
+    alt: "Elektriker Notdienst Einblick 4",
   },
 ];
 
@@ -66,19 +61,80 @@ const prices = [
   },
 ];
 
-const trustCards = [
-  {
-    title: "Saubere Fehlersuche",
-    text: "Wir pruefen die Ursache strukturiert, statt nur Symptome kurzfristig zu ueberbruecken.",
-  },
-  {
-    title: "Nur sinnvolle Arbeiten",
-    text: "Wenn weitere Reparaturen noetig sind, stimmen wir das mit dir transparent ab.",
-  },
-];
+const mapsEmbedUrl =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2497.14880073439!2d7.101293577003866!3d51.2531695717566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8d6e0b7a63ed9%3A0x8aea528dc914d126!2sVarresbecker%20Str.%20193%2C%2042115%20Wuppertal!5e0!3m2!1sde!2sde!4v1773623012764!5m2!1sde!2sde";
+
+const mapsLinkUrl =
+  "https://www.google.com/maps/search/?api=1&query=Varresbecker+Str.+193,+42115+Wuppertal";
 
 export function ElektrikPage() {
   const { theme, toggleTheme } = useTheme();
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDraggingSlider, setIsDraggingSlider] = useState(false);
+  const dragStartXRef = useRef<number | null>(null);
+  const dragPointerIdRef = useRef<number | null>(null);
+
+  const handleHeroPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+    event.currentTarget.style.setProperty("--elektrik-spot-x", `${x}%`);
+    event.currentTarget.style.setProperty("--elektrik-spot-y", `${y}%`);
+    event.currentTarget.style.setProperty("--elektrik-spot-opacity", "1");
+  };
+
+  const handleHeroPointerLeave = (event: ReactPointerEvent<HTMLElement>) => {
+    event.currentTarget.style.setProperty("--elektrik-spot-x", "50%");
+    event.currentTarget.style.setProperty("--elektrik-spot-y", "38%");
+    event.currentTarget.style.setProperty("--elektrik-spot-opacity", "0");
+  };
+
+  const handleSliderPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    dragStartXRef.current = event.clientX;
+    dragPointerIdRef.current = event.pointerId;
+    setIsDraggingSlider(true);
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handleSliderPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (
+      dragStartXRef.current === null ||
+      dragPointerIdRef.current !== event.pointerId
+    ) {
+      return;
+    }
+
+    setDragOffset(event.clientX - dragStartXRef.current);
+  };
+
+  const handleSliderPointerEnd = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (
+      dragStartXRef.current === null ||
+      dragPointerIdRef.current !== event.pointerId
+    ) {
+      return;
+    }
+
+    const threshold = 48;
+    const nextOffset = event.clientX - dragStartXRef.current;
+
+    if (nextOffset <= -threshold && activeSlide < carouselSlides.length - 1) {
+      setActiveSlide((current) => current + 1);
+    } else if (nextOffset >= threshold && activeSlide > 0) {
+      setActiveSlide((current) => current - 1);
+    }
+
+    dragStartXRef.current = null;
+    dragPointerIdRef.current = null;
+    setDragOffset(0);
+    setIsDraggingSlider(false);
+
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
 
   return (
     <div className="elektrik-page" id="start">
@@ -91,7 +147,7 @@ export function ElektrikPage() {
           <div className="elektrik-topbar__actions">
             <nav className="elektrik-nav" aria-label="Seitenbereiche">
               <a href="#leistungen">Leistungen</a>
-              <a href="#einsaetze">Einsaetze</a>
+              <a href="#einsaetze">Einsätze</a>
               <a href="#preise">Preise</a>
               <a href="#kontakt">Kontakt</a>
             </nav>
@@ -120,15 +176,19 @@ export function ElektrikPage() {
       </header>
 
       <main>
-        <section className="elektrik-hero">
+        <section
+          className="elektrik-hero"
+          onPointerEnter={handleHeroPointerMove}
+          onPointerMove={handleHeroPointerMove}
+          onPointerLeave={handleHeroPointerLeave}
+        >
           <div className="site-shell elektrik-hero__layout">
             <div className="elektrik-hero__copy">
               <p className="section-eyebrow">24/7 Elektriker-Notdienst in Wuppertal</p>
               <h1>Stromausfall oder Defekt? Wir helfen sofort.</h1>
               <p className="elektrik-hero__lead">
-                Die Elektrik-Seite wirkt absichtlich wie ein browsebares
-                Service-Angebot: freundlich, klar gegliedert und mit mehr
-                visuellem Vertrauen als die reduzierte Rohr-Seite.
+                Ob Sicherung, FI oder plötzlicher Ausfall: Wir kommen schnell,
+                prüfen sauber und bringen die Elektrik wieder in Ordnung.
               </p>
 
               <div className="elektrik-hero__actions">
@@ -141,59 +201,58 @@ export function ElektrikPage() {
               </div>
             </div>
 
-            <aside className="elektrik-hero__panel">
-              <span className="elektrik-panel__badge">Heute verfuegbar</span>
-              <strong>Sicherheit zuerst, schnelle Einordnung direkt danach.</strong>
-              <p>
-                Statt eines generischen Templates nutzt diese Route eine
-                waermere, card-lastige Struktur mit klaren CTA-Schwerpunkten.
-              </p>
-
-              <div className="elektrik-highlight-list">
-                {highlights.map((item) => (
-                  <article key={item.title}>
-                    <strong>{item.title}</strong>
-                    <p>{item.text}</p>
-                  </article>
-                ))}
-              </div>
-            </aside>
           </div>
         </section>
 
         <section id="leistungen" className="elektrik-section elektrik-section--surface">
           <div className="site-shell">
-            <div className="elektrik-tag-row" aria-label="Typische Stoerungen">
-              {issueTags.map((item) => (
-                <span className="elektrik-tag" key={item}>
-                  {item}
-                </span>
-              ))}
-            </div>
-
             <div className="elektrik-intro">
               <p className="section-eyebrow">Leistungen</p>
-              <h2>Akute Stoerungen klar gegliedert, nicht nur textlich abgehandelt.</h2>
+              <h2>Schnelle Hilfe bei Stromausfall, FI-Fehlern und defekten Anschlüssen.</h2>
               <p>
-                Die Elektrik-Route bekommt ein eigenes Browse-Gefuehl mit
-                bildgetragenen Einsatzkarten, weichen Schatten und warmen
-                Flaechen. Damit trennt sie sich klar von Rohr und Heizung.
+                Ob in einzelnen Räumen plötzlich der Strom ausfällt, der FI
+                wiederholt auslöst oder eine Steckdose auffällig wird: Wir
+                verschaffen dir schnell einen klaren Überblick und prüfen die
+                Lage direkt vor Ort.
+              </p>
+              <p>
+                Wir arbeiten strukturiert an Stromkreisen, Sicherungen,
+                Steckdosen, Schaltern und typischen Fehlerquellen im Haus oder
+                in der Wohnung. Ziel ist immer, die Störung sauber einzugrenzen
+                und eine nachvollziehbare Lösung zu schaffen.
+              </p>
+              <p>
+                Wenn eine direkte Reparatur möglich ist, setzen wir sie vor Ort
+                um. Wenn weitere Arbeiten nötig sind, sagen wir dir offen, was
+                jetzt sinnvoll ist und was nicht.
               </p>
             </div>
           </div>
         </section>
 
         <section id="einsaetze" className="elektrik-section elektrik-section--gallery">
-          <div className="site-shell elektrik-gallery">
-            {serviceCards.map((card) => (
-              <article className="elektrik-card" key={card.title}>
-                <img src={card.image} alt={card.title} />
-                <div className="elektrik-card__body">
-                  <h3>{card.title}</h3>
-                  <p>{card.text}</p>
-                </div>
-              </article>
-            ))}
+          <div className="site-shell">
+            <div className="section-heading">
+              <p className="eyebrow">Referenzen</p>
+              <h2 className="section-heading__title--nowrap">
+                Typische Einsätze aus unserem Alltag.
+              </h2>
+            </div>
+
+            <div className="gallery__stack">
+              {serviceCards.map((card, index) => (
+                <article
+                  className={`gallery-card ${index % 2 === 1 ? "gallery-card--reverse" : ""}`}
+                  key={card.title}
+                >
+                  <img src={card.image} alt={card.title} />
+                  <div className="gallery-card__body">
+                    <h3>{card.title}</h3>
+                    <p>{card.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -201,12 +260,12 @@ export function ElektrikPage() {
           <div className="site-shell elektrik-pricing">
             <div className="elektrik-pricing__table">
               <p className="section-eyebrow">Preise</p>
-              <h2>Verstaendliche Preisfenster fuer Notfaelle.</h2>
+              <h2>Verständliche Preisfenster für Notfälle.</h2>
 
               <div className="elektrik-price-table">
                 <div className="elektrik-price-table__head">
                   <span>Zeitfenster</span>
-                  <span>Stoerung pruefen</span>
+                  <span>Störung prüfen</span>
                   <span>Reparatur vor Ort</span>
                 </div>
 
@@ -221,21 +280,43 @@ export function ElektrikPage() {
             </div>
 
             <aside className="elektrik-pricing__aside">
-              <p className="section-eyebrow">Vertrauen</p>
-              <h2>Warm, klar, nicht technokratisch.</h2>
-              <p>
-                Die Seite lehnt sich an ein marktplatzartiges Design an:
-                bildstarke Karten, rote Aktivpunkte, helle Flaechen und eine
-                ruhigere Vertrauenssprache.
-              </p>
+              <p className="section-eyebrow">Einblicke</p>
+              <h2>Einblicke in typische Elektriker-Einsätze.</h2>
 
-              <div className="elektrik-trust-points">
-                {trustCards.map((item) => (
-                  <article key={item.title}>
-                    <h3>{item.title}</h3>
-                    <p>{item.text}</p>
-                  </article>
-                ))}
+              <div className="elektrik-carousel">
+                <div
+                  className={`elektrik-carousel__viewport ${isDraggingSlider ? "elektrik-carousel__viewport--dragging" : ""}`}
+                  onPointerDown={handleSliderPointerDown}
+                  onPointerMove={handleSliderPointerMove}
+                  onPointerUp={handleSliderPointerEnd}
+                  onPointerCancel={handleSliderPointerEnd}
+                >
+                  <div
+                    className="elektrik-carousel__track"
+                    style={{
+                      transform: `translateX(calc(-${activeSlide * 100}% + ${dragOffset}px))`,
+                    }}
+                  >
+                    {carouselSlides.map((slide) => (
+                      <div className="elektrik-carousel__slide" key={slide.image}>
+                        <img src={slide.image} alt={slide.alt} draggable={false} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="elektrik-carousel__dots" aria-label="Einblicke auswählen">
+                  {carouselSlides.map((slide, index) => (
+                    <button
+                      key={`${slide.image}-dot`}
+                      type="button"
+                      className={`elektrik-carousel__dot ${activeSlide === index ? "elektrik-carousel__dot--active" : ""}`}
+                      onClick={() => setActiveSlide(index)}
+                      aria-label={`Bild ${index + 1} anzeigen`}
+                      aria-pressed={activeSlide === index}
+                    />
+                  ))}
+                </div>
               </div>
             </aside>
           </div>
@@ -243,24 +324,47 @@ export function ElektrikPage() {
 
         <section id="kontakt" className="elektrik-section elektrik-section--contact">
           <div className="site-shell elektrik-contact">
-            <div>
+            <div className="elektrik-contact__copy">
               <p className="section-eyebrow">Kontakt</p>
-              <h2>Bei Stromproblemen zaehlt eine sichere Loesung.</h2>
+              <h2>Bei Stromproblemen zählt eine sichere Lösung.</h2>
               <p>
-                Ruf uns an, beschreibe kurz die Stoerung und wir ordnen ein, was
+                Ruf uns an, beschreibe kurz die Störung und wir ordnen ein, was
                 sofort notwendig ist. Danach planen wir den Einsatz so, dass du
                 schnell wieder Sicherheit hast.
               </p>
+
+              <div className="elektrik-contact__actions">
+                <a className="elektrik-button elektrik-button--primary" href="tel:+4920212345680">
+                  0202 123 45 680
+                </a>
+                <a className="elektrik-button elektrik-button--secondary" href={withBase()}>
+                  Zur Landingpage
+                </a>
+              </div>
             </div>
 
-            <div className="elektrik-contact__actions">
-              <a className="elektrik-button elektrik-button--primary" href="tel:+4920212345680">
-                0202 123 45 680
-              </a>
-              <a className="elektrik-button elektrik-button--secondary" href={withBase()}>
-                Zur Landingpage
-              </a>
-            </div>
+            <article className="elektrik-map-card">
+              <iframe
+                src={mapsEmbedUrl}
+                width="100%"
+                height="100%"
+                className="elektrik-map-frame"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Standort Elektriker Notdienst"
+              />
+              <div className="elektrik-map-linkbar">
+                <a
+                  className="elektrik-button elektrik-button--secondary"
+                  href={mapsLinkUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Maps öffnen
+                </a>
+              </div>
+            </article>
           </div>
         </section>
       </main>
@@ -299,7 +403,7 @@ export function ElektrikPage() {
           </div>
           <div>
             <strong>Leistungen</strong>
-            <p>Elektriker-Notdienst, Stromausfall, Sicherungskasten, FI- und Stoerungspruefung</p>
+            <p>Elektriker-Notdienst, Stromausfall, Sicherungskasten, FI- und Störungsprüfung</p>
           </div>
           <div>
             <strong>Kontakt</strong>

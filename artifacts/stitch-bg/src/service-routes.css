@@ -678,6 +678,14 @@
     rgba(0, 0, 0, 0.1) 0 4px 8px;
   --elektrik-topbar: rgba(255, 255, 255, 0.92);
   --elektrik-accent: #ff385c;
+  --elektrik-hero-copy: #222222;
+  --elektrik-hero-copy-muted: rgba(34, 34, 34, 0.72);
+  --elektrik-board-bg-start: #ffffff;
+  --elektrik-board-bg-end: #eef1f4;
+  --elektrik-board-glow: rgba(255, 255, 255, 0.74);
+  --elektrik-board-shadow: rgba(0, 0, 0, 0.045);
+  --elektrik-circuit-base: #7d7d7d;
+  --elektrik-circuit-highlight: #a9a9a9;
   min-height: 100vh;
   background: var(--elektrik-bg);
   color: var(--elektrik-text);
@@ -692,6 +700,14 @@
   --elektrik-border: rgba(255, 255, 255, 0.08);
   --elektrik-shadow: none;
   --elektrik-topbar: rgba(20, 20, 20, 0.88);
+  --elektrik-hero-copy: rgba(255, 255, 255, 0.96);
+  --elektrik-hero-copy-muted: rgba(255, 255, 255, 0.72);
+  --elektrik-board-bg-start: #141414;
+  --elektrik-board-bg-end: #141414;
+  --elektrik-board-glow: rgba(255, 255, 255, 0.045);
+  --elektrik-board-shadow: rgba(255, 255, 255, 0.04);
+  --elektrik-circuit-base: #7d848f;
+  --elektrik-circuit-highlight: #b5bcc7;
 }
 
 .elektrik-topbar {
@@ -768,19 +784,89 @@
   color: #ffffff;
 }
 
+[data-theme="light"] .elektrik-hero .elektrik-button--primary,
+[data-theme="dark"] .elektrik-button--primary {
+  background: var(--elektrik-accent);
+  color: #ffffff;
+}
+
+[data-theme="light"] .elektrik-section--contact .elektrik-button--primary {
+  background: var(--elektrik-accent);
+  color: #ffffff;
+}
+
 .elektrik-button--secondary {
   border: 1px solid var(--elektrik-border);
   background: var(--elektrik-surface);
 }
 
 .elektrik-hero {
+  --elektrik-spot-x: 50%;
+  --elektrik-spot-y: 38%;
+  --elektrik-spot-opacity: 0;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   background:
-    radial-gradient(circle at top left, color-mix(in srgb, var(--elektrik-accent) 12%, transparent), transparent 30%),
-    linear-gradient(180deg, var(--elektrik-bg) 0%, color-mix(in srgb, var(--elektrik-surface-soft) 60%, var(--elektrik-bg)) 100%);
+    radial-gradient(circle at 14% 18%, var(--elektrik-board-glow), transparent 22%),
+    radial-gradient(circle at 86% 16%, var(--elektrik-board-shadow), transparent 30%),
+    linear-gradient(180deg, var(--elektrik-board-bg-start) 0%, var(--elektrik-board-bg-end) 100%);
+}
+
+.elektrik-hero::before,
+.elektrik-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-mask-image: url("./assets/circuit_background.svg");
+  mask-image: url("./assets/circuit_background.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  transition:
+    opacity var(--transition),
+    filter var(--transition);
+}
+
+.elektrik-hero::before {
+  background:
+    linear-gradient(
+      135deg,
+      var(--elektrik-circuit-base) 0%,
+      var(--elektrik-circuit-highlight) 48%,
+      var(--elektrik-circuit-base) 100%
+    );
+  opacity: 0.88;
+  filter: contrast(1.02);
+}
+
+.elektrik-hero::after {
+  background:
+    radial-gradient(
+      circle at var(--elektrik-spot-x) var(--elektrik-spot-y),
+      rgba(255, 66, 181, 0.98) 0%,
+      rgba(255, 125, 38, 0.96) 1%,
+      rgba(255, 220, 56, 0.94) 2%,
+      rgba(80, 255, 171, 0.9) 3.2%,
+      rgba(58, 183, 255, 0.88) 4.4%,
+      rgba(133, 92, 255, 0.8) 5.8%,
+      rgba(133, 92, 255, 0) 7.8%
+    );
+  opacity: var(--elektrik-spot-opacity);
+  filter: saturate(1.25);
+}
+
+.elektrik-hero:hover::before {
+  opacity: 1;
+  filter: contrast(1.06);
 }
 
 .elektrik-hero__layout,
-.elektrik-gallery,
+.elektrik-feature-stack,
 .elektrik-pricing,
 .elektrik-contact {
   display: grid;
@@ -788,10 +874,27 @@
 }
 
 .elektrik-hero__layout {
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  grid-template-columns: 1fr;
+  justify-items: center;
   align-items: center;
   min-height: calc(100vh - 72px);
   padding: 72px 0 88px;
+  position: relative;
+  z-index: 1;
+}
+
+.elektrik-hero__copy {
+  max-width: 52rem;
+  text-align: center;
+}
+
+.elektrik-hero .section-eyebrow,
+.elektrik-hero h1 {
+  color: var(--elektrik-hero-copy);
+}
+
+.elektrik-hero__lead {
+  color: var(--elektrik-hero-copy-muted);
 }
 
 .elektrik-hero h1,
@@ -805,8 +908,8 @@
 }
 
 .elektrik-hero__lead,
-.elektrik-intro p:last-child,
-.elektrik-card__body p,
+.elektrik-intro p:not(.section-eyebrow),
+.elektrik-feature-card__body p,
 .elektrik-pricing__aside p,
 .elektrik-trust-points p,
 .elektrik-footer__meta p {
@@ -820,6 +923,10 @@
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 24px;
+}
+
+.elektrik-hero__copy .elektrik-hero__actions {
+  justify-content: center;
 }
 
 .elektrik-hero__panel,
@@ -863,6 +970,29 @@
   padding: 72px 0;
 }
 
+.elektrik-section--gallery,
+.elektrik-section--contact {
+  background:
+    radial-gradient(circle at 14% 18%, var(--elektrik-board-glow), transparent 22%),
+    radial-gradient(circle at 86% 16%, var(--elektrik-board-shadow), transparent 30%),
+    linear-gradient(180deg, var(--elektrik-board-bg-start) 0%, var(--elektrik-board-bg-end) 100%);
+}
+
+.elektrik-section--gallery .section-heading {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.elektrik-section--gallery .section-heading h2,
+.elektrik-section--gallery .section-heading p,
+.elektrik-section--gallery .eyebrow,
+.elektrik-section--contact .section-eyebrow,
+.elektrik-section--contact h2,
+.elektrik-section--contact p {
+  color: var(--elektrik-hero-copy);
+}
+
 .elektrik-tag-row {
   grid-template-columns: repeat(6, max-content);
   overflow: auto hidden;
@@ -881,28 +1011,54 @@
 .elektrik-intro {
   max-width: 760px;
   margin-top: 28px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
-.elektrik-gallery {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.elektrik-intro p:not(.section-eyebrow) + p {
+  margin-top: 14px;
 }
 
-.elektrik-card {
+.elektrik-feature-card {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.92fr) minmax(0, 1.08fr);
+  align-items: stretch;
   overflow: hidden;
   border-radius: 24px;
+  border: 1px solid var(--elektrik-border);
+  background: var(--elektrik-surface);
+  box-shadow: var(--elektrik-shadow);
 }
 
-.elektrik-card img {
+.elektrik-feature-card--reverse {
+  grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+}
+
+.elektrik-feature-card--reverse img {
+  order: 2;
+}
+
+.elektrik-feature-card--reverse .elektrik-feature-card__body {
+  order: 1;
+}
+
+.elektrik-feature-card img {
   width: 100%;
-  aspect-ratio: 1.1 / 0.9;
+  height: 100%;
+  min-height: 360px;
   object-fit: cover;
 }
 
-.elektrik-card__body {
-  padding: 24px;
+.elektrik-feature-card__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px 36px;
+  text-align: center;
 }
 
-.elektrik-card__body h3 {
+.elektrik-feature-card__body h3 {
   margin: 0 0 12px;
   font-size: 1.55rem;
   line-height: 1.05;
@@ -917,9 +1073,9 @@
   overflow: hidden;
   margin-top: 22px;
   border-radius: 24px;
-  border: 1px solid var(--elektrik-border);
-  background: var(--elektrik-surface);
-  box-shadow: var(--elektrik-shadow);
+  border: 1px solid var(--service-border);
+  background: var(--service-surface);
+  box-shadow: var(--service-shadow);
 }
 
 .elektrik-price-table__head,
@@ -932,21 +1088,125 @@
 }
 
 .elektrik-price-table__head {
-  border-bottom: 1px solid var(--elektrik-border);
+  border-bottom: 1px solid var(--service-border);
 }
 
 .elektrik-price-table__row + .elektrik-price-table__row {
-  border-top: 1px solid var(--elektrik-border);
+  border-top: 1px solid var(--service-border);
 }
 
-.elektrik-trust-points article {
-  padding: 22px;
-  border-radius: 20px;
+.elektrik-carousel {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.elektrik-carousel__viewport {
+  overflow: hidden;
+  border-radius: 24px;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.elektrik-carousel__viewport--dragging {
+  cursor: grabbing;
+}
+
+.elektrik-carousel__track {
+  display: flex;
+  width: 100%;
+  transition: transform var(--transition);
+}
+
+.elektrik-carousel__viewport--dragging .elektrik-carousel__track {
+  transition: none;
+}
+
+.elektrik-carousel__slide {
+  flex: 0 0 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--service-border);
+  background: var(--service-surface);
+  box-shadow: var(--service-shadow);
+}
+
+.elektrik-carousel__slide img {
+  width: 100%;
+  aspect-ratio: 1.08 / 0.92;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.elektrik-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.elektrik-carousel__dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(34, 34, 34, 0.22);
+  cursor: pointer;
+  transition: transform var(--transition), background-color var(--transition);
+}
+
+.elektrik-carousel__dot:hover,
+.elektrik-carousel__dot:focus-visible {
+  transform: scale(1.12);
+  background: rgba(34, 34, 34, 0.5);
+  outline: none;
+}
+
+.elektrik-carousel__dot--active {
+  background: #222222;
+}
+
+[data-theme="dark"] .elektrik-carousel__dot {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+[data-theme="dark"] .elektrik-carousel__dot:hover,
+[data-theme="dark"] .elektrik-carousel__dot:focus-visible,
+[data-theme="dark"] .elektrik-carousel__dot--active {
+  background: rgba(255, 255, 255, 0.84);
 }
 
 .elektrik-contact {
-  grid-template-columns: minmax(0, 1fr) max-content;
-  align-items: end;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  align-items: stretch;
+}
+
+.elektrik-contact__copy p:last-of-type {
+  margin-bottom: 0;
+}
+
+.elektrik-map-card {
+  overflow: hidden;
+  min-height: 100%;
+  border-radius: 24px;
+  border: 1px solid var(--service-border);
+  background: var(--service-surface);
+  box-shadow: var(--service-shadow);
+}
+
+.elektrik-map-frame {
+  min-height: 360px;
+  border: 0;
+}
+
+.elektrik-map-linkbar {
+  display: flex;
+  justify-content: flex-start;
+  padding: 16px;
+  border-top: 1px solid var(--service-border);
 }
 
 .elektrik-footer {
@@ -1336,6 +1596,12 @@
 }
 
 @media (max-width: 960px) {
+  .elektrik-hero::before,
+  .elektrik-hero::after {
+    -webkit-mask-size: 158% auto;
+    mask-size: 158% auto;
+  }
+
   .rohr-topbar__inner,
   .rohr-topbar__actions,
   .elektrik-topbar__inner,
@@ -1360,7 +1626,8 @@
   .rohr-contact__cards,
   .rohr-footer__meta,
   .elektrik-hero__layout,
-  .elektrik-gallery,
+  .elektrik-feature-card,
+  .elektrik-feature-card--reverse,
   .elektrik-pricing,
   .elektrik-contact,
   .elektrik-footer__meta,
@@ -1377,6 +1644,11 @@
   .rohr-service-grid,
   .rohr-process {
     grid-template-columns: 1fr;
+  }
+
+  .elektrik-feature-card--reverse img,
+  .elektrik-feature-card--reverse .elektrik-feature-card__body {
+    order: initial;
   }
 }
 
@@ -1406,12 +1678,16 @@
   .rohr-process__card,
   .rohr-contact-card,
   .elektrik-hero__panel,
-  .elektrik-card__body,
+  .elektrik-feature-card__body,
   .elektrik-trust-points article,
   .heizung-hero__panel,
   .heizung-price-pill,
   .heizung-contact-card {
     padding: 20px;
+  }
+
+  .elektrik-feature-card img {
+    min-height: 260px;
   }
 }
 

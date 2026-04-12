@@ -32,7 +32,7 @@ export const serviceLinks: ServiceLink[] = [
     label: "Sanitär",
     title: "Sanitär Notdienst",
     href: withBase("rohr/"),
-    note: "Klare Sanitär-Notdienst-Seite fuer akute Probleme in Bad, Kueche und Leitung.",
+    note: "Klare Sanitär-Notdienst-Seite für akute Probleme in Bad, Küche und Leitung.",
   },
   {
     key: "elektrik",

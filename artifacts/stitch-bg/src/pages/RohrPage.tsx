@@ -11,19 +11,19 @@ const services = [
   {
     title: "24h erreichbar",
     text: "Wenn es schnell gehen muss, sind wir tagsüber, abends und im Notfall direkt erreichbar und kurzfristig im Einsatz.",
-    image: asset("images/notdienst2.png"),
+    image: asset("images/rohr/notdienst2.png"),
     alt: "Sanitär Notdienst Fahrzeug",
   },
   {
     title: "Küche und Ablauf",
     text: "Verstopfte Spüle, Bodenablauf oder hartnäckige Ablagerungen behandeln wir sauber und ohne unnötige Umwege.",
-    image: asset("images/notdienst3.png"),
+    image: asset("images/rohr/notdienst3.png"),
     alt: "Sanitär Arbeit an einer Küche",
   },
   {
     title: "Bad und Sanitär",
     text: "Ob Bad, WC oder Sanitärbereich: Wir ordnen die Störung schnell ein und setzen direkt an der Ursache an.",
-    image: asset("images/notdienst4.png"),
+    image: asset("images/rohr/notdienst4.png"),
     alt: "Sanitär Notdienst im Bad",
   },
 ];
@@ -53,19 +53,19 @@ const prices = [
 
 const carouselSlides = [
   {
-    image: asset("images/notdienst1.png"),
+    image: asset("images/rohr/notdienst1.png"),
     alt: "Sanitär Notdienst Einblick 1",
   },
   {
-    image: asset("images/notdienst5.png"),
+    image: asset("images/rohr/notdienst5.png"),
     alt: "Sanitär Notdienst Einblick 2",
   },
   {
-    image: asset("images/notdienst6.png"),
+    image: asset("images/rohr/notdienst6.png"),
     alt: "Sanitär Notdienst Einblick 3",
   },
   {
-    image: asset("images/notdienst7.png"),
+    image: asset("images/rohr/notdienst7.png"),
     alt: "Sanitär Notdienst Einblick 4",
   },
 ];
@@ -223,7 +223,7 @@ export function RohrPage() {
           <div className="site-shell rohr-pricing">
             <div>
               <p className="section-eyebrow">Preise</p>
-              <h2>Wir stehen zu unserem Wort: Verlässlichkeit beginng beim Preis</h2>
+              <h2>Wir stehen zu unserem Wort: Verlässlichkeit beginnt beim Preis</h2>
 
               <div className="rohr-price-table">
                 <div className="rohr-price-table__head">

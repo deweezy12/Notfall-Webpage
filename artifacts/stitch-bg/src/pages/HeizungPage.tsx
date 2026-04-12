@@ -5,24 +5,24 @@ const signalCards = [
   {
     status: "live",
     title: "Heizung bleibt kalt",
-    text: "Wir pruefen Anlage, Druck und typische Fehlerquellen direkt vor Ort.",
+    text: "Wir prüfen Anlage, Druck und typische Fehlerquellen direkt vor Ort.",
   },
   {
     status: "priority",
-    title: "Warmwasser ploetzlich weg",
+    title: "Warmwasser plötzlich weg",
     text: "Bei fehlendem Warmwasser priorisieren wir Diagnose und schnelle Wiederherstellung.",
   },
   {
     status: "ready",
-    title: "Stoerung an der Anlage",
+    title: "Störung an der Anlage",
     text: "Fehlermeldung, Startprobleme oder Druckverlust ordnen wir ohne Umwege ein.",
   },
 ];
 
 const runbook = [
-  "Stoerung kurz beschreiben",
-  "Anlage und Fehlersignal pruefen",
-  "Direkte Massnahme oder klares Follow-up",
+  "Störung kurz beschreiben",
+  "Anlage und Fehlersignal prüfen",
+  "Direkte Maßnahme oder klares Follow-up",
 ];
 
 const prices = [
@@ -50,21 +50,21 @@ const prices = [
 
 const scrollItems = [
   "warmwasser",
-  "heizkoerper",
+  "heizkörper",
   "druckverlust",
   "brenner",
-  "stoerung",
+  "störung",
   "anlage startet nicht",
 ];
 
 const contactCards = [
   {
-    title: "Ehrliche Einschaetzung",
-    text: "Wir sagen offen, ob eine schnelle Reparatur moeglich ist oder ob weitere Schritte noetig werden.",
+    title: "Ehrliche Einschätzung",
+    text: "Wir sagen offen, ob eine schnelle Reparatur möglich ist oder ob weitere Schritte nötig werden.",
   },
   {
     title: "Saubere Abstimmung",
-    text: "Wenn Ersatzteile oder weitere Massnahmen noetig sind, stimmen wir das klar mit dir ab.",
+    text: "Wenn Ersatzteile oder weitere Maßnahmen nötig sind, stimmen wir das klar mit dir ab.",
   },
 ];
 
@@ -81,7 +81,7 @@ export function HeizungPage() {
 
           <div className="heizung-topbar__actions">
             <nav className="heizung-nav" aria-label="Seitenbereiche">
-              <a href="#stoerungen">Stoerungen</a>
+              <a href="#stoerungen">Störungen</a>
               <a href="#ablauf">Ablauf</a>
               <a href="#preise">Preise</a>
               <a href="#kontakt">Kontakt</a>
@@ -117,8 +117,8 @@ export function HeizungPage() {
               <span className="heizung-status">system online</span>
               <h1>Heizung ausgefallen? Wir sind sofort da.</h1>
               <p className="heizung-hero__lead">
-                Die Heizung-Route bekommt die lauteste Identitaet: starke
-                Gradient-Flaechen, pill-foermige Module und eine energische
+                Die Heizung-Route bekommt die lauteste Identität: starke
+                Gradient-Flächen, pill-förmige Module und eine energische
                 Display-Typografie statt eines neutralen Templates.
               </p>
 
@@ -133,7 +133,7 @@ export function HeizungPage() {
             </div>
 
             <div className="heizung-hero__panel">
-              <p className="section-eyebrow section-eyebrow--light">Stoerungsbild</p>
+              <p className="section-eyebrow section-eyebrow--light">Störungsbild</p>
               <div className="heizung-signal-stack">
                 {signalCards.map((item) => (
                   <article className="heizung-signal-card" key={item.title}>
@@ -151,12 +151,12 @@ export function HeizungPage() {
 
         <section id="stoerungen" className="heizung-section heizung-section--surface">
           <div className="site-shell heizung-surface-intro">
-            <p className="section-eyebrow">Stoerungen</p>
+            <p className="section-eyebrow">Störungen</p>
             <h2>Sichtbar anders gebaut als Rohr und Elektrik.</h2>
             <p>
-              Diese Seite setzt auf uebergrosse Schlagzeilen, dunkle
-              Kontrastflaechen und runde Module. Sie soll sich wie ein eigenes
-              Produkt anfuehlen, nicht wie dieselbe Seite in anderer Farbe.
+              Diese Seite setzt auf übergroße Schlagzeilen, dunkle
+              Kontrastflächen und runde Module. Sie soll sich wie ein eigenes
+              Produkt anfühlen, nicht wie dieselbe Seite in anderer Farbe.
             </p>
           </div>
         </section>
@@ -165,10 +165,10 @@ export function HeizungPage() {
           <div className="site-shell heizung-runbook">
             <div className="heizung-runbook__copy">
               <p className="section-eyebrow section-eyebrow--light">Ablauf</p>
-              <h2>Ein kleines Runbook fuer den Heizungsnotfall.</h2>
+              <h2>Ein kleines Runbook für den Heizungsnotfall.</h2>
               <p>
                 Die Replicate-inspirierte Route arbeitet mit starkem Kontrast,
-                Statuschips und einer fast toolartigen Sprache fuer den
+                Statuschips und einer fast toolartigen Sprache für den
                 Einsatzablauf.
               </p>
             </div>
@@ -219,10 +219,10 @@ export function HeizungPage() {
           <div className="site-shell heizung-contact">
             <div className="heizung-contact__copy">
               <p className="section-eyebrow">Kontakt</p>
-              <h2>Ruf uns an, damit Waerme und Warmwasser zurueckkommen.</h2>
+              <h2>Ruf uns an, damit Wärme und Warmwasser zurückkommen.</h2>
               <p>
-                Du schilderst kurz den Ausfall, wir ordnen die Stoerung ein und
-                planen den naechsten Schritt. So bekommst du schnell wieder eine
+                Du schilderst kurz den Ausfall, wir ordnen die Störung ein und
+                planen den nächsten Schritt. So bekommst du schnell wieder eine
                 funktionierende Heizung.
               </p>
 
@@ -282,7 +282,7 @@ export function HeizungPage() {
           </div>
           <div>
             <strong>Leistungen</strong>
-            <p>Heizungsnotdienst, Stoerungsdiagnose, Warmwasser-Ausfall, Reparatur vor Ort</p>
+            <p>Heizungsnotdienst, Störungsdiagnose, Warmwasser-Ausfall, Reparatur vor Ort</p>
           </div>
           <div>
             <strong>Kontakt</strong>

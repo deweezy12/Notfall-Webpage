@@ -152,7 +152,7 @@ function App() {
       <header className={`top-bar ${isScrolled ? "top-bar--scrolled" : ""}`}>
         <div className="top-bar__inner">
           <a className="brand" href="#start">
-            Schluesseldienst Wuppertal
+            Schlüsseldienst Wuppertal
           </a>
           <div className="top-bar__actions">
             <nav className="top-nav" aria-label="Seitenbereiche">
@@ -163,14 +163,17 @@ function App() {
             </nav>
             <button
               type="button"
-              className="theme-toggle"
+              className={`theme-toggle theme-toggle--${theme}`}
               onClick={() => setTheme(isDark ? "light" : "dark")}
               aria-pressed={isDark}
               aria-label={
                 isDark ? "Zum hellen Modus wechseln" : "Zum dunklen Modus wechseln"
               }
+              title={isDark ? "Light Mode" : "Dark Mode"}
             >
-              {isDark ? "Hell" : "Dunkel"}
+              <span className="theme-toggle__label">D</span>
+              <span className="theme-toggle__label">L</span>
+              <span className="theme-toggle__thumb" />
             </button>
             <a className="call-pill" href="tel:+4920212345678">
               0202 123 45 678
@@ -184,7 +187,7 @@ function App() {
           <div className="section-shell hero__layout">
             <div className="hero__copy">
               <p className="eyebrow eyebrow--dark">
-                24/7 Schluesseldienst in Wuppertal
+                24/7 Schlüsseldienst in Wuppertal
               </p>
               <h1>Schnelle Türöffnung. Wir helfen sofort.</h1>
               <p className="hero__lead">
@@ -318,7 +321,7 @@ function App() {
                     </div>
                   </div>
 
-                  <div className="slider__dots" aria-label="Einblicke auswaehlen">
+                  <div className="slider__dots" aria-label="Einblicke auswählen">
                     {slides.map((slide, index) => (
                       <button
                         key={`${slide}-dot`}
@@ -372,7 +375,7 @@ function App() {
       <footer className="footer">
         <div className="section-shell business-footer__grid">
           <div className="business-footer__column">
-            <strong>Schluesseldienst Wuppertal</strong>
+            <strong>Schlüsseldienst Wuppertal</strong>
             <p>Varresbecker Str. 193</p>
             <p>42115 Wuppertal</p>
             <a href="tel:+4920212345678">0202 123 45 678</a>
@@ -398,7 +401,7 @@ function App() {
         </div>
         <div className="section-shell footer__meta">
           <div>
-            <strong>Schluesseldienst Wuppertal</strong>
+            <strong>Schlüsseldienst Wuppertal</strong>
             <p>Varresbecker Str. 193, 42115 Wuppertal</p>
           </div>
           <div>
