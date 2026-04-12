@@ -588,7 +588,7 @@
 
 .rohr-carousel__viewport {
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 22px;
 }
 
 .rohr-carousel__track {
@@ -600,14 +600,14 @@
 .rohr-carousel__slide {
   flex: 0 0 100%;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 22px;
   border: 1px solid var(--rohr-border);
   background: var(--rohr-surface);
 }
 
 .rohr-carousel__slide img {
   width: 100%;
-  aspect-ratio: 1.1 / 0.92;
+  aspect-ratio: 2 / 1.3;
   object-fit: cover;
 }
 
@@ -1069,13 +1069,23 @@
   align-items: start;
 }
 
+.elektrik-price-table,
+.elektrik-price-table span,
+.elektrik-price-table strong {
+  color: var(--elektrik-text);
+}
+
+.elektrik-price-table__head span {
+  color: var(--elektrik-muted);
+}
+
 .elektrik-price-table {
   overflow: hidden;
   margin-top: 22px;
   border-radius: 24px;
-  border: 1px solid var(--service-border);
-  background: var(--service-surface);
-  box-shadow: var(--service-shadow);
+  border: 1px solid var(--elektrik-border);
+  background: var(--elektrik-surface);
+  box-shadow: var(--elektrik-shadow);
 }
 
 .elektrik-price-table__head,
@@ -1088,11 +1098,11 @@
 }
 
 .elektrik-price-table__head {
-  border-bottom: 1px solid var(--service-border);
+  border-bottom: 1px solid var(--elektrik-border);
 }
 
 .elektrik-price-table__row + .elektrik-price-table__row {
-  border-top: 1px solid var(--service-border);
+  border-top: 1px solid var(--elektrik-border);
 }
 
 .elektrik-carousel {
@@ -1103,7 +1113,7 @@
 
 .elektrik-carousel__viewport {
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: 22px;
   cursor: grab;
   touch-action: pan-y;
   user-select: none;
@@ -1126,7 +1136,7 @@
 .elektrik-carousel__slide {
   flex: 0 0 100%;
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: 22px;
   border: 1px solid var(--service-border);
   background: var(--service-surface);
   box-shadow: var(--service-shadow);
@@ -1134,7 +1144,7 @@
 
 .elektrik-carousel__slide img {
   width: 100%;
-  aspect-ratio: 1.08 / 0.92;
+  aspect-ratio: 2 / 1.3;
   object-fit: cover;
   pointer-events: none;
   user-select: none;
@@ -1183,51 +1193,36 @@
   background: color-mix(in srgb, var(--elektrik-surface-soft) 84%, var(--elektrik-bg));
 }
 
-.elektrik-chat {
-  display: grid;
-  grid-template-columns: minmax(0, 0.88fr) minmax(320px, 1.12fr);
-  gap: 28px;
-  align-items: start;
+[data-theme="dark"] .elektrik-section--chat {
+  background: #000000;
 }
 
-.elektrik-chat__copy h2,
-.elektrik-chat-shell h3 {
+.elektrik-chat {
+  display: grid;
+  gap: 24px;
+}
+
+.elektrik-chat__header {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.elektrik-chat__header h2 {
   margin: 0 0 14px;
   font-size: clamp(2.1rem, 4vw, 3.1rem);
   line-height: 1;
   letter-spacing: -0.03em;
 }
 
-.elektrik-chat__copy p:not(.section-eyebrow),
-.elektrik-chat__point p,
-.elektrik-chat-message p,
-.elektrik-chat-form__hint {
+.elektrik-chat-message p {
   margin: 0;
   color: var(--elektrik-muted);
   line-height: 1.68;
 }
 
-.elektrik-chat__points {
-  display: grid;
-  gap: 14px;
-  margin-top: 24px;
-}
-
-.elektrik-chat__point,
-.elektrik-chat-shell {
-  border: 1px solid var(--service-border);
-  background: var(--service-surface);
-  box-shadow: var(--service-shadow);
-}
-
-.elektrik-chat__point {
-  padding: 18px 20px;
-  border-radius: 20px;
-}
-
-.elektrik-chat__point strong,
-.elektrik-chat-message__meta,
-.elektrik-chat-status {
+.elektrik-chat-message__meta {
   display: inline-flex;
   font-size: 0.78rem;
   font-weight: 700;
@@ -1235,47 +1230,26 @@
   text-transform: uppercase;
 }
 
-.elektrik-chat__point strong {
-  margin-bottom: 10px;
-}
-
 .elektrik-chat-shell {
   display: grid;
   gap: 18px;
   padding: 24px;
   border-radius: 24px;
+  border: 1px solid var(--service-border);
+  background: var(--service-surface);
+  box-shadow: var(--service-shadow);
 }
 
-.elektrik-chat-shell__head,
+[data-theme="dark"] .elektrik-chat-shell {
+  background: #000000;
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: none;
+}
+
 .elektrik-chat-form__footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 16px;
-}
-
-.elektrik-chat-shell__head {
-  align-items: flex-start;
-}
-
-.elektrik-chat-shell__head .section-eyebrow {
-  margin-bottom: 10px;
-}
-
-.elektrik-chat-status {
-  align-self: flex-start;
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--service-border);
-}
-
-.elektrik-chat-status--ready {
-  color: #11804b;
-  background: rgba(17, 128, 75, 0.08);
-}
-
-.elektrik-chat-status--offline {
-  color: var(--elektrik-accent);
-  background: color-mix(in srgb, var(--elektrik-accent) 10%, transparent);
 }
 
 .elektrik-chat-suggestions {
@@ -1323,6 +1297,11 @@
   background: var(--elektrik-surface-soft);
 }
 
+[data-theme="dark"] .elektrik-chat-message {
+  background: #0a0a0a;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
 .elektrik-chat-message--assistant {
   justify-self: start;
 }
@@ -1347,6 +1326,11 @@
   color: var(--elektrik-muted);
 }
 
+[data-theme="dark"] .elektrik-chat-message p,
+[data-theme="dark"] .elektrik-chat-message__meta {
+  color: rgba(255, 255, 255, 0.88);
+}
+
 .elektrik-chat-form {
   display: grid;
   gap: 14px;
@@ -1363,6 +1347,24 @@
   resize: vertical;
 }
 
+[data-theme="dark"] .elektrik-chat-input {
+  background: #050505;
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .elektrik-page .gallery-card,
+[data-theme="dark"] .elektrik-page .gallery-card--reverse {
+  background: #000000;
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: none;
+}
+
+[data-theme="dark"] .elektrik-page .gallery-card__body h3,
+[data-theme="dark"] .elektrik-page .gallery-card__body p {
+  color: #ffffff;
+}
+
 .elektrik-chat-input:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--elektrik-accent) 45%, transparent);
   outline-offset: 2px;
@@ -1370,10 +1372,6 @@
 
 .elektrik-chat-form__footer {
   align-items: flex-end;
-}
-
-.elektrik-chat-form__hint {
-  max-width: 36rem;
 }
 
 .elektrik-chat-form .elektrik-button[disabled] {
@@ -1854,7 +1852,6 @@
     order: initial;
   }
 
-  .elektrik-chat-shell__head,
   .elektrik-chat-form__footer {
     flex-direction: column;
     align-items: stretch;
@@ -2078,7 +2075,7 @@
   border-top-color: var(--rohr-border);
 }
 
-.rohr-page .rohr-pricing__aside p {
+.rohr-page .rohr-pricing__aside p:first-of-type + p {
   display: none;
 }
 
@@ -2186,6 +2183,454 @@
   .rohr-page .rohr-contact,
   .business-footer__grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 960px) {
+  .rohr-topbar,
+  .elektrik-topbar,
+  .heizung-topbar {
+    position: static;
+  }
+
+  .rohr-topbar__inner,
+  .elektrik-topbar__inner,
+  .heizung-topbar__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    min-height: auto;
+    padding-block: 14px;
+    gap: 12px;
+  }
+
+  .rohr-topbar__actions,
+  .elektrik-topbar__actions,
+  .heizung-topbar__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .rohr-page .theme-toggle,
+  .elektrik-page .theme-toggle,
+  .heizung-page .theme-toggle {
+    grid-column: 2;
+    justify-self: end;
+  }
+
+  .rohr-call,
+  .elektrik-call,
+  .heizung-call {
+    grid-column: 1;
+    width: 100%;
+    padding-inline: 16px;
+  }
+
+  .rohr-nav,
+  .elektrik-nav,
+  .heizung-nav {
+    grid-column: 1 / -1;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .rohr-nav::-webkit-scrollbar,
+  .elektrik-nav::-webkit-scrollbar,
+  .heizung-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rohr-nav a,
+  .elektrik-nav a,
+  .heizung-nav a {
+    flex: 0 0 auto;
+    min-height: 38px;
+    padding-inline: 14px;
+  }
+
+  .rohr-page .rohr-hero__layout,
+  .elektrik-hero__layout,
+  .heizung-hero__layout {
+    min-height: auto;
+    justify-items: stretch;
+    padding: 34px 0 48px;
+    gap: 20px;
+  }
+
+  .rohr-page .rohr-hero__copy,
+  .elektrik-hero__copy,
+  .heizung-hero__copy,
+  .rohr-page .rohr-story__intro,
+  .elektrik-intro,
+  .elektrik-section--gallery .section-heading,
+  .elektrik-chat__header,
+  .heizung-surface-intro,
+  .heizung-runbook__copy,
+  .heizung-contact__copy {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+    justify-items: start;
+  }
+
+  .rohr-page .rohr-hero__copy .rohr-hero__actions,
+  .elektrik-hero__copy .elektrik-hero__actions {
+    justify-content: flex-start;
+  }
+
+  .rohr-hero__actions,
+  .elektrik-hero__actions,
+  .elektrik-contact__actions,
+  .heizung-hero__actions {
+    gap: 10px;
+  }
+
+  .rohr-page .rohr-hero h1 {
+    max-width: 10ch;
+    margin: 0 0 12px;
+    font-size: clamp(2.6rem, 10vw, 3.7rem);
+  }
+
+  .rohr-story__intro h2,
+  .elektrik-intro h2,
+  .elektrik-pricing h2,
+  .elektrik-contact h2 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+
+  .elektrik-hero h1 {
+    font-size: clamp(2.4rem, 9vw, 3.4rem);
+  }
+
+  .heizung-hero h1,
+  .heizung-surface-intro h2,
+  .heizung-runbook h2,
+  .heizung-pricing h2,
+  .heizung-contact h2 {
+    margin: 10px 0 12px;
+    font-size: clamp(2.3rem, 9vw, 3.5rem);
+  }
+
+  .rohr-page .rohr-hero__lead,
+  .elektrik-hero__lead,
+  .heizung-hero__lead {
+    max-width: none;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .elektrik-hero::before {
+    opacity: 0.42;
+    filter: none;
+  }
+
+  .elektrik-hero::after {
+    opacity: 0;
+  }
+
+  .rohr-section,
+  .elektrik-section,
+  .heizung-section {
+    padding: 52px 0;
+  }
+
+  .rohr-page .rohr-pricing,
+  .rohr-page .rohr-contact,
+  .elektrik-pricing,
+  .elektrik-contact,
+  .heizung-pricing,
+  .heizung-runbook,
+  .heizung-contact {
+    gap: 20px;
+  }
+
+  .rohr-page .rohr-service-grid,
+  .heizung-price-grid,
+  .heizung-contact__cards {
+    gap: 14px;
+  }
+
+  .rohr-page .rohr-service-photo-card,
+  .rohr-page .rohr-map-card,
+  .elektrik-price-table,
+  .elektrik-carousel__slide,
+  .elektrik-map-card,
+  .heizung-hero__panel,
+  .heizung-price-pill,
+  .heizung-contact-card {
+    border-radius: 20px;
+  }
+
+  .rohr-page .rohr-service-photo-card img {
+    aspect-ratio: 1.45 / 1;
+  }
+
+  .rohr-page .rohr-service-photo-card__body {
+    padding: 18px;
+  }
+
+  .rohr-page .rohr-service-photo-card__body h3 {
+    font-size: 1.28rem;
+  }
+
+  .rohr-page .rohr-carousel {
+    margin-top: 4px;
+    gap: 10px;
+  }
+
+  .rohr-page .rohr-carousel__viewport,
+  .rohr-page .rohr-carousel__slide,
+  .elektrik-carousel__viewport,
+  .elektrik-carousel__slide {
+    border-radius: 18px;
+  }
+
+  .rohr-page .rohr-carousel__slide img,
+  .elektrik-carousel__slide img {
+    aspect-ratio: 1.55 / 1;
+  }
+
+  .rohr-page .rohr-map-frame,
+  .elektrik-map-frame {
+    min-height: 260px;
+  }
+
+  .rohr-map-linkbar,
+  .elektrik-map-linkbar {
+    padding: 14px;
+  }
+
+  .elektrik-section--gallery .section-heading {
+    margin-bottom: 22px;
+  }
+
+  .elektrik-page .gallery__stack {
+    gap: 18px;
+  }
+
+  .elektrik-page .gallery-card,
+  .elektrik-page .gallery-card--reverse {
+    border-radius: 20px;
+  }
+
+  .elektrik-page .gallery-card img {
+    min-height: 220px;
+    max-height: 280px;
+  }
+
+  .elektrik-page .gallery-card__body {
+    padding: 24px;
+  }
+
+  .elektrik-chat {
+    gap: 18px;
+  }
+
+  .elektrik-chat__header {
+    gap: 4px;
+  }
+
+  .elektrik-chat__header h2 {
+    margin: 0;
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
+  }
+
+  .elektrik-chat-shell {
+    gap: 14px;
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .elektrik-chat-log {
+    min-height: 240px;
+    max-height: 320px;
+    gap: 10px;
+  }
+
+  .elektrik-chat-message {
+    max-width: 100%;
+    padding: 12px 14px;
+    border-radius: 18px;
+  }
+
+  .elektrik-chat-input {
+    min-height: 110px;
+    padding: 14px 16px;
+    border-radius: 18px;
+  }
+
+  .elektrik-chat-form__footer .elektrik-button {
+    width: 100%;
+  }
+
+  .heizung-hero__panel {
+    padding: 20px;
+    border-radius: 28px;
+  }
+
+  .heizung-signal-stack {
+    gap: 12px;
+  }
+
+  .heizung-signal-card {
+    padding: 16px 18px;
+  }
+
+  .heizung-signal-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .heizung-runbook__item {
+    min-height: 64px;
+    padding: 14px 18px;
+    gap: 12px;
+  }
+
+  .heizung-runbook__item span {
+    width: 30px;
+    height: 30px;
+  }
+
+  .heizung-price-grid {
+    margin-top: 8px;
+  }
+
+  .heizung-price-pill {
+    padding: 20px 18px;
+  }
+
+  .heizung-scroll {
+    margin-top: 0;
+  }
+
+  .heizung-scroll__chip {
+    min-width: auto;
+    padding: 12px 14px;
+  }
+
+  .business-footer__grid {
+    gap: 16px;
+    padding: 24px 0 28px;
+  }
+
+  .business-footer__column {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 640px) {
+  .rohr-topbar__actions,
+  .elektrik-topbar__actions,
+  .heizung-topbar__actions {
+    grid-template-columns: 1fr;
+  }
+
+  .rohr-page .theme-toggle,
+  .elektrik-page .theme-toggle,
+  .heizung-page .theme-toggle {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .rohr-call,
+  .elektrik-call,
+  .heizung-call {
+    grid-column: 1;
+  }
+
+  .rohr-page .rohr-hero__layout,
+  .elektrik-hero__layout,
+  .heizung-hero__layout {
+    padding: 28px 0 40px;
+    gap: 18px;
+  }
+
+  .rohr-section,
+  .elektrik-section,
+  .heizung-section {
+    padding: 40px 0;
+  }
+
+  .rohr-page .rohr-hero h1 {
+    max-width: 9ch;
+    font-size: clamp(2.25rem, 11vw, 2.9rem);
+  }
+
+  .elektrik-hero h1 {
+    font-size: clamp(2.1rem, 10vw, 2.8rem);
+  }
+
+  .rohr-story__intro h2,
+  .elektrik-intro h2,
+  .elektrik-pricing h2,
+  .elektrik-contact h2,
+  .heizung-surface-intro h2,
+  .heizung-runbook h2,
+  .heizung-pricing h2,
+  .heizung-contact h2 {
+    font-size: clamp(1.9rem, 9vw, 2.5rem);
+  }
+
+  .rohr-price-table__row,
+  .elektrik-price-table__row {
+    padding: 14px 16px;
+    gap: 6px;
+  }
+
+  .rohr-page .rohr-service-photo-card__body,
+  .elektrik-page .gallery-card__body,
+  .elektrik-chat-shell,
+  .heizung-hero__panel,
+  .heizung-price-pill,
+  .heizung-contact-card {
+    padding: 16px;
+  }
+
+  .rohr-page .rohr-service-photo-card img,
+  .rohr-page .rohr-carousel__slide img,
+  .elektrik-carousel__slide img {
+    aspect-ratio: 1.35 / 1;
+  }
+
+  .elektrik-page .gallery-card img {
+    min-height: 200px;
+    max-height: 240px;
+  }
+
+  .elektrik-chat-log {
+    min-height: 220px;
+    max-height: 280px;
+  }
+
+  .elektrik-chat-message {
+    border-radius: 16px;
+  }
+
+  .elektrik-chat-input {
+    min-height: 96px;
+  }
+
+  .rohr-page .rohr-map-frame,
+  .elektrik-map-frame {
+    min-height: 220px;
+  }
+
+  .heizung-signal-card,
+  .heizung-runbook__item,
+  .heizung-price-pill,
+  .heizung-contact-card {
+    border-radius: 24px;
+  }
+
+  .business-footer__grid {
+    padding: 22px 0 24px;
   }
 }
 

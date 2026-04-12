@@ -1,18 +1,9 @@
-import { useEffect, useRef } from "react";
 import { DotRasterBackground } from "@/components/DotRasterBackground";
 import { serviceLinks } from "@/lib/site";
 import { useTheme } from "@/lib/theme";
 
 export function LandingPage() {
   const { theme, toggleTheme } = useTheme();
-  const forcedDarkRef = useRef(false);
-
-  useEffect(() => {
-    if (!forcedDarkRef.current && theme === "light") {
-      forcedDarkRef.current = true;
-      toggleTheme();
-    }
-  }, [theme, toggleTheme]);
 
   return (
     <div className="landing-page">

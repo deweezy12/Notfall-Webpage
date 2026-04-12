@@ -8,7 +8,7 @@ export function SiteFooter() {
           <p className="site-footer__eyebrow">Portfolio</p>
           <strong>Notfall Webpage</strong>
           <p>
-            Ein Showoff-Setup fuer mehrere Notfall-Landingpages mit
+            Ein Showoff-Setup für mehrere Notfall-Landingpages mit
             gemeinsamem Theme-System und separaten Routen.
           </p>
         </div>

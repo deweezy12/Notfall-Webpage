@@ -14,12 +14,12 @@ type ThemeContextValue = {
   toggleTheme: () => void;
 };
 
-const STORAGE_KEY = "notfall-theme";
+const STORAGE_KEY = "notfall-theme-v2";
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 function getInitialTheme(): ThemeMode {
   if (typeof window === "undefined") {
-    return "dark";
+    return "light";
   }
 
   const savedTheme = window.localStorage.getItem(STORAGE_KEY);
@@ -27,7 +27,7 @@ function getInitialTheme(): ThemeMode {
     return savedTheme;
   }
 
-  return "dark";
+  return "light";
 }
 
 export function ThemeProvider({ children }: PropsWithChildren) {

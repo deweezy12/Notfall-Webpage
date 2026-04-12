@@ -22,8 +22,8 @@ const serviceCards = [
 
 const carouselSlides = [
   {
-    image: asset("images/elektrik/elektriker3.png"),
-    alt: "Elektriker Notdienst Einblick 1",
+    image: asset("images/elektrik/elektriker6.png"),
+    alt: "Elektriker Notdienst Einblick 4",
   },
   {
     image: asset("images/elektrik/elektriker4.png"),
@@ -34,8 +34,8 @@ const carouselSlides = [
     alt: "Elektriker Notdienst Einblick 3",
   },
   {
-    image: asset("images/elektrik/elektriker6.png"),
-    alt: "Elektriker Notdienst Einblick 4",
+    image: asset("images/elektrik/elektriker3.png"),
+    alt: "Elektriker Notdienst Einblick 1",
   },
 ];
 
@@ -198,7 +198,7 @@ export function ElektrikPage() {
                   Jetzt anrufen
                 </a>
                 <a className="elektrik-button elektrik-button--secondary" href="#chat">
-                  Erst per Chat pruefen
+                  Erst per Chat prüfen
                 </a>
               </div>
             </div>
