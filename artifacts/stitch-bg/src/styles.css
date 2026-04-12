@@ -1570,6 +1570,27 @@ img {
     order: initial;
   }
 
+  .gallery-card,
+  .gallery-card--reverse {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    align-items: start;
+  }
+
+  .gallery-card img,
+  .gallery-card--reverse img {
+    order: 1;
+    height: auto;
+    min-height: 260px;
+    aspect-ratio: 1.45 / 1;
+  }
+
+  .gallery-card__body,
+  .gallery-card--reverse .gallery-card__body {
+    order: 2;
+    justify-content: flex-start;
+  }
+
   .detail-gallery-card--reverse .detail-gallery-card__media,
   .detail-gallery-card--reverse .detail-gallery-card__body {
     order: initial;
@@ -1663,6 +1684,13 @@ img {
 
   .slide-card {
     flex-basis: 240px;
+  }
+
+  .gallery-card img,
+  .gallery-card--reverse img {
+    min-height: 220px;
+    max-height: none;
+    aspect-ratio: 1.28 / 1;
   }
 
   .detail-slide-card {
