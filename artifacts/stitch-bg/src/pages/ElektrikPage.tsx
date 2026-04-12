@@ -3,6 +3,7 @@ import {
   useState,
   type PointerEvent as ReactPointerEvent,
 } from "react";
+import { ElektrikEmergencyChat } from "@/components/ElektrikEmergencyChat";
 import { useTheme } from "@/lib/theme";
 import { asset, withBase } from "@/lib/site";
 
@@ -149,6 +150,7 @@ export function ElektrikPage() {
               <a href="#leistungen">Leistungen</a>
               <a href="#einsaetze">Einsätze</a>
               <a href="#preise">Preise</a>
+              <a href="#chat">Chat</a>
               <a href="#kontakt">Kontakt</a>
             </nav>
 
@@ -195,8 +197,8 @@ export function ElektrikPage() {
                 <a className="elektrik-button elektrik-button--primary" href="tel:+4920212345680">
                   Jetzt anrufen
                 </a>
-                <a className="elektrik-button elektrik-button--secondary" href="#preise">
-                  Preise ansehen
+                <a className="elektrik-button elektrik-button--secondary" href="#chat">
+                  Erst per Chat pruefen
                 </a>
               </div>
             </div>
@@ -321,6 +323,8 @@ export function ElektrikPage() {
             </aside>
           </div>
         </section>
+
+        <ElektrikEmergencyChat />
 
         <section id="kontakt" className="elektrik-section elektrik-section--contact">
           <div className="site-shell elektrik-contact">

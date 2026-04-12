@@ -1179,6 +1179,208 @@
   background: rgba(255, 255, 255, 0.84);
 }
 
+.elektrik-section--chat {
+  background: color-mix(in srgb, var(--elektrik-surface-soft) 84%, var(--elektrik-bg));
+}
+
+.elektrik-chat {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(320px, 1.12fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.elektrik-chat__copy h2,
+.elektrik-chat-shell h3 {
+  margin: 0 0 14px;
+  font-size: clamp(2.1rem, 4vw, 3.1rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.elektrik-chat__copy p:not(.section-eyebrow),
+.elektrik-chat__point p,
+.elektrik-chat-message p,
+.elektrik-chat-form__hint {
+  margin: 0;
+  color: var(--elektrik-muted);
+  line-height: 1.68;
+}
+
+.elektrik-chat__points {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.elektrik-chat__point,
+.elektrik-chat-shell {
+  border: 1px solid var(--service-border);
+  background: var(--service-surface);
+  box-shadow: var(--service-shadow);
+}
+
+.elektrik-chat__point {
+  padding: 18px 20px;
+  border-radius: 20px;
+}
+
+.elektrik-chat__point strong,
+.elektrik-chat-message__meta,
+.elektrik-chat-status {
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.elektrik-chat__point strong {
+  margin-bottom: 10px;
+}
+
+.elektrik-chat-shell {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+  border-radius: 24px;
+}
+
+.elektrik-chat-shell__head,
+.elektrik-chat-form__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.elektrik-chat-shell__head {
+  align-items: flex-start;
+}
+
+.elektrik-chat-shell__head .section-eyebrow {
+  margin-bottom: 10px;
+}
+
+.elektrik-chat-status {
+  align-self: flex-start;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--service-border);
+}
+
+.elektrik-chat-status--ready {
+  color: #11804b;
+  background: rgba(17, 128, 75, 0.08);
+}
+
+.elektrik-chat-status--offline {
+  color: var(--elektrik-accent);
+  background: color-mix(in srgb, var(--elektrik-accent) 10%, transparent);
+}
+
+.elektrik-chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.elektrik-chat-suggestion {
+  min-height: 42px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--service-border);
+  background: var(--elektrik-surface);
+  color: var(--elektrik-text);
+  text-align: left;
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    background-color var(--transition);
+}
+
+.elektrik-chat-suggestion:hover,
+.elektrik-chat-suggestion:focus-visible {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--elektrik-accent) 40%, var(--service-border));
+  background: color-mix(in srgb, var(--elektrik-accent) 8%, var(--elektrik-surface));
+  outline: none;
+}
+
+.elektrik-chat-log {
+  min-height: 320px;
+  max-height: 420px;
+  display: grid;
+  gap: 12px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.elektrik-chat-message {
+  max-width: min(88%, 40rem);
+  padding: 14px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--service-border);
+  background: var(--elektrik-surface-soft);
+}
+
+.elektrik-chat-message--assistant {
+  justify-self: start;
+}
+
+.elektrik-chat-message--user {
+  justify-self: end;
+  border-color: transparent;
+  background: var(--elektrik-accent);
+}
+
+.elektrik-chat-message--user p,
+.elektrik-chat-message--user .elektrik-chat-message__meta {
+  color: #ffffff;
+}
+
+.elektrik-chat-message--error {
+  border-color: color-mix(in srgb, var(--elektrik-accent) 35%, var(--service-border));
+}
+
+.elektrik-chat-message__meta {
+  margin-bottom: 8px;
+  color: var(--elektrik-muted);
+}
+
+.elektrik-chat-form {
+  display: grid;
+  gap: 14px;
+}
+
+.elektrik-chat-input {
+  width: 100%;
+  min-height: 124px;
+  padding: 16px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--service-border);
+  background: var(--elektrik-surface);
+  color: var(--elektrik-text);
+  resize: vertical;
+}
+
+.elektrik-chat-input:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--elektrik-accent) 45%, transparent);
+  outline-offset: 2px;
+}
+
+.elektrik-chat-form__footer {
+  align-items: flex-end;
+}
+
+.elektrik-chat-form__hint {
+  max-width: 36rem;
+}
+
+.elektrik-chat-form .elektrik-button[disabled] {
+  opacity: 0.72;
+  cursor: wait;
+}
+
 .elektrik-contact {
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   align-items: stretch;
@@ -1629,6 +1831,7 @@
   .elektrik-feature-card,
   .elektrik-feature-card--reverse,
   .elektrik-pricing,
+  .elektrik-chat,
   .elektrik-contact,
   .elektrik-footer__meta,
   .heizung-hero__layout,
@@ -1649,6 +1852,12 @@
   .elektrik-feature-card--reverse img,
   .elektrik-feature-card--reverse .elektrik-feature-card__body {
     order: initial;
+  }
+
+  .elektrik-chat-shell__head,
+  .elektrik-chat-form__footer {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 
@@ -1680,6 +1889,7 @@
   .elektrik-hero__panel,
   .elektrik-feature-card__body,
   .elektrik-trust-points article,
+  .elektrik-chat-shell,
   .heizung-hero__panel,
   .heizung-price-pill,
   .heizung-contact-card {

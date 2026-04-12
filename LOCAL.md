@@ -38,6 +38,16 @@ $env:PORT="4173"
 pnpm.cmd --filter @workspace/stitch-bg run serve
 ```
 
+## Elektrik Chat
+
+The Elektrik page now includes an embedded emergency chat UI.
+
+- Create `artifacts/stitch-bg/.env.local`
+- Set `VITE_ELEKTRIK_CHAT_API_URL=http://localhost:7860/api/chat` for local testing
+- Keep the Anthropic API key on the backend only, for example in your existing `web-ai-agent` Flask app
+- GitHub Pages stays static, so the chat needs an external backend endpoint or a different host for the API
+- For GitHub Actions deploys, add the repository secret `VITE_ELEKTRIK_CHAT_API_URL` and point it to your live backend endpoint, for example `https://your-service.onrender.com/api/chat`
+
 ## GitHub Pages
 
 The repo includes a GitHub Actions workflow that builds and deploys the site on pushes to `main`.

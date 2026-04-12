@@ -38,6 +38,8 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build site
+        env:
+          VITE_ELEKTRIK_CHAT_API_URL: ${{ secrets.VITE_ELEKTRIK_CHAT_API_URL }}
         run: pnpm --filter @workspace/stitch-bg run build
 
       - name: Upload Pages artifact
