@@ -1,0 +1,1178 @@
+.rohr-page {
+  --rohr-bg: #ffffff;
+  --rohr-surface: #ffffff;
+  --rohr-surface-soft: #f7f3ee;
+  --rohr-text: #292827;
+  --rohr-muted: rgba(41, 40, 39, 0.74);
+  --rohr-border: #dcd7d3;
+  --rohr-hero: linear-gradient(180deg, #1b1938 0%, #2b2555 100%);
+  --rohr-hero-border: rgba(255, 255, 255, 0.18);
+  --rohr-hero-surface: rgba(255, 255, 255, 0.05);
+  --rohr-topbar: rgba(255, 255, 255, 0.84);
+  --rohr-cta-bg: #e9e5dd;
+  --rohr-cta-text: #292827;
+  min-height: 100vh;
+  background: var(--rohr-bg);
+  color: var(--rohr-text);
+  font-family: "Inter", Arial, sans-serif;
+}
+
+[data-theme="dark"] .rohr-page {
+  --rohr-bg: #111019;
+  --rohr-surface: #181626;
+  --rohr-surface-soft: #201d31;
+  --rohr-text: rgba(255, 255, 255, 0.96);
+  --rohr-muted: rgba(255, 255, 255, 0.74);
+  --rohr-border: rgba(255, 255, 255, 0.1);
+  --rohr-hero: linear-gradient(180deg, #18142f 0%, #100e1f 100%);
+  --rohr-topbar: rgba(17, 16, 25, 0.84);
+  --rohr-cta-bg: #e9e5dd;
+  --rohr-cta-text: #292827;
+}
+
+.rohr-page h1,
+.rohr-page h2,
+.rohr-page h3,
+.rohr-brand,
+.rohr-call,
+.rohr-button {
+  font-family: "Area Normal", "Inter", Arial, sans-serif;
+}
+
+.rohr-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--rohr-topbar);
+  border-bottom: 1px solid var(--rohr-border);
+  backdrop-filter: saturate(180%) blur(18px);
+}
+
+.rohr-topbar__inner,
+.rohr-topbar__actions,
+.rohr-nav,
+.rohr-hero__actions,
+.rohr-footer__meta {
+  display: flex;
+}
+
+.rohr-topbar__inner,
+.rohr-topbar__actions {
+  min-height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.rohr-brand {
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.rohr-nav {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rohr-nav a,
+.rohr-call,
+.rohr-button {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  border-radius: 8px;
+  transition: background-color var(--transition), border-color var(--transition), opacity var(--transition);
+}
+
+.rohr-nav a {
+  color: var(--rohr-muted);
+}
+
+.rohr-nav a:hover,
+.rohr-nav a:focus-visible {
+  background: color-mix(in srgb, var(--rohr-surface-soft) 80%, transparent);
+  color: var(--rohr-text);
+}
+
+.rohr-page .theme-toggle {
+  background: var(--rohr-surface);
+  border-color: var(--rohr-border);
+  color: var(--rohr-text);
+}
+
+.rohr-page .theme-toggle__thumb {
+  background: var(--rohr-cta-bg);
+  box-shadow: none;
+}
+
+.rohr-call,
+.rohr-button--primary {
+  background: var(--rohr-cta-bg);
+  color: var(--rohr-cta-text);
+  border: 1px solid transparent;
+}
+
+.rohr-button--secondary {
+  border: 1px solid var(--rohr-border);
+}
+
+.rohr-call:hover,
+.rohr-button:hover,
+.rohr-call:focus-visible,
+.rohr-button:focus-visible {
+  opacity: 0.92;
+}
+
+.rohr-hero {
+  background: var(--rohr-hero);
+}
+
+.rohr-hero__layout,
+.rohr-story,
+.rohr-editorial,
+.rohr-pricing,
+.rohr-contact {
+  display: grid;
+  gap: 28px;
+}
+
+.rohr-hero__layout {
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  align-items: center;
+  min-height: calc(100vh - 72px);
+  padding: 72px 0 88px;
+}
+
+.rohr-hero h1 {
+  max-width: 11ch;
+  margin: 0 0 16px;
+  font-size: clamp(3.2rem, 7vw, 5.6rem);
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+  color: #ffffff;
+}
+
+.rohr-hero__lead,
+.rohr-panel__label,
+.rohr-price-table span,
+.rohr-contact-card p,
+.rohr-footer__meta p,
+.rohr-service-card p,
+.rohr-process__card p {
+  color: var(--rohr-muted);
+}
+
+.rohr-hero__lead {
+  max-width: 58ch;
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.72;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.rohr-hero__actions {
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.rohr-hero__panel,
+.rohr-service-card,
+.rohr-editorial__card,
+.rohr-process__card,
+.rohr-contact-card {
+  border: 1px solid var(--rohr-border);
+  background: var(--rohr-surface);
+}
+
+.rohr-hero__panel {
+  padding: 30px;
+  border-radius: 16px;
+  background: var(--rohr-hero-surface);
+  border-color: var(--rohr-hero-border);
+  color: #ffffff;
+}
+
+.rohr-panel__label {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.rohr-hero__panel strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.rohr-hero__panel > p {
+  margin: 0;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.rohr-hero__metrics,
+.rohr-service-grid,
+.rohr-process,
+.rohr-contact__cards {
+  display: grid;
+  gap: 16px;
+}
+
+.rohr-hero__metrics {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 28px;
+}
+
+.rohr-hero__metrics article {
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rohr-hero__metrics strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.rohr-hero__metrics p {
+  margin: 0;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.rohr-section {
+  padding: 88px 0;
+}
+
+.rohr-section--surface {
+  background: var(--rohr-bg);
+}
+
+.rohr-section--editorial {
+  background: color-mix(in srgb, var(--rohr-surface-soft) 88%, var(--rohr-bg));
+}
+
+.rohr-section--pricing {
+  background: var(--rohr-hero);
+  color: #ffffff;
+}
+
+.rohr-story {
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  align-items: start;
+}
+
+.rohr-story__intro h2,
+.rohr-editorial__card h2,
+.rohr-pricing h2,
+.rohr-contact h2 {
+  margin: 0 0 14px;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 0.96;
+}
+
+.rohr-story__intro p:last-child,
+.rohr-editorial__card p,
+.rohr-pricing__aside p,
+.rohr-contact__copy p {
+  margin: 0;
+  line-height: 1.72;
+  color: var(--rohr-muted);
+}
+
+.rohr-service-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.rohr-service-card,
+.rohr-process__card,
+.rohr-contact-card {
+  padding: 24px;
+  border-radius: 16px;
+}
+
+.rohr-service-card h3,
+.rohr-process__card h3,
+.rohr-contact-card h3 {
+  margin: 0 0 12px;
+  font-size: 1.55rem;
+  font-weight: 500;
+  line-height: 1.02;
+}
+
+.rohr-editorial__card {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.25fr);
+  gap: 28px;
+  align-items: center;
+  padding: 28px;
+  border-radius: 16px;
+}
+
+.rohr-editorial__image {
+  width: 100%;
+  max-width: 240px;
+  margin: 0 auto;
+}
+
+.rohr-process {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.rohr-process__card span {
+  display: inline-flex;
+  margin-bottom: 16px;
+  color: #714cb6;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.rohr-pricing {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.92fr);
+  align-items: start;
+}
+
+.rohr-section--pricing .section-eyebrow,
+.rohr-section--pricing h2,
+.rohr-section--pricing p,
+.rohr-section--pricing span,
+.rohr-section--pricing strong {
+  color: #ffffff;
+}
+
+.rohr-price-table {
+  overflow: hidden;
+  margin-top: 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.rohr-price-table__head,
+.rohr-price-table__row {
+  display: grid;
+  grid-template-columns: 1.2fr 0.75fr 0.95fr;
+  gap: 14px;
+  align-items: center;
+  padding: 18px 20px;
+}
+
+.rohr-price-table__head {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.rohr-price-table__row + .rohr-price-table__row {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rohr-pricing__aside p:first-of-type + p {
+  margin-bottom: 24px;
+}
+
+.rohr-rail {
+  overflow: hidden;
+}
+
+.rohr-rail__track {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  animation: marquee 24s linear infinite;
+}
+
+.rohr-rail__pill {
+  min-width: 180px;
+  padding: 16px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  text-align: center;
+  font-weight: 600;
+}
+
+.rohr-contact {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+}
+
+.rohr-contact__cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.rohr-footer {
+  border-top: 1px solid var(--rohr-border);
+  background: color-mix(in srgb, var(--rohr-surface-soft) 75%, var(--rohr-bg));
+}
+
+.rohr-footer__meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  padding: 32px 0;
+}
+
+.rohr-footer__meta strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.elektrik-page {
+  --elektrik-bg: #ffffff;
+  --elektrik-surface: #ffffff;
+  --elektrik-surface-soft: #f7f7f7;
+  --elektrik-text: #222222;
+  --elektrik-muted: #6a6a6a;
+  --elektrik-border: rgba(0, 0, 0, 0.08);
+  --elektrik-shadow:
+    rgba(0, 0, 0, 0.02) 0 0 0 1px,
+    rgba(0, 0, 0, 0.04) 0 2px 6px,
+    rgba(0, 0, 0, 0.1) 0 4px 8px;
+  --elektrik-topbar: rgba(255, 255, 255, 0.92);
+  --elektrik-accent: #ff385c;
+  min-height: 100vh;
+  background: var(--elektrik-bg);
+  color: var(--elektrik-text);
+}
+
+[data-theme="dark"] .elektrik-page {
+  --elektrik-bg: #141414;
+  --elektrik-surface: #1c1c1c;
+  --elektrik-surface-soft: #232323;
+  --elektrik-text: rgba(255, 255, 255, 0.96);
+  --elektrik-muted: rgba(255, 255, 255, 0.72);
+  --elektrik-border: rgba(255, 255, 255, 0.08);
+  --elektrik-shadow: none;
+  --elektrik-topbar: rgba(20, 20, 20, 0.88);
+}
+
+.elektrik-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--elektrik-topbar);
+  border-bottom: 1px solid var(--elektrik-border);
+  backdrop-filter: saturate(180%) blur(18px);
+}
+
+.elektrik-topbar__inner,
+.elektrik-topbar__actions,
+.elektrik-nav,
+.elektrik-hero__actions,
+.elektrik-contact__actions {
+  display: flex;
+}
+
+.elektrik-topbar__inner,
+.elektrik-topbar__actions {
+  min-height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.elektrik-brand {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.elektrik-nav {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.elektrik-nav a,
+.elektrik-call,
+.elektrik-button,
+.elektrik-tag {
+  border-radius: 999px;
+}
+
+.elektrik-nav a,
+.elektrik-call,
+.elektrik-button {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+}
+
+.elektrik-nav a:hover,
+.elektrik-nav a:focus-visible {
+  background: color-mix(in srgb, var(--elektrik-accent) 12%, transparent);
+}
+
+.elektrik-page .theme-toggle {
+  background: var(--elektrik-surface);
+  border-color: var(--elektrik-border);
+  color: var(--elektrik-text);
+}
+
+.elektrik-page .theme-toggle__thumb {
+  background: var(--elektrik-accent);
+  box-shadow: none;
+}
+
+.elektrik-call,
+.elektrik-button--primary {
+  background: #222222;
+  color: #ffffff;
+}
+
+.elektrik-button--secondary {
+  border: 1px solid var(--elektrik-border);
+  background: var(--elektrik-surface);
+}
+
+.elektrik-hero {
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--elektrik-accent) 12%, transparent), transparent 30%),
+    linear-gradient(180deg, var(--elektrik-bg) 0%, color-mix(in srgb, var(--elektrik-surface-soft) 60%, var(--elektrik-bg)) 100%);
+}
+
+.elektrik-hero__layout,
+.elektrik-gallery,
+.elektrik-pricing,
+.elektrik-contact {
+  display: grid;
+  gap: 28px;
+}
+
+.elektrik-hero__layout {
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  align-items: center;
+  min-height: calc(100vh - 72px);
+  padding: 72px 0 88px;
+}
+
+.elektrik-hero h1,
+.elektrik-intro h2,
+.elektrik-pricing h2,
+.elektrik-contact h2 {
+  margin: 0 0 14px;
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.elektrik-hero__lead,
+.elektrik-intro p:last-child,
+.elektrik-card__body p,
+.elektrik-pricing__aside p,
+.elektrik-trust-points p,
+.elektrik-footer__meta p {
+  margin: 0;
+  color: var(--elektrik-muted);
+  line-height: 1.68;
+}
+
+.elektrik-hero__actions,
+.elektrik-contact__actions {
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.elektrik-hero__panel,
+.elektrik-card,
+.elektrik-trust-points article {
+  border: 1px solid var(--elektrik-border);
+  background: var(--elektrik-surface);
+  box-shadow: var(--elektrik-shadow);
+}
+
+.elektrik-hero__panel {
+  padding: 28px;
+  border-radius: 24px;
+}
+
+.elektrik-panel__badge {
+  display: inline-flex;
+  margin-bottom: 18px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--elektrik-accent) 12%, transparent);
+  color: var(--elektrik-accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.elektrik-highlight-list,
+.elektrik-tag-row,
+.elektrik-trust-points {
+  display: grid;
+  gap: 14px;
+}
+
+.elektrik-highlight-list article strong,
+.elektrik-trust-points h3 {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.elektrik-section {
+  padding: 72px 0;
+}
+
+.elektrik-tag-row {
+  grid-template-columns: repeat(6, max-content);
+  overflow: auto hidden;
+  padding-bottom: 8px;
+}
+
+.elektrik-tag {
+  min-height: 38px;
+  padding: 0 16px;
+  background: var(--elektrik-surface-soft);
+  align-items: center;
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+.elektrik-intro {
+  max-width: 760px;
+  margin-top: 28px;
+}
+
+.elektrik-gallery {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.elektrik-card {
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.elektrik-card img {
+  width: 100%;
+  aspect-ratio: 1.1 / 0.9;
+  object-fit: cover;
+}
+
+.elektrik-card__body {
+  padding: 24px;
+}
+
+.elektrik-card__body h3 {
+  margin: 0 0 12px;
+  font-size: 1.55rem;
+  line-height: 1.05;
+}
+
+.elektrik-pricing {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.92fr);
+  align-items: start;
+}
+
+.elektrik-price-table {
+  overflow: hidden;
+  margin-top: 22px;
+  border-radius: 24px;
+  border: 1px solid var(--elektrik-border);
+  background: var(--elektrik-surface);
+  box-shadow: var(--elektrik-shadow);
+}
+
+.elektrik-price-table__head,
+.elektrik-price-table__row {
+  display: grid;
+  grid-template-columns: 1.2fr 0.75fr 0.95fr;
+  gap: 14px;
+  align-items: center;
+  padding: 18px 20px;
+}
+
+.elektrik-price-table__head {
+  border-bottom: 1px solid var(--elektrik-border);
+}
+
+.elektrik-price-table__row + .elektrik-price-table__row {
+  border-top: 1px solid var(--elektrik-border);
+}
+
+.elektrik-trust-points article {
+  padding: 22px;
+  border-radius: 20px;
+}
+
+.elektrik-contact {
+  grid-template-columns: minmax(0, 1fr) max-content;
+  align-items: end;
+}
+
+.elektrik-footer {
+  border-top: 1px solid var(--elektrik-border);
+  background: color-mix(in srgb, var(--elektrik-surface-soft) 80%, var(--elektrik-bg));
+}
+
+.elektrik-footer__meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  padding: 32px 0;
+}
+
+.elektrik-footer__meta strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.heizung-page {
+  --heizung-bg: #ffffff;
+  --heizung-surface: #ffffff;
+  --heizung-surface-soft: #fafafa;
+  --heizung-text: #202020;
+  --heizung-muted: #646464;
+  --heizung-border: rgba(32, 32, 32, 0.12);
+  --heizung-hero: linear-gradient(135deg, #ea2804 0%, #d93f19 34%, #c5216f 68%, #f25c94 100%);
+  --heizung-topbar: rgba(255, 255, 255, 0.9);
+  min-height: 100vh;
+  background: var(--heizung-bg);
+  color: var(--heizung-text);
+  font-family: "Inter", Arial, sans-serif;
+}
+
+[data-theme="dark"] .heizung-page {
+  --heizung-bg: #121212;
+  --heizung-surface: #181818;
+  --heizung-surface-soft: #202020;
+  --heizung-text: rgba(255, 255, 255, 0.96);
+  --heizung-muted: rgba(255, 255, 255, 0.72);
+  --heizung-border: rgba(255, 255, 255, 0.12);
+  --heizung-hero: linear-gradient(135deg, #7a1703 0%, #a22609 28%, #8d194e 64%, #c23f76 100%);
+  --heizung-topbar: rgba(18, 18, 18, 0.88);
+}
+
+.heizung-page h1,
+.heizung-page h2,
+.heizung-page h3,
+.heizung-brand,
+.heizung-call,
+.heizung-button {
+  font-family: "Space Grotesk", "Inter", Arial, sans-serif;
+}
+
+.heizung-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--heizung-topbar);
+  border-bottom: 1px solid var(--heizung-border);
+  backdrop-filter: saturate(180%) blur(18px);
+}
+
+.heizung-topbar__inner,
+.heizung-topbar__actions,
+.heizung-nav,
+.heizung-hero__actions {
+  display: flex;
+}
+
+.heizung-topbar__inner,
+.heizung-topbar__actions {
+  min-height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.heizung-nav {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.heizung-nav a,
+.heizung-call,
+.heizung-button,
+.heizung-status,
+.heizung-signal-card,
+.heizung-runbook__item,
+.heizung-price-pill,
+.heizung-scroll__chip,
+.heizung-contact-card {
+  border-radius: 999px;
+}
+
+.heizung-nav a,
+.heizung-call,
+.heizung-button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.heizung-page .theme-toggle {
+  background: var(--heizung-surface);
+  border-color: var(--heizung-border);
+  color: var(--heizung-text);
+}
+
+.heizung-page .theme-toggle__thumb {
+  background: #202020;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .heizung-page .theme-toggle__thumb {
+  background: #ffffff;
+}
+
+.heizung-call,
+.heizung-button--primary {
+  background: #202020;
+  color: #fcfcfc;
+}
+
+.heizung-button--secondary {
+  border: 1px solid var(--heizung-border);
+  background: transparent;
+}
+
+.heizung-hero {
+  background: var(--heizung-hero);
+}
+
+.heizung-hero__layout,
+.heizung-runbook,
+.heizung-pricing,
+.heizung-contact {
+  display: grid;
+  gap: 28px;
+}
+
+.heizung-hero__layout {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+  align-items: center;
+  min-height: calc(100vh - 72px);
+  padding: 72px 0 88px;
+}
+
+.heizung-status {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+.heizung-hero h1,
+.heizung-surface-intro h2,
+.heizung-runbook h2,
+.heizung-pricing h2,
+.heizung-contact h2 {
+  margin: 16px 0 14px;
+  font-size: clamp(3rem, 8vw, 5.6rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+}
+
+.heizung-hero__lead,
+.heizung-surface-intro p:last-child,
+.heizung-runbook__copy p:last-child,
+.heizung-contact__copy p,
+.heizung-contact-card p,
+.heizung-footer__meta p,
+.heizung-price-pill p {
+  margin: 0;
+  color: var(--heizung-muted);
+  line-height: 1.68;
+}
+
+.heizung-hero__lead {
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 52ch;
+}
+
+.heizung-hero__actions {
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.heizung-hero__panel,
+.heizung-runbook__item,
+.heizung-price-pill,
+.heizung-contact-card {
+  border: 1px solid var(--heizung-border);
+}
+
+.heizung-hero__panel {
+  padding: 24px;
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.heizung-signal-stack,
+.heizung-price-grid,
+.heizung-contact__cards {
+  display: grid;
+  gap: 16px;
+}
+
+.heizung-signal-card {
+  padding: 20px 22px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.heizung-signal-card__status {
+  display: inline-flex;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+.heizung-signal-card__status--live,
+.heizung-signal-card__status--ready {
+  background: rgba(43, 154, 102, 0.18);
+  color: #d5ffe9;
+}
+
+.heizung-signal-card__status--priority {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.heizung-signal-card h2,
+.heizung-contact-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.4rem;
+  line-height: 1.02;
+  color: #ffffff;
+}
+
+.heizung-signal-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.heizung-section {
+  padding: 80px 0;
+}
+
+.heizung-section--surface {
+  background: var(--heizung-bg);
+}
+
+.heizung-section--dark,
+.heizung-section--contact,
+.heizung-footer {
+  background: #202020;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .heizung-section--dark,
+[data-theme="dark"] .heizung-section--contact,
+[data-theme="dark"] .heizung-footer {
+  background: #171717;
+}
+
+.heizung-runbook {
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  align-items: start;
+}
+
+.heizung-runbook__copy p:last-child {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.heizung-runbook__list {
+  display: grid;
+  gap: 14px;
+}
+
+.heizung-runbook__item {
+  min-height: 76px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.heizung-runbook__item span {
+  width: 34px;
+  height: 34px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.heizung-price-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 16px;
+}
+
+.heizung-price-pill {
+  padding: 24px 20px;
+  background: var(--heizung-surface-soft);
+}
+
+.heizung-price-pill span {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--heizung-muted);
+  font-size: 0.82rem;
+  text-transform: lowercase;
+}
+
+.heizung-price-pill strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1.4rem;
+}
+
+.heizung-price-pill p + strong {
+  margin-top: 12px;
+}
+
+.heizung-scroll {
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.heizung-scroll__track {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  animation: marquee 24s linear infinite;
+}
+
+.heizung-scroll__chip {
+  min-width: 180px;
+  padding: 16px 18px;
+  background: color-mix(in srgb, var(--heizung-surface-soft) 88%, transparent);
+  text-align: center;
+  text-transform: lowercase;
+}
+
+.heizung-contact {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+}
+
+.heizung-contact__cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.heizung-contact-card {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.heizung-footer__meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  padding: 32px 0;
+}
+
+.heizung-footer__meta strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rohr-rail__track,
+  .heizung-scroll__track {
+    animation: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .rohr-topbar__inner,
+  .rohr-topbar__actions,
+  .elektrik-topbar__inner,
+  .elektrik-topbar__actions,
+  .heizung-topbar__inner,
+  .heizung-topbar__actions {
+    flex-wrap: wrap;
+  }
+
+  .rohr-nav,
+  .elektrik-nav,
+  .heizung-nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .rohr-hero__layout,
+  .rohr-story,
+  .rohr-editorial__card,
+  .rohr-pricing,
+  .rohr-contact,
+  .rohr-contact__cards,
+  .rohr-footer__meta,
+  .elektrik-hero__layout,
+  .elektrik-gallery,
+  .elektrik-pricing,
+  .elektrik-contact,
+  .elektrik-footer__meta,
+  .heizung-hero__layout,
+  .heizung-runbook,
+  .heizung-price-grid,
+  .heizung-contact,
+  .heizung-contact__cards,
+  .heizung-footer__meta {
+    grid-template-columns: 1fr;
+  }
+
+  .rohr-hero__metrics,
+  .rohr-service-grid,
+  .rohr-process {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .rohr-call,
+  .rohr-button,
+  .elektrik-call,
+  .elektrik-button,
+  .heizung-call,
+  .heizung-button {
+    width: 100%;
+  }
+
+  .rohr-price-table__head,
+  .elektrik-price-table__head {
+    display: none;
+  }
+
+  .rohr-price-table__row,
+  .elektrik-price-table__row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .rohr-hero__panel,
+  .rohr-service-card,
+  .rohr-process__card,
+  .rohr-contact-card,
+  .elektrik-hero__panel,
+  .elektrik-card__body,
+  .elektrik-trust-points article,
+  .heizung-hero__panel,
+  .heizung-price-pill,
+  .heizung-contact-card {
+    padding: 20px;
+  }
+}

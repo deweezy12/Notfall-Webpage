@@ -1,4 +1,4 @@
 import { mountPage } from "@/mount";
-import { EmergencyServicePage } from "@/pages/EmergencyServicePage";
+import { HeizungPage } from "@/pages/HeizungPage";
 
-mountPage(<EmergencyServicePage service="heizung" />);
+mountPage(<HeizungPage />);
