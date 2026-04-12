@@ -1,4 +1,9 @@
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 
 type Theme = "light" | "dark";
 
@@ -65,6 +70,11 @@ const contactCards = [
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState<Theme>("light");
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDraggingSlider, setIsDraggingSlider] = useState(false);
+  const dragStartXRef = useRef<number | null>(null);
+  const dragPointerIdRef = useRef<number | null>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -91,6 +101,51 @@ function App() {
   }, [theme]);
 
   const isDark = theme === "dark";
+
+  const handleSliderPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    dragStartXRef.current = event.clientX;
+    dragPointerIdRef.current = event.pointerId;
+    setIsDraggingSlider(true);
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handleSliderPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (
+      dragStartXRef.current === null ||
+      dragPointerIdRef.current !== event.pointerId
+    ) {
+      return;
+    }
+
+    setDragOffset(event.clientX - dragStartXRef.current);
+  };
+
+  const handleSliderPointerEnd = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (
+      dragStartXRef.current === null ||
+      dragPointerIdRef.current !== event.pointerId
+    ) {
+      return;
+    }
+
+    const threshold = 48;
+    const nextOffset = event.clientX - dragStartXRef.current;
+
+    if (nextOffset <= -threshold && activeSlide < slides.length - 1) {
+      setActiveSlide((current) => current + 1);
+    } else if (nextOffset >= threshold && activeSlide > 0) {
+      setActiveSlide((current) => current - 1);
+    }
+
+    dragStartXRef.current = null;
+    dragPointerIdRef.current = null;
+    setDragOffset(0);
+    setIsDraggingSlider(false);
+
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
 
   return (
     <>
@@ -238,14 +293,41 @@ function App() {
                 </div>
 
                 <div className="slider slider--dark">
-                  <div className="slider__track">
-                    {[...slides, ...slides].map((slide, index) => (
-                      <div className="slide" key={`${slide}-${index}`}>
-                        <img
-                          src={slide}
-                          alt={`Werkzeug und Einsatzbild ${index + 1}`}
-                        />
-                      </div>
+                  <div
+                    className={`slider__viewport ${isDraggingSlider ? "slider__viewport--dragging" : ""}`}
+                    onPointerDown={handleSliderPointerDown}
+                    onPointerMove={handleSliderPointerMove}
+                    onPointerUp={handleSliderPointerEnd}
+                    onPointerCancel={handleSliderPointerEnd}
+                  >
+                    <div
+                      className="slider__track"
+                      style={{
+                        transform: `translateX(calc(-${activeSlide * 100}% + ${dragOffset}px))`,
+                      }}
+                    >
+                      {slides.map((slide, index) => (
+                        <div className="slide" key={slide}>
+                          <img
+                            src={slide}
+                            alt={`Werkzeug und Einsatzbild ${index + 1}`}
+                            draggable={false}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="slider__dots" aria-label="Einblicke auswaehlen">
+                    {slides.map((slide, index) => (
+                      <button
+                        key={`${slide}-dot`}
+                        type="button"
+                        className={`slider__dot ${activeSlide === index ? "slider__dot--active" : ""}`}
+                        onClick={() => setActiveSlide(index)}
+                        aria-label={`Bild ${index + 1} anzeigen`}
+                        aria-pressed={activeSlide === index}
+                      />
                     ))}
                   </div>
                 </div>
