@@ -2417,12 +2417,25 @@
 
   .elektrik-page .gallery-card,
   .elektrik-page .gallery-card--reverse {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    align-items: start;
     border-radius: 20px;
   }
 
-  .elektrik-page .gallery-card img {
+  .elektrik-page .gallery-card img,
+  .elektrik-page .gallery-card--reverse img {
+    order: 1;
+    height: auto;
     min-height: 220px;
     max-height: 280px;
+    aspect-ratio: 1.45 / 1;
+  }
+
+  .elektrik-page .gallery-card__body,
+  .elektrik-page .gallery-card--reverse .gallery-card__body {
+    order: 2;
+    justify-content: flex-start;
   }
 
   .elektrik-page .gallery-card__body {
@@ -2601,7 +2614,8 @@
 
   .elektrik-page .gallery-card img {
     min-height: 200px;
-    max-height: 240px;
+    max-height: none;
+    aspect-ratio: 1.28 / 1;
   }
 
   .elektrik-chat-log {
