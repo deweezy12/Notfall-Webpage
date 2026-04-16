@@ -9,9 +9,7 @@ if (Number.isNaN(port) || port <= 0) {
   throw new Error(`Invalid PORT value: "${rawPort}"`);
 }
 
-const basePath =
-  process.env.BASE_PATH ??
-  (process.env.GITHUB_ACTIONS === "true" ? "/Notfall-Webpage/" : "/");
+const basePath = process.env.BASE_PATH ?? "/";
 
 export default defineConfig({
   base: basePath,
@@ -28,10 +26,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(import.meta.dirname, "index.html"),
-        schluessel: path.resolve(
-          import.meta.dirname,
-          "schluessel/index.html",
-        ),
+        schluessel: path.resolve(import.meta.dirname, "schluessel/index.html"),
         rohr: path.resolve(import.meta.dirname, "rohr/index.html"),
         elektrik: path.resolve(import.meta.dirname, "elektrik/index.html"),
         heizung: path.resolve(import.meta.dirname, "heizung/index.html"),
