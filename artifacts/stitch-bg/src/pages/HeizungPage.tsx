@@ -78,6 +78,9 @@ export function HeizungPage() {
   return (
     <div className="heizung-page" id="start">
       <StructuredData service="heizung" />
+      <a href="#start" className="skip-link">
+        Zum Hauptinhalt springen
+      </a>
       <header className="heizung-topbar">
         <div className="site-shell heizung-topbar__inner">
           <a className="heizung-brand" href="#start">

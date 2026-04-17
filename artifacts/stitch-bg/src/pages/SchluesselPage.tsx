@@ -3,6 +3,7 @@ import {
   useRef,
   useState,
   type PointerEvent as ReactPointerEvent,
+  type KeyboardEvent as ReactKeyboardEvent,
 } from "react";
 import { asset, withBase } from "@/lib/site";
 import { useTheme } from "@/lib/theme";
@@ -137,9 +138,33 @@ export function SchluesselPage() {
     }
   };
 
+  // Keyboard navigation for carousel
+  const handleCarouselKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      setActiveSlide((current) =>
+        current > 0 ? current - 1 : slides.length - 1,
+      );
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      setActiveSlide((current) =>
+        current < slides.length - 1 ? current + 1 : 0,
+      );
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      setActiveSlide(0);
+    } else if (event.key === "End") {
+      event.preventDefault();
+      setActiveSlide(slides.length - 1);
+    }
+  };
+
   return (
     <>
       <StructuredData service="schluessel" />
+      <a href="#start" className="skip-link">
+        Zum Hauptinhalt springen
+      </a>
       <header className={`top-bar ${isScrolled ? "top-bar--scrolled" : ""}`}>
         <div className="top-bar__inner">
           <a className="brand" href="#start">
@@ -292,12 +317,25 @@ export function SchluesselPage() {
                 </div>
 
                 <div className="slider slider--dark">
+                  {/* ARIA Live Region for screen readers */}
+                  <div
+                    className="sr-only"
+                    aria-live="polite"
+                    aria-atomic="true"
+                  >
+                    Bild {activeSlide + 1} von {slides.length}
+                  </div>
+
                   <div
                     className={`slider__viewport ${isDraggingSlider ? "slider__viewport--dragging" : ""}`}
                     onPointerDown={handleSliderPointerDown}
                     onPointerMove={handleSliderPointerMove}
                     onPointerUp={handleSliderPointerEnd}
                     onPointerCancel={handleSliderPointerEnd}
+                    onKeyDown={handleCarouselKeyDown}
+                    role="region"
+                    aria-label="Bildergalerie Schlüsseldienst-Einsätze"
+                    tabIndex={0}
                   >
                     <div
                       className="slider__track"

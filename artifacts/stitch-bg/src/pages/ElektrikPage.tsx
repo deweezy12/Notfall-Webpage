@@ -1,7 +1,9 @@
 import {
+  useEffect,
   useRef,
   useState,
   type PointerEvent as ReactPointerEvent,
+  type KeyboardEvent as ReactKeyboardEvent,
 } from "react";
 import { ElektrikEmergencyChat } from "@/components/ElektrikEmergencyChat";
 import { useTheme } from "@/lib/theme";
@@ -139,9 +141,33 @@ export function ElektrikPage() {
     }
   };
 
+  // Keyboard navigation for carousel
+  const handleCarouselKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      setActiveSlide((current) =>
+        current > 0 ? current - 1 : carouselSlides.length - 1,
+      );
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      setActiveSlide((current) =>
+        current < carouselSlides.length - 1 ? current + 1 : 0,
+      );
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      setActiveSlide(0);
+    } else if (event.key === "End") {
+      event.preventDefault();
+      setActiveSlide(carouselSlides.length - 1);
+    }
+  };
+
   return (
     <div className="elektrik-page" id="start">
       <StructuredData service="elektrik" />
+      <a href="#start" className="skip-link">
+        Zum Hauptinhalt springen
+      </a>
       <header className="elektrik-topbar">
         <div className="site-shell elektrik-topbar__inner">
           <a className="elektrik-brand" href="#start">
@@ -308,12 +334,21 @@ export function ElektrikPage() {
               <h2>Einblicke in typische Elektriker-Einsätze.</h2>
 
               <div className="elektrik-carousel">
+                {/* ARIA Live Region for screen readers */}
+                <div className="sr-only" aria-live="polite" aria-atomic="true">
+                  Bild {activeSlide + 1} von {carouselSlides.length}
+                </div>
+
                 <div
                   className={`elektrik-carousel__viewport ${isDraggingSlider ? "elektrik-carousel__viewport--dragging" : ""}`}
                   onPointerDown={handleSliderPointerDown}
                   onPointerMove={handleSliderPointerMove}
                   onPointerUp={handleSliderPointerEnd}
                   onPointerCancel={handleSliderPointerEnd}
+                  onKeyDown={handleCarouselKeyDown}
+                  role="region"
+                  aria-label="Bildergalerie Elektriker-Einsätze"
+                  tabIndex={0}
                 >
                   <div
                     className="elektrik-carousel__track"
