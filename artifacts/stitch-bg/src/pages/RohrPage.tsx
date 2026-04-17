@@ -6,6 +6,10 @@ import {
 } from "react";
 import { asset, withBase } from "@/lib/site";
 import { useTheme } from "@/lib/theme";
+import { mockCompanies } from "@/lib/mock-data";
+import { StructuredData } from "@/components/StructuredData";
+
+const company = mockCompanies.rohr;
 
 const services = [
   {
@@ -70,12 +74,6 @@ const carouselSlides = [
   },
 ];
 
-const mapsEmbedUrl =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2497.14880073439!2d7.101293577003866!3d51.2531695717566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8d6e0b7a63ed9%3A0x8aea528dc914d126!2sVarresbecker%20Str.%20193%2C%2042115%20Wuppertal!5e0!3m2!1sde!2sde!4v1773623012764!5m2!1sde!2sde";
-
-const mapsLinkUrl =
-  "https://www.google.com/maps/search/?api=1&query=Varresbecker+Str.+193,+42115+Wuppertal";
-
 export function RohrPage() {
   const { theme, toggleTheme } = useTheme();
   const [activeSlide, setActiveSlide] = useState(0);
@@ -92,14 +90,18 @@ export function RohrPage() {
     }
   }, [theme, toggleTheme]);
 
-  const handleSliderPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+  const handleSliderPointerDown = (
+    event: ReactPointerEvent<HTMLDivElement>,
+  ) => {
     dragStartXRef.current = event.clientX;
     dragPointerIdRef.current = event.pointerId;
     setIsDraggingSlider(true);
     event.currentTarget.setPointerCapture(event.pointerId);
   };
 
-  const handleSliderPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+  const handleSliderPointerMove = (
+    event: ReactPointerEvent<HTMLDivElement>,
+  ) => {
     if (
       dragStartXRef.current === null ||
       dragPointerIdRef.current !== event.pointerId
@@ -139,10 +141,11 @@ export function RohrPage() {
 
   return (
     <div className="rohr-page" id="start">
+      <StructuredData service="rohr" />
       <header className="rohr-topbar">
         <div className="site-shell rohr-topbar__inner">
           <a className="rohr-brand" href="#start">
-            Sanitär Notdienst Wuppertal
+            {company.name}
           </a>
 
           <div className="rohr-topbar__actions">
@@ -168,8 +171,8 @@ export function RohrPage() {
               <span className="theme-toggle__thumb" />
             </button>
 
-            <a className="rohr-call" href="tel:+4920212345679">
-              0202 123 45 679
+            <a className="rohr-call" href={`tel:${company.phone}`}>
+              {company.phoneDisplay}
             </a>
           </div>
         </div>
@@ -179,7 +182,9 @@ export function RohrPage() {
         <section className="rohr-hero">
           <div className="site-shell rohr-hero__layout">
             <div className="rohr-hero__copy">
-              <p className="section-eyebrow">24/7 Sanitär Notdienst in Wuppertal</p>
+              <p className="section-eyebrow">
+                24/7 Sanitär Notdienst in Wuppertal
+              </p>
               <h1>Sanitär Notdienst. Sofort da.</h1>
               <p className="rohr-hero__lead">
                 Verstopfung, Rückstau oder akute Sanitär-Störung? Wir kommen
@@ -187,10 +192,16 @@ export function RohrPage() {
               </p>
 
               <div className="rohr-hero__actions">
-                <a className="rohr-button rohr-button--primary" href="tel:+4920212345679">
+                <a
+                  className="rohr-button rohr-button--primary"
+                  href={`tel:${company.phone}`}
+                >
                   Jetzt anrufen
                 </a>
-                <a className="rohr-button rohr-button--secondary" href="#preise">
+                <a
+                  className="rohr-button rohr-button--secondary"
+                  href="#preise"
+                >
                   Preise ansehen
                 </a>
               </div>
@@ -223,7 +234,9 @@ export function RohrPage() {
           <div className="site-shell rohr-pricing">
             <div>
               <p className="section-eyebrow">Preise</p>
-              <h2>Wir stehen zu unserem Wort: Verlässlichkeit beginnt beim Preis</h2>
+              <h2>
+                Wir stehen zu unserem Wort: Verlässlichkeit beginnt beim Preis
+              </h2>
 
               <div className="rohr-price-table">
                 <div className="rohr-price-table__head">
@@ -267,7 +280,10 @@ export function RohrPage() {
                   </div>
                 </div>
 
-                <div className="rohr-carousel__dots" aria-label="Einblicke auswählen">
+                <div
+                  className="rohr-carousel__dots"
+                  aria-label="Einblicke auswählen"
+                >
                   {carouselSlides.map((slide, index) => (
                     <button
                       key={`${slide.image}-dot`}
@@ -295,10 +311,16 @@ export function RohrPage() {
               </p>
 
               <div className="rohr-hero__actions">
-                <a className="rohr-button rohr-button--primary" href="tel:+4920212345679">
-                  0202 123 45 679
+                <a
+                  className="rohr-button rohr-button--primary"
+                  href={`tel:${company.phone}`}
+                >
+                  {company.phoneDisplay}
                 </a>
-                <a className="rohr-button rohr-button--secondary" href={withBase()}>
+                <a
+                  className="rohr-button rohr-button--secondary"
+                  href={withBase()}
+                >
                   Zur Landingpage
                 </a>
               </div>
@@ -306,7 +328,7 @@ export function RohrPage() {
 
             <article className="rohr-map-card">
               <iframe
-                src={mapsEmbedUrl}
+                src={company.mapsEmbedUrl}
                 width="100%"
                 height="100%"
                 className="rohr-map-frame"
@@ -318,7 +340,7 @@ export function RohrPage() {
               <div className="rohr-map-linkbar">
                 <a
                   className="rohr-button rohr-button--secondary"
-                  href={mapsLinkUrl}
+                  href={company.mapsLinkUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -333,11 +355,11 @@ export function RohrPage() {
       <footer className="rohr-footer">
         <div className="site-shell business-footer__grid">
           <div className="business-footer__column">
-            <strong>Sanitär Notdienst Wuppertal</strong>
-            <p>Varresbecker Str. 193</p>
-            <p>42115 Wuppertal</p>
-            <a href="tel:+4920212345679">0202 123 45 679</a>
-            <a href="mailto:Notdienst@example.de">Notdienst@example.de</a>
+            <strong>{company.name}</strong>
+            <p>{company.street}</p>
+            <p>{company.city}</p>
+            <a href={`tel:${company.phone}`}>{company.phoneDisplay}</a>
+            <a href={`mailto:${company.email}`}>{company.email}</a>
           </div>
           <div className="business-footer__column">
             <strong>Links</strong>
@@ -346,29 +368,37 @@ export function RohrPage() {
           </div>
           <div className="business-footer__column">
             <strong>Folge uns auf</strong>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               LinkedIn
             </a>
           </div>
           <div className="business-footer__column">
             <strong>Rechtliches</strong>
-            <a href="#start">Impressum</a>
-            <a href="#start">Datenschutzerklärung</a>
+            <a href={withBase("impressum/")}>Impressum</a>
+            <a href={withBase("datenschutz/")}>Datenschutzerklärung</a>
             <a href="#start">AGB</a>
           </div>
         </div>
         <div className="site-shell rohr-footer__meta">
           <div>
-            <strong>Sanitär Notdienst Wuppertal</strong>
-            <p>Varresbecker Str. 193, 42115 Wuppertal</p>
+            <strong>{company.name}</strong>
+            <p>
+              {company.street}, {company.city}
+            </p>
           </div>
           <div>
             <strong>Leistungen</strong>
-            <p>Sanitär Notdienst, Abflussreinigung, WC-Verstopfung, Rückstau-Notdienst</p>
+            <p>{company.services}</p>
           </div>
           <div>
             <strong>Kontakt</strong>
-            <p>24/7 erreichbar | 0202 123 45 679 | Notdienst@example.de</p>
+            <p>
+              24/7 erreichbar | {company.phoneDisplay} | {company.email}
+            </p>
           </div>
         </div>
       </footer>

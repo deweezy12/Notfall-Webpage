@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { DotRasterBackground } from "@/components/DotRasterBackground";
 import { serviceLinks } from "@/lib/site";
 import { useTheme } from "@/lib/theme";
@@ -5,9 +6,17 @@ import { useTheme } from "@/lib/theme";
 export function LandingPage() {
   const { theme, toggleTheme } = useTheme();
 
+  // Force dark theme on landing page
+  useEffect(() => {
+    if (theme === "light") {
+      toggleTheme();
+    }
+  }, [theme, toggleTheme]);
+
   return (
     <div className="landing-page">
       <DotRasterBackground theme={theme} />
+      {/* Hidden theme toggle in top-left corner */}
       <button
         type="button"
         className="landing-theme-hotspot"
@@ -28,7 +37,10 @@ export function LandingPage() {
               Spacefield Media
             </h1>
 
-            <div className="landing-actions" aria-label="Services">
+            <div
+              className="landing-actions landing-actions--grid"
+              aria-label="Services"
+            >
               {serviceLinks.map((service) => (
                 <a
                   key={service.key}

@@ -4,12 +4,12 @@ import {
   useState,
   type PointerEvent as ReactPointerEvent,
 } from "react";
+import { asset, withBase } from "@/lib/site";
+import { useTheme } from "@/lib/theme";
+import { mockCompanies } from "@/lib/mock-data";
+import { StructuredData } from "@/components/StructuredData";
 
-type Theme = "light" | "dark";
-
-const themeStorageKey = "schluesseldienst-theme";
-const baseUrl = import.meta.env.BASE_URL;
-const withBase = (path: string) => `${baseUrl}${path.replace(/^\/+/, "")}`;
+const company = mockCompanies.schluessel;
 
 const prices = [
   {
@@ -36,24 +36,24 @@ const prices = [
 
 const galleryCards = [
   {
-    image: withBase("/images/1.jpg"),
+    image: asset("images/1.jpg"),
     title: "Zugefallene Tür schnell geöffnet",
     text: "Wenn deine Tür nur zugefallen ist, öffnen wir sie in der Regel schnell und möglichst ohne Schäden. So kommst du zügig wieder in deine Wohnung oder dein Haus.",
   },
   {
-    image: withBase("/images/2.jpg"),
+    image: asset("images/2.jpg"),
     title: "Auch bei abgeschlossener Tür vor Ort",
     text: "Ist die Tür abgeschlossen oder der Zylinder defekt, arbeiten wir mit Erfahrung und dem passenden Werkzeug. Wir prüfen die Situation vor Ort und sagen dir klar, was möglich ist.",
   },
 ];
 
 const slides = [
-  withBase("/images/a.jpg"),
-  withBase("/images/b.png"),
-  withBase("/images/c.png"),
-  withBase("/images/d.png"),
-  withBase("/images/e.png"),
-  withBase("/images/f.png"),
+  asset("images/a.jpg"),
+  asset("images/b.png"),
+  asset("images/c.png"),
+  asset("images/d.png"),
+  asset("images/e.png"),
+  asset("images/f.png"),
 ];
 
 const contactCards = [
@@ -67,9 +67,9 @@ const contactCards = [
   },
 ];
 
-function App() {
+export function SchluesselPage() {
+  const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [theme, setTheme] = useState<Theme>("light");
   const [activeSlide, setActiveSlide] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
   const [isDraggingSlider, setIsDraggingSlider] = useState(false);
@@ -86,30 +86,20 @@ function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const savedTheme = window.localStorage.getItem(themeStorageKey);
-
-    if (savedTheme === "light" || savedTheme === "dark") {
-      setTheme(savedTheme);
-    }
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    document.documentElement.style.colorScheme = theme;
-    window.localStorage.setItem(themeStorageKey, theme);
-  }, [theme]);
-
   const isDark = theme === "dark";
 
-  const handleSliderPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+  const handleSliderPointerDown = (
+    event: ReactPointerEvent<HTMLDivElement>,
+  ) => {
     dragStartXRef.current = event.clientX;
     dragPointerIdRef.current = event.pointerId;
     setIsDraggingSlider(true);
     event.currentTarget.setPointerCapture(event.pointerId);
   };
 
-  const handleSliderPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+  const handleSliderPointerMove = (
+    event: ReactPointerEvent<HTMLDivElement>,
+  ) => {
     if (
       dragStartXRef.current === null ||
       dragPointerIdRef.current !== event.pointerId
@@ -149,10 +139,11 @@ function App() {
 
   return (
     <>
+      <StructuredData service="schluessel" />
       <header className={`top-bar ${isScrolled ? "top-bar--scrolled" : ""}`}>
         <div className="top-bar__inner">
           <a className="brand" href="#start">
-            Schlüsseldienst Wuppertal
+            {company.name}
           </a>
           <div className="top-bar__actions">
             <nav className="top-nav" aria-label="Seitenbereiche">
@@ -164,10 +155,12 @@ function App() {
             <button
               type="button"
               className={`theme-toggle theme-toggle--${theme}`}
-              onClick={() => setTheme(isDark ? "light" : "dark")}
+              onClick={toggleTheme}
               aria-pressed={isDark}
               aria-label={
-                isDark ? "Zum hellen Modus wechseln" : "Zum dunklen Modus wechseln"
+                isDark
+                  ? "Zum hellen Modus wechseln"
+                  : "Zum dunklen Modus wechseln"
               }
               title={isDark ? "Light Mode" : "Dark Mode"}
             >
@@ -175,8 +168,8 @@ function App() {
               <span className="theme-toggle__label">L</span>
               <span className="theme-toggle__thumb" />
             </button>
-            <a className="call-pill" href="tel:+4920212345678">
-              0202 123 45 678
+            <a className="call-pill" href={`tel:${company.phone}`}>
+              {company.phoneDisplay}
             </a>
           </div>
         </div>
@@ -197,7 +190,10 @@ function App() {
               </p>
 
               <div className="hero__actions">
-                <a className="button button--primary" href="tel:+4920212345678">
+                <a
+                  className="button button--primary"
+                  href={`tel:${company.phone}`}
+                >
                   Jetzt anrufen
                 </a>
                 <a className="button button--secondary" href="#preise">
@@ -228,9 +224,9 @@ function App() {
                 Wir helfen bei <strong>zugefallenen Türen</strong>,{" "}
                 <strong>abgeschlossenen Türen</strong>,{" "}
                 <strong>Schlüsselproblemen</strong> sowie beim{" "}
-                <strong>Schloss- und Zylinderwechsel</strong>, wenn ein Austausch
-                nötig ist oder du dir wieder ein sicheres Gefühl verschaffen
-                willst.
+                <strong>Schloss- und Zylinderwechsel</strong>, wenn ein
+                Austausch nötig ist oder du dir wieder ein sicheres Gefühl
+                verschaffen willst.
               </p>
             </div>
           </div>
@@ -321,7 +317,10 @@ function App() {
                     </div>
                   </div>
 
-                  <div className="slider__dots" aria-label="Einblicke auswählen">
+                  <div
+                    className="slider__dots"
+                    aria-label="Einblicke auswählen"
+                  >
                     {slides.map((slide, index) => (
                       <button
                         key={`${slide}-dot`}
@@ -351,8 +350,11 @@ function App() {
               </p>
 
               <div className="hero__actions trust__actions">
-                <a className="button button--primary" href="tel:+4920212345678">
-                  0202 123 45 678
+                <a
+                  className="button button--primary"
+                  href={`tel:${company.phone}`}
+                >
+                  {company.phoneDisplay}
                 </a>
                 <a className="button button--secondary" href="#referenzen">
                   Einsätze ansehen
@@ -375,11 +377,11 @@ function App() {
       <footer className="footer">
         <div className="section-shell business-footer__grid">
           <div className="business-footer__column">
-            <strong>Schlüsseldienst Wuppertal</strong>
-            <p>Varresbecker Str. 193</p>
-            <p>42115 Wuppertal</p>
-            <a href="tel:+4920212345678">0202 123 45 678</a>
-            <a href="mailto:Notdienst@example.de">Notdienst@example.de</a>
+            <strong>{company.name}</strong>
+            <p>{company.street}</p>
+            <p>{company.city}</p>
+            <a href={`tel:${company.phone}`}>{company.phoneDisplay}</a>
+            <a href={`mailto:${company.email}`}>{company.email}</a>
           </div>
           <div className="business-footer__column">
             <strong>Links</strong>
@@ -388,34 +390,40 @@ function App() {
           </div>
           <div className="business-footer__column">
             <strong>Folge uns auf</strong>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               LinkedIn
             </a>
           </div>
           <div className="business-footer__column">
             <strong>Rechtliches</strong>
-            <a href="#start">Impressum</a>
-            <a href="#start">Datenschutzerklärung</a>
+            <a href={withBase("impressum/")}>Impressum</a>
+            <a href={withBase("datenschutz/")}>Datenschutzerklärung</a>
             <a href="#start">AGB</a>
           </div>
         </div>
         <div className="section-shell footer__meta">
           <div>
-            <strong>Schlüsseldienst Wuppertal</strong>
-            <p>Varresbecker Str. 193, 42115 Wuppertal</p>
+            <strong>{company.name}</strong>
+            <p>
+              {company.street}, {company.city}
+            </p>
           </div>
           <div>
             <strong>Leistungen</strong>
-            <p>Türöffnung, Schlosswechsel, Zylinderwechsel, 24/7 Notdienst</p>
+            <p>{company.services}</p>
           </div>
           <div>
             <strong>Kontakt</strong>
-            <p>24/7 erreichbar | 0202 123 45 678 | Notdienst@example.de</p>
+            <p>
+              24/7 erreichbar | {company.phoneDisplay} | {company.email}
+            </p>
           </div>
         </div>
       </footer>
     </>
   );
 }
-
-export default App;

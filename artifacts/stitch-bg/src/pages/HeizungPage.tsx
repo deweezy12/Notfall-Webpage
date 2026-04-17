@@ -1,5 +1,9 @@
 import { useTheme } from "@/lib/theme";
 import { withBase } from "@/lib/site";
+import { mockCompanies } from "@/lib/mock-data";
+import { StructuredData } from "@/components/StructuredData";
+
+const company = mockCompanies.heizung;
 
 const signalCards = [
   {
@@ -73,10 +77,11 @@ export function HeizungPage() {
 
   return (
     <div className="heizung-page" id="start">
+      <StructuredData service="heizung" />
       <header className="heizung-topbar">
         <div className="site-shell heizung-topbar__inner">
           <a className="heizung-brand" href="#start">
-            Notfall Heizungsdienst Wuppertal
+            {company.name}
           </a>
 
           <div className="heizung-topbar__actions">
@@ -103,8 +108,8 @@ export function HeizungPage() {
               <span className="theme-toggle__thumb" />
             </button>
 
-            <a className="heizung-call" href="tel:+4920212345681">
-              0202 123 45 681
+            <a className="heizung-call" href={`tel:${company.phone}`}>
+              {company.phoneDisplay}
             </a>
           </div>
         </div>
@@ -123,21 +128,31 @@ export function HeizungPage() {
               </p>
 
               <div className="heizung-hero__actions">
-                <a className="heizung-button heizung-button--primary" href="tel:+4920212345681">
+                <a
+                  className="heizung-button heizung-button--primary"
+                  href={`tel:${company.phone}`}
+                >
                   Jetzt anrufen
                 </a>
-                <a className="heizung-button heizung-button--secondary" href="#preise">
+                <a
+                  className="heizung-button heizung-button--secondary"
+                  href="#preise"
+                >
                   Preise ansehen
                 </a>
               </div>
             </div>
 
             <div className="heizung-hero__panel">
-              <p className="section-eyebrow section-eyebrow--light">Störungsbild</p>
+              <p className="section-eyebrow section-eyebrow--light">
+                Störungsbild
+              </p>
               <div className="heizung-signal-stack">
                 {signalCards.map((item) => (
                   <article className="heizung-signal-card" key={item.title}>
-                    <span className={`heizung-signal-card__status heizung-signal-card__status--${item.status}`}>
+                    <span
+                      className={`heizung-signal-card__status heizung-signal-card__status--${item.status}`}
+                    >
                       {item.status}
                     </span>
                     <h2>{item.title}</h2>
@@ -149,7 +164,10 @@ export function HeizungPage() {
           </div>
         </section>
 
-        <section id="stoerungen" className="heizung-section heizung-section--surface">
+        <section
+          id="stoerungen"
+          className="heizung-section heizung-section--surface"
+        >
           <div className="site-shell heizung-surface-intro">
             <p className="section-eyebrow">Störungen</p>
             <h2>Sichtbar anders gebaut als Rohr und Elektrik.</h2>
@@ -184,7 +202,10 @@ export function HeizungPage() {
           </div>
         </section>
 
-        <section id="preise" className="heizung-section heizung-section--surface">
+        <section
+          id="preise"
+          className="heizung-section heizung-section--surface"
+        >
           <div className="site-shell heizung-pricing">
             <div>
               <p className="section-eyebrow">Preise</p>
@@ -206,7 +227,10 @@ export function HeizungPage() {
             <div className="heizung-scroll" aria-label="Schlagworte">
               <div className="heizung-scroll__track">
                 {[...scrollItems, ...scrollItems].map((item, index) => (
-                  <span className="heizung-scroll__chip" key={`${item}-${index}`}>
+                  <span
+                    className="heizung-scroll__chip"
+                    key={`${item}-${index}`}
+                  >
                     {item}
                   </span>
                 ))}
@@ -215,7 +239,10 @@ export function HeizungPage() {
           </div>
         </section>
 
-        <section id="kontakt" className="heizung-section heizung-section--contact">
+        <section
+          id="kontakt"
+          className="heizung-section heizung-section--contact"
+        >
           <div className="site-shell heizung-contact">
             <div className="heizung-contact__copy">
               <p className="section-eyebrow">Kontakt</p>
@@ -227,10 +254,16 @@ export function HeizungPage() {
               </p>
 
               <div className="heizung-hero__actions">
-                <a className="heizung-button heizung-button--primary" href="tel:+4920212345681">
-                  0202 123 45 681
+                <a
+                  className="heizung-button heizung-button--primary"
+                  href={`tel:${company.phone}`}
+                >
+                  {company.phoneDisplay}
                 </a>
-                <a className="heizung-button heizung-button--secondary" href={withBase()}>
+                <a
+                  className="heizung-button heizung-button--secondary"
+                  href={withBase()}
+                >
                   Zur Landingpage
                 </a>
               </div>
@@ -251,11 +284,11 @@ export function HeizungPage() {
       <footer className="heizung-footer">
         <div className="site-shell business-footer__grid">
           <div className="business-footer__column">
-            <strong>Notfall Heizungsdienst Wuppertal</strong>
-            <p>Varresbecker Str. 193</p>
-            <p>42115 Wuppertal</p>
-            <a href="tel:+4920212345681">0202 123 45 681</a>
-            <a href="mailto:Notdienst@example.de">Notdienst@example.de</a>
+            <strong>{company.name}</strong>
+            <p>{company.street}</p>
+            <p>{company.city}</p>
+            <a href={`tel:${company.phone}`}>{company.phoneDisplay}</a>
+            <a href={`mailto:${company.email}`}>{company.email}</a>
           </div>
           <div className="business-footer__column">
             <strong>Links</strong>
@@ -264,29 +297,37 @@ export function HeizungPage() {
           </div>
           <div className="business-footer__column">
             <strong>Folge uns auf</strong>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               LinkedIn
             </a>
           </div>
           <div className="business-footer__column">
             <strong>Rechtliches</strong>
-            <a href="#start">Impressum</a>
-            <a href="#start">Datenschutzerklärung</a>
+            <a href={withBase("impressum/")}>Impressum</a>
+            <a href={withBase("datenschutz/")}>Datenschutzerklärung</a>
             <a href="#start">AGB</a>
           </div>
         </div>
         <div className="site-shell heizung-footer__meta">
           <div>
-            <strong>Notfall Heizungsdienst Wuppertal</strong>
-            <p>Varresbecker Str. 193, 42115 Wuppertal</p>
+            <strong>{company.name}</strong>
+            <p>
+              {company.street}, {company.city}
+            </p>
           </div>
           <div>
             <strong>Leistungen</strong>
-            <p>Heizungsnotdienst, Störungsdiagnose, Warmwasser-Ausfall, Reparatur vor Ort</p>
+            <p>{company.services}</p>
           </div>
           <div>
             <strong>Kontakt</strong>
-            <p>24/7 erreichbar | 0202 123 45 681 | Notdienst@example.de</p>
+            <p>
+              24/7 erreichbar | {company.phoneDisplay} | {company.email}
+            </p>
           </div>
         </div>
       </footer>

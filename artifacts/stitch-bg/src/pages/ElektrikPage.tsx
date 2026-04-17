@@ -6,6 +6,10 @@ import {
 import { ElektrikEmergencyChat } from "@/components/ElektrikEmergencyChat";
 import { useTheme } from "@/lib/theme";
 import { asset, withBase } from "@/lib/site";
+import { mockCompanies } from "@/lib/mock-data";
+import { StructuredData } from "@/components/StructuredData";
+
+const company = mockCompanies.elektrik;
 
 const serviceCards = [
   {
@@ -62,12 +66,6 @@ const prices = [
   },
 ];
 
-const mapsEmbedUrl =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2497.14880073439!2d7.101293577003866!3d51.2531695717566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8d6e0b7a63ed9%3A0x8aea528dc914d126!2sVarresbecker%20Str.%20193%2C%2042115%20Wuppertal!5e0!3m2!1sde!2sde!4v1773623012764!5m2!1sde!2sde";
-
-const mapsLinkUrl =
-  "https://www.google.com/maps/search/?api=1&query=Varresbecker+Str.+193,+42115+Wuppertal";
-
 export function ElektrikPage() {
   const { theme, toggleTheme } = useTheme();
   const [activeSlide, setActiveSlide] = useState(0);
@@ -92,14 +90,18 @@ export function ElektrikPage() {
     event.currentTarget.style.setProperty("--elektrik-spot-opacity", "0");
   };
 
-  const handleSliderPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+  const handleSliderPointerDown = (
+    event: ReactPointerEvent<HTMLDivElement>,
+  ) => {
     dragStartXRef.current = event.clientX;
     dragPointerIdRef.current = event.pointerId;
     setIsDraggingSlider(true);
     event.currentTarget.setPointerCapture(event.pointerId);
   };
 
-  const handleSliderPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+  const handleSliderPointerMove = (
+    event: ReactPointerEvent<HTMLDivElement>,
+  ) => {
     if (
       dragStartXRef.current === null ||
       dragPointerIdRef.current !== event.pointerId
@@ -139,10 +141,11 @@ export function ElektrikPage() {
 
   return (
     <div className="elektrik-page" id="start">
+      <StructuredData service="elektrik" />
       <header className="elektrik-topbar">
         <div className="site-shell elektrik-topbar__inner">
           <a className="elektrik-brand" href="#start">
-            Notfall Elektriker Wuppertal
+            {company.name}
           </a>
 
           <div className="elektrik-topbar__actions">
@@ -170,8 +173,8 @@ export function ElektrikPage() {
               <span className="theme-toggle__thumb" />
             </button>
 
-            <a className="elektrik-call" href="tel:+4920212345680">
-              0202 123 45 680
+            <a className="elektrik-call" href={`tel:${company.phone}`}>
+              {company.phoneDisplay}
             </a>
           </div>
         </div>
@@ -186,7 +189,9 @@ export function ElektrikPage() {
         >
           <div className="site-shell elektrik-hero__layout">
             <div className="elektrik-hero__copy">
-              <p className="section-eyebrow">24/7 Elektriker-Notdienst in Wuppertal</p>
+              <p className="section-eyebrow">
+                24/7 Elektriker-Notdienst in Wuppertal
+              </p>
               <h1>Stromausfall oder Defekt? Wir helfen sofort.</h1>
               <p className="elektrik-hero__lead">
                 Ob Sicherung, FI oder plötzlicher Ausfall: Wir kommen schnell,
@@ -194,23 +199,34 @@ export function ElektrikPage() {
               </p>
 
               <div className="elektrik-hero__actions">
-                <a className="elektrik-button elektrik-button--primary" href="tel:+4920212345680">
+                <a
+                  className="elektrik-button elektrik-button--primary"
+                  href={`tel:${company.phone}`}
+                >
                   Jetzt anrufen
                 </a>
-                <a className="elektrik-button elektrik-button--secondary" href="#chat">
+                <a
+                  className="elektrik-button elektrik-button--secondary"
+                  href="#chat"
+                >
                   Erst per Chat prüfen
                 </a>
               </div>
             </div>
-
           </div>
         </section>
 
-        <section id="leistungen" className="elektrik-section elektrik-section--surface">
+        <section
+          id="leistungen"
+          className="elektrik-section elektrik-section--surface"
+        >
           <div className="site-shell">
             <div className="elektrik-intro">
               <p className="section-eyebrow">Leistungen</p>
-              <h2>Schnelle Hilfe bei Stromausfall, FI-Fehlern und defekten Anschlüssen.</h2>
+              <h2>
+                Schnelle Hilfe bei Stromausfall, FI-Fehlern und defekten
+                Anschlüssen.
+              </h2>
               <p>
                 Ob in einzelnen Räumen plötzlich der Strom ausfällt, der FI
                 wiederholt auslöst oder eine Steckdose auffällig wird: Wir
@@ -232,7 +248,10 @@ export function ElektrikPage() {
           </div>
         </section>
 
-        <section id="einsaetze" className="elektrik-section elektrik-section--gallery">
+        <section
+          id="einsaetze"
+          className="elektrik-section elektrik-section--gallery"
+        >
           <div className="site-shell">
             <div className="section-heading">
               <p className="eyebrow">Referenzen</p>
@@ -258,7 +277,10 @@ export function ElektrikPage() {
           </div>
         </section>
 
-        <section id="preise" className="elektrik-section elektrik-section--pricing">
+        <section
+          id="preise"
+          className="elektrik-section elektrik-section--pricing"
+        >
           <div className="site-shell elektrik-pricing">
             <div className="elektrik-pricing__table">
               <p className="section-eyebrow">Preise</p>
@@ -300,14 +322,24 @@ export function ElektrikPage() {
                     }}
                   >
                     {carouselSlides.map((slide) => (
-                      <div className="elektrik-carousel__slide" key={slide.image}>
-                        <img src={slide.image} alt={slide.alt} draggable={false} />
+                      <div
+                        className="elektrik-carousel__slide"
+                        key={slide.image}
+                      >
+                        <img
+                          src={slide.image}
+                          alt={slide.alt}
+                          draggable={false}
+                        />
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="elektrik-carousel__dots" aria-label="Einblicke auswählen">
+                <div
+                  className="elektrik-carousel__dots"
+                  aria-label="Einblicke auswählen"
+                >
                   {carouselSlides.map((slide, index) => (
                     <button
                       key={`${slide.image}-dot`}
@@ -326,7 +358,10 @@ export function ElektrikPage() {
 
         <ElektrikEmergencyChat />
 
-        <section id="kontakt" className="elektrik-section elektrik-section--contact">
+        <section
+          id="kontakt"
+          className="elektrik-section elektrik-section--contact"
+        >
           <div className="site-shell elektrik-contact">
             <div className="elektrik-contact__copy">
               <p className="section-eyebrow">Kontakt</p>
@@ -338,10 +373,16 @@ export function ElektrikPage() {
               </p>
 
               <div className="elektrik-contact__actions">
-                <a className="elektrik-button elektrik-button--primary" href="tel:+4920212345680">
-                  0202 123 45 680
+                <a
+                  className="elektrik-button elektrik-button--primary"
+                  href={`tel:${company.phone}`}
+                >
+                  {company.phoneDisplay}
                 </a>
-                <a className="elektrik-button elektrik-button--secondary" href={withBase()}>
+                <a
+                  className="elektrik-button elektrik-button--secondary"
+                  href={withBase()}
+                >
                   Zur Landingpage
                 </a>
               </div>
@@ -349,7 +390,7 @@ export function ElektrikPage() {
 
             <article className="elektrik-map-card">
               <iframe
-                src={mapsEmbedUrl}
+                src={company.mapsEmbedUrl}
                 width="100%"
                 height="100%"
                 className="elektrik-map-frame"
@@ -361,7 +402,7 @@ export function ElektrikPage() {
               <div className="elektrik-map-linkbar">
                 <a
                   className="elektrik-button elektrik-button--secondary"
-                  href={mapsLinkUrl}
+                  href={company.mapsLinkUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -376,11 +417,11 @@ export function ElektrikPage() {
       <footer className="elektrik-footer">
         <div className="site-shell business-footer__grid">
           <div className="business-footer__column">
-            <strong>Notfall Elektriker Wuppertal</strong>
-            <p>Varresbecker Str. 193</p>
-            <p>42115 Wuppertal</p>
-            <a href="tel:+4920212345680">0202 123 45 680</a>
-            <a href="mailto:Notdienst@example.de">Notdienst@example.de</a>
+            <strong>{company.name}</strong>
+            <p>{company.street}</p>
+            <p>{company.city}</p>
+            <a href={`tel:${company.phone}`}>{company.phoneDisplay}</a>
+            <a href={`mailto:${company.email}`}>{company.email}</a>
           </div>
           <div className="business-footer__column">
             <strong>Links</strong>
@@ -389,29 +430,37 @@ export function ElektrikPage() {
           </div>
           <div className="business-footer__column">
             <strong>Folge uns auf</strong>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               LinkedIn
             </a>
           </div>
           <div className="business-footer__column">
             <strong>Rechtliches</strong>
-            <a href="#start">Impressum</a>
-            <a href="#start">Datenschutzerklärung</a>
+            <a href={withBase("impressum/")}>Impressum</a>
+            <a href={withBase("datenschutz/")}>Datenschutzerklärung</a>
             <a href="#start">AGB</a>
           </div>
         </div>
         <div className="site-shell elektrik-footer__meta">
           <div>
-            <strong>Notfall Elektriker Wuppertal</strong>
-            <p>Varresbecker Str. 193, 42115 Wuppertal</p>
+            <strong>{company.name}</strong>
+            <p>
+              {company.street}, {company.city}
+            </p>
           </div>
           <div>
             <strong>Leistungen</strong>
-            <p>Elektriker-Notdienst, Stromausfall, Sicherungskasten, FI- und Störungsprüfung</p>
+            <p>{company.services}</p>
           </div>
           <div>
             <strong>Kontakt</strong>
-            <p>24/7 erreichbar | 0202 123 45 680 | Notdienst@example.de</p>
+            <p>
+              24/7 erreichbar | {company.phoneDisplay} | {company.email}
+            </p>
           </div>
         </div>
       </footer>
