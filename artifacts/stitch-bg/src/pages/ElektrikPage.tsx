@@ -292,7 +292,7 @@ export function ElektrikPage() {
                   className={`gallery-card ${index % 2 === 1 ? "gallery-card--reverse" : ""}`}
                   key={card.title}
                 >
-                  <img src={card.image} alt={card.title} />
+                  <img src={card.image} alt={card.title} loading="lazy" />
                   <div className="gallery-card__body">
                     <h3>{card.title}</h3>
                     <p>{card.text}</p>
@@ -365,6 +365,7 @@ export function ElektrikPage() {
                           src={slide.image}
                           alt={slide.alt}
                           draggable={false}
+                          loading="lazy"
                         />
                       </div>
                     ))}

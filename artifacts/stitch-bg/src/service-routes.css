@@ -83,7 +83,10 @@
   justify-content: center;
   padding: 0 18px;
   border-radius: 8px;
-  transition: background-color var(--transition), border-color var(--transition), opacity var(--transition);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    opacity var(--transition);
 }
 
 .rohr-nav a {
@@ -299,6 +302,23 @@
 .rohr-contact-card {
   padding: 24px;
   border-radius: 16px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    0 1px 2px rgba(0, 0, 0, 0.03);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rohr-service-card:hover,
+  .rohr-process__card:hover,
+  .rohr-contact-card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.08),
+      0 2px 4px rgba(0, 0, 0, 0.04);
+  }
 }
 
 .rohr-service-card h3,
@@ -429,8 +449,16 @@
 
 .rohr-page {
   --rohr-hero:
-    radial-gradient(circle at 18% 24%, rgba(173, 140, 255, 0.18), transparent 26%),
-    radial-gradient(circle at 82% 18%, rgba(255, 189, 140, 0.22), transparent 28%),
+    radial-gradient(
+      circle at 18% 24%,
+      rgba(173, 140, 255, 0.18),
+      transparent 26%
+    ),
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(255, 189, 140, 0.22),
+      transparent 28%
+    ),
     linear-gradient(135deg, #fbf9f5 0%, #f4ede4 54%, #ece3d7 100%);
   --rohr-hero-border: rgba(41, 40, 39, 0.1);
   --rohr-hero-surface: rgba(255, 255, 255, 0.82);
@@ -625,7 +653,9 @@
   border-radius: 50%;
   background: rgba(41, 40, 39, 0.22);
   cursor: pointer;
-  transition: transform var(--transition), background-color var(--transition);
+  transition:
+    transform var(--transition),
+    background-color var(--transition);
 }
 
 .rohr-carousel__dot:hover,
@@ -673,8 +703,7 @@
   --elektrik-muted: #6a6a6a;
   --elektrik-border: rgba(0, 0, 0, 0.08);
   --elektrik-shadow:
-    rgba(0, 0, 0, 0.02) 0 0 0 1px,
-    rgba(0, 0, 0, 0.04) 0 2px 6px,
+    rgba(0, 0, 0, 0.02) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 2px 6px,
     rgba(0, 0, 0, 0.1) 0 4px 8px;
   --elektrik-topbar: rgba(255, 255, 255, 0.92);
   --elektrik-accent: #ff385c;
@@ -808,9 +837,21 @@
   overflow: hidden;
   isolation: isolate;
   background:
-    radial-gradient(circle at 14% 18%, var(--elektrik-board-glow), transparent 22%),
-    radial-gradient(circle at 86% 16%, var(--elektrik-board-shadow), transparent 30%),
-    linear-gradient(180deg, var(--elektrik-board-bg-start) 0%, var(--elektrik-board-bg-end) 100%);
+    radial-gradient(
+      circle at 14% 18%,
+      var(--elektrik-board-glow),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 86% 16%,
+      var(--elektrik-board-shadow),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      var(--elektrik-board-bg-start) 0%,
+      var(--elektrik-board-bg-end) 100%
+    );
 }
 
 .elektrik-hero::before,
@@ -833,29 +874,27 @@
 }
 
 .elektrik-hero::before {
-  background:
-    linear-gradient(
-      135deg,
-      var(--elektrik-circuit-base) 0%,
-      var(--elektrik-circuit-highlight) 48%,
-      var(--elektrik-circuit-base) 100%
-    );
+  background: linear-gradient(
+    135deg,
+    var(--elektrik-circuit-base) 0%,
+    var(--elektrik-circuit-highlight) 48%,
+    var(--elektrik-circuit-base) 100%
+  );
   opacity: 0.88;
   filter: contrast(1.02);
 }
 
 .elektrik-hero::after {
-  background:
-    radial-gradient(
-      circle at var(--elektrik-spot-x) var(--elektrik-spot-y),
-      rgba(255, 66, 181, 0.98) 0%,
-      rgba(255, 125, 38, 0.96) 1%,
-      rgba(255, 220, 56, 0.94) 2%,
-      rgba(80, 255, 171, 0.9) 3.2%,
-      rgba(58, 183, 255, 0.88) 4.4%,
-      rgba(133, 92, 255, 0.8) 5.8%,
-      rgba(133, 92, 255, 0) 7.8%
-    );
+  background: radial-gradient(
+    circle at var(--elektrik-spot-x) var(--elektrik-spot-y),
+    rgba(255, 66, 181, 0.98) 0%,
+    rgba(255, 125, 38, 0.96) 1%,
+    rgba(255, 220, 56, 0.94) 2%,
+    rgba(80, 255, 171, 0.9) 3.2%,
+    rgba(58, 183, 255, 0.88) 4.4%,
+    rgba(133, 92, 255, 0.8) 5.8%,
+    rgba(133, 92, 255, 0) 7.8%
+  );
   opacity: var(--elektrik-spot-opacity);
   filter: saturate(1.25);
 }
@@ -973,9 +1012,21 @@
 .elektrik-section--gallery,
 .elektrik-section--contact {
   background:
-    radial-gradient(circle at 14% 18%, var(--elektrik-board-glow), transparent 22%),
-    radial-gradient(circle at 86% 16%, var(--elektrik-board-shadow), transparent 30%),
-    linear-gradient(180deg, var(--elektrik-board-bg-start) 0%, var(--elektrik-board-bg-end) 100%);
+    radial-gradient(
+      circle at 14% 18%,
+      var(--elektrik-board-glow),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 86% 16%,
+      var(--elektrik-board-shadow),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      var(--elektrik-board-bg-start) 0%,
+      var(--elektrik-board-bg-end) 100%
+    );
 }
 
 .elektrik-section--gallery .section-heading {
@@ -1029,6 +1080,24 @@
   border: 1px solid var(--elektrik-border);
   background: var(--elektrik-surface);
   box-shadow: var(--elektrik-shadow);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .elektrik-feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.06),
+      0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+}
+
+[data-theme="dark"] .elektrik-feature-card:hover {
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .elektrik-feature-card--reverse {
@@ -1165,7 +1234,9 @@
   border-radius: 50%;
   background: rgba(34, 34, 34, 0.22);
   cursor: pointer;
-  transition: transform var(--transition), background-color var(--transition);
+  transition:
+    transform var(--transition),
+    background-color var(--transition);
 }
 
 .elektrik-carousel__dot:hover,
@@ -1190,7 +1261,11 @@
 }
 
 .elektrik-section--chat {
-  background: color-mix(in srgb, var(--elektrik-surface-soft) 84%, var(--elektrik-bg));
+  background: color-mix(
+    in srgb,
+    var(--elektrik-surface-soft) 84%,
+    var(--elektrik-bg)
+  );
 }
 
 [data-theme="dark"] .elektrik-section--chat {
@@ -1275,8 +1350,16 @@
 .elektrik-chat-suggestion:hover,
 .elektrik-chat-suggestion:focus-visible {
   transform: translateY(-1px);
-  border-color: color-mix(in srgb, var(--elektrik-accent) 40%, var(--service-border));
-  background: color-mix(in srgb, var(--elektrik-accent) 8%, var(--elektrik-surface));
+  border-color: color-mix(
+    in srgb,
+    var(--elektrik-accent) 40%,
+    var(--service-border)
+  );
+  background: color-mix(
+    in srgb,
+    var(--elektrik-accent) 8%,
+    var(--elektrik-surface)
+  );
   outline: none;
 }
 
@@ -1318,7 +1401,11 @@
 }
 
 .elektrik-chat-message--error {
-  border-color: color-mix(in srgb, var(--elektrik-accent) 35%, var(--service-border));
+  border-color: color-mix(
+    in srgb,
+    var(--elektrik-accent) 35%,
+    var(--service-border)
+  );
 }
 
 .elektrik-chat-message__meta {
@@ -1411,7 +1498,11 @@
 
 .elektrik-footer {
   border-top: 1px solid var(--elektrik-border);
-  background: color-mix(in srgb, var(--elektrik-surface-soft) 80%, var(--elektrik-bg));
+  background: color-mix(
+    in srgb,
+    var(--elektrik-surface-soft) 80%,
+    var(--elektrik-bg)
+  );
 }
 
 .elektrik-footer__meta {
@@ -1433,7 +1524,13 @@
   --heizung-text: #202020;
   --heizung-muted: #646464;
   --heizung-border: rgba(32, 32, 32, 0.12);
-  --heizung-hero: linear-gradient(135deg, #ea2804 0%, #d93f19 34%, #c5216f 68%, #f25c94 100%);
+  --heizung-hero: linear-gradient(
+    135deg,
+    #ea2804 0%,
+    #d93f19 34%,
+    #c5216f 68%,
+    #f25c94 100%
+  );
   --heizung-topbar: rgba(255, 255, 255, 0.9);
   min-height: 100vh;
   background: var(--heizung-bg);
@@ -1448,7 +1545,13 @@
   --heizung-text: rgba(255, 255, 255, 0.96);
   --heizung-muted: rgba(255, 255, 255, 0.72);
   --heizung-border: rgba(255, 255, 255, 0.12);
-  --heizung-hero: linear-gradient(135deg, #7a1703 0%, #a22609 28%, #8d194e 64%, #c23f76 100%);
+  --heizung-hero: linear-gradient(
+    135deg,
+    #7a1703 0%,
+    #a22609 28%,
+    #8d194e 64%,
+    #c23f76 100%
+  );
   --heizung-topbar: rgba(18, 18, 18, 0.88);
 }
 
@@ -1624,6 +1727,23 @@
 .heizung-signal-card {
   padding: 20px 22px;
   background: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    0 1px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .heizung-signal-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.2),
+      0 2px 6px rgba(0, 0, 0, 0.15);
+  }
 }
 
 .heizung-signal-card__status {
@@ -1858,7 +1978,22 @@
   }
 }
 
+/* Mobile Breakpoint: Enhanced for better touch and readability */
 @media (max-width: 640px) {
+  /* Touch Optimization: Larger buttons and better spacing */
+  .rohr-nav a,
+  .rohr-call,
+  .rohr-button,
+  .elektrik-nav a,
+  .elektrik-call,
+  .elektrik-button,
+  .heizung-nav a,
+  .heizung-call,
+  .heizung-button {
+    min-height: 48px;
+    padding: 14px 20px;
+  }
+
   .rohr-call,
   .rohr-button,
   .elektrik-call,
@@ -1866,8 +2001,36 @@
   .heizung-call,
   .heizung-button {
     width: 100%;
+    font-size: 1rem;
   }
 
+  .rohr-hero__actions,
+  .elektrik-hero__actions,
+  .heizung-hero__actions {
+    gap: 16px;
+  }
+
+  /* Hero Sections: Optimized for mobile */
+  .rohr-hero__layout,
+  .elektrik-hero__layout,
+  .heizung-hero__layout {
+    padding: 60px 0;
+    min-height: auto;
+  }
+
+  .rohr-hero,
+  .elektrik-hero,
+  .heizung-hero {
+    min-height: auto;
+  }
+
+  /* Elektrik Hero: Simplify circuit background on mobile */
+  .elektrik-hero::before,
+  .elektrik-hero::after {
+    opacity: 0.5;
+  }
+
+  /* Price Tables: Better mobile presentation */
   .rohr-price-table__head,
   .elektrik-price-table__head {
     display: none;
@@ -1876,9 +2039,23 @@
   .rohr-price-table__row,
   .elektrik-price-table__row {
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 12px;
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--rohr-surface-soft, var(--elektrik-surface-soft));
+    border: 1px solid var(--rohr-border, var(--elektrik-border));
+    margin-bottom: 12px;
   }
 
+  .rohr-price-table__row span:first-child,
+  .elektrik-price-table__row span:first-child {
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rohr-border, var(--elektrik-border));
+  }
+
+  /* Card Padding: More generous on mobile */
   .rohr-hero__panel,
   .rohr-service-card,
   .rohr-process__card,
@@ -1890,11 +2067,102 @@
   .heizung-hero__panel,
   .heizung-price-pill,
   .heizung-contact-card {
-    padding: 20px;
+    padding: 24px;
+    border-radius: 12px;
   }
 
+  /* Image Improvements */
   .elektrik-feature-card img {
-    min-height: 260px;
+    min-height: 280px;
+  }
+
+  /* Typography: Better readability on mobile */
+  .rohr-hero h1,
+  .elektrik-hero h1,
+  .heizung-hero h1 {
+    font-size: clamp(2.4rem, 8vw, 3.2rem);
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+
+  .rohr-hero__lead,
+  .elektrik-hero__lead,
+  .heizung-hero__lead {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+
+  .rohr-story__intro h2,
+  .rohr-editorial__card h2,
+  .rohr-pricing h2,
+  .rohr-contact h2,
+  .elektrik-section__copy h2,
+  .heizung-section h2 {
+    font-size: clamp(1.9rem, 6vw, 2.4rem);
+    line-height: 1.1;
+  }
+
+  /* Section Spacing: Optimize for mobile screens */
+  .rohr-section,
+  .elektrik-section,
+  .heizung-section {
+    padding: 60px 0;
+  }
+
+  /* Carousel Dots: Larger touch targets */
+  .rohr-carousel__dot,
+  .elektrik-carousel__dot {
+    width: 16px;
+    height: 16px;
+  }
+
+  .rohr-carousel__dots,
+  .elektrik-carousel__dots {
+    gap: 12px;
+  }
+
+  /* Navigation: Better mobile layout */
+  .rohr-topbar__inner,
+  .elektrik-topbar__inner,
+  .heizung-topbar__inner {
+    min-height: 64px;
+    gap: 12px;
+  }
+
+  .rohr-nav,
+  .elektrik-nav,
+  .heizung-nav {
+    gap: 10px;
+  }
+
+  /* Improve Heizung signal cards on mobile */
+  .heizung-signal-cards {
+    gap: 16px;
+  }
+
+  .heizung-signal-card {
+    padding: 24px;
+  }
+
+  /* Footer: Optimized for mobile */
+  .business-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 40px 0;
+  }
+
+  .business-footer__column {
+    gap: 12px;
+  }
+
+  .business-footer__column strong {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .business-footer__column a {
+    padding: 4px 0;
+    transition: opacity 0.2s ease;
   }
 }
 
@@ -1944,16 +2212,32 @@
 /* Final Sanitär page overrides */
 .rohr-page {
   --rohr-hero:
-    radial-gradient(circle at 18% 24%, rgba(173, 140, 255, 0.18), transparent 26%),
-    radial-gradient(circle at 82% 18%, rgba(255, 189, 140, 0.22), transparent 28%),
+    radial-gradient(
+      circle at 18% 24%,
+      rgba(173, 140, 255, 0.18),
+      transparent 26%
+    ),
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(255, 189, 140, 0.22),
+      transparent 28%
+    ),
     linear-gradient(135deg, #fbf9f5 0%, #f4ede4 54%, #ece3d7 100%);
   --rohr-topbar: rgba(255, 255, 255, 0.92);
 }
 
 [data-theme="dark"] .rohr-page {
   --rohr-hero:
-    radial-gradient(circle at 18% 24%, rgba(173, 140, 255, 0.18), transparent 26%),
-    radial-gradient(circle at 82% 18%, rgba(255, 189, 140, 0.18), transparent 28%),
+    radial-gradient(
+      circle at 18% 24%,
+      rgba(173, 140, 255, 0.18),
+      transparent 26%
+    ),
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(255, 189, 140, 0.18),
+      transparent 28%
+    ),
     linear-gradient(180deg, #1c1930 0%, #12101f 100%);
 }
 
@@ -2138,7 +2422,9 @@
   border-radius: 50%;
   background: rgba(41, 40, 39, 0.24);
   cursor: pointer;
-  transition: transform var(--transition), background-color var(--transition);
+  transition:
+    transform var(--transition),
+    background-color var(--transition);
 }
 
 .rohr-page .rohr-carousel__dot:hover,
@@ -2177,12 +2463,22 @@
   border-top: 1px solid var(--rohr-border);
 }
 
+/* Tablet Breakpoint: 960px */
 @media (max-width: 960px) {
   .rohr-page .rohr-service-grid,
   .rohr-page .rohr-pricing,
-  .rohr-page .rohr-contact,
-  .business-footer__grid {
+  .rohr-page .rohr-contact {
     grid-template-columns: 1fr;
+  }
+
+  /* Footer: Better tablet layout */
+  .business-footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+  }
+
+  .business-footer__column:first-child {
+    grid-column: 1 / -1;
   }
 }
 
@@ -2645,6 +2941,63 @@
 
   .business-footer__grid {
     padding: 22px 0 24px;
+  }
+}
+
+/* Small Phone Breakpoint: 480px */
+@media (max-width: 480px) {
+  /* Further optimize for very small screens */
+  :root {
+    --shell: min(100% - 24px, 1180px);
+  }
+
+  .rohr-hero h1,
+  .elektrik-hero h1,
+  .heizung-hero h1 {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+  }
+
+  .rohr-topbar__inner,
+  .elektrik-topbar__inner,
+  .heizung-topbar__inner {
+    min-height: 60px;
+  }
+
+  /* Stack navigation completely on very small screens */
+  .rohr-nav a,
+  .elektrik-nav a,
+  .heizung-nav a {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+  }
+
+  /* Optimize section padding for small screens */
+  .rohr-section,
+  .elektrik-section,
+  .heizung-section,
+  .schluessel-section {
+    padding: 48px 0;
+  }
+}
+
+/* Smooth Scrolling for Better UX */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Focus Visible Improvements for Touch Devices */
+@media (hover: none) and (pointer: coarse) {
+  .rohr-button:active,
+  .elektrik-button:active,
+  .heizung-button:active,
+  .button-chip:active {
+    transform: scale(0.98);
   }
 }
 

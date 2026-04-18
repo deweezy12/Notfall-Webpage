@@ -49,16 +49,32 @@
   --text-inverse: var(--white);
   --text-inverse-muted: var(--muted);
   --hero-bg:
-    radial-gradient(circle at 15% 20%, rgba(62, 106, 225, 0.18), transparent 28%),
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(62, 106, 225, 0.18),
+      transparent 28%
+    ),
     radial-gradient(circle at 85% 18%, rgba(23, 26, 32, 0.08), transparent 26%),
     linear-gradient(135deg, #f7f9fc 0%, #eef3fb 48%, #ffffff 100%);
-  --hero-glow: radial-gradient(circle, rgba(62, 106, 225, 0.14) 0%, rgba(62, 106, 225, 0) 70%);
-  --hero-sheen: linear-gradient(135deg, rgba(23, 26, 32, 0.08), rgba(255, 255, 255, 0));
+  --hero-glow: radial-gradient(
+    circle,
+    rgba(62, 106, 225, 0.14) 0%,
+    rgba(62, 106, 225, 0) 70%
+  );
+  --hero-sheen: linear-gradient(
+    135deg,
+    rgba(23, 26, 32, 0.08),
+    rgba(255, 255, 255, 0)
+  );
   --topbar-bg: var(--frost);
   --topbar-scrolled-bg: rgba(255, 255, 255, 0.92);
   --topbar-border: rgba(208, 209, 210, 0.7);
   --nav-hover-bg: var(--ash);
-  --section-dark-bg: linear-gradient(180deg, var(--carbon) 0%, var(--carbon-soft) 100%);
+  --section-dark-bg: linear-gradient(
+    180deg,
+    var(--carbon) 0%,
+    var(--carbon-soft) 100%
+  );
   --surface-bg: var(--white);
   --surface-alt-bg: var(--mist);
   --surface-border: var(--cloud);
@@ -89,11 +105,27 @@
   --text-inverse: #f5f7fb;
   --text-inverse-muted: rgba(245, 247, 251, 0.7);
   --hero-bg:
-    radial-gradient(circle at 15% 18%, rgba(62, 106, 225, 0.24), transparent 28%),
-    radial-gradient(circle at 82% 14%, rgba(255, 255, 255, 0.06), transparent 22%),
+    radial-gradient(
+      circle at 15% 18%,
+      rgba(62, 106, 225, 0.24),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 82% 14%,
+      rgba(255, 255, 255, 0.06),
+      transparent 22%
+    ),
     linear-gradient(180deg, #0a0a0a 0%, #0a0a0a 100%);
-  --hero-glow: radial-gradient(circle, rgba(62, 106, 225, 0.22) 0%, rgba(62, 106, 225, 0) 70%);
-  --hero-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(10, 10, 10, 0));
+  --hero-glow: radial-gradient(
+    circle,
+    rgba(62, 106, 225, 0.22) 0%,
+    rgba(62, 106, 225, 0) 70%
+  );
+  --hero-sheen: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(10, 10, 10, 0)
+  );
   --topbar-bg: rgba(10, 10, 10, 0.78);
   --topbar-scrolled-bg: rgba(10, 10, 10, 0.92);
   --topbar-border: rgba(255, 255, 255, 0.08);
@@ -899,19 +931,23 @@ span {
   }
 }
 
+/* Mobile Breakpoint: Enhanced navigation and sticky behavior */
 @media (max-width: 640px) {
   .top-bar {
     position: static !important;
     top: auto !important;
+    z-index: 10;
   }
 
   .section-shell,
   .top-bar__inner {
-    width: min(100% - 20px, 1280px);
+    width: min(100% - 32px, 1280px);
   }
 
   .top-bar__inner {
+    min-height: 64px;
     gap: 12px;
+    padding: 8px 0;
   }
 
   .hero,
@@ -920,33 +956,53 @@ span {
   .pricing,
   .trust,
   .footer {
-    padding: 52px 0 68px;
+    padding: 60px 0;
   }
 
   .hero {
     min-height: auto;
+    padding: 80px 0 60px;
+  }
+
+  /* Hero Background Effects: Simplified for mobile performance */
+  .hero::before {
+    width: clamp(140px, 40vw, 220px);
+    height: clamp(140px, 40vw, 220px);
+    filter: blur(40px);
+    opacity: 0.6;
+  }
+
+  .hero::after {
+    width: clamp(160px, 45vw, 260px);
+    height: clamp(100px, 25vw, 160px);
+    filter: blur(40px);
+    opacity: 0.5;
   }
 
   .hero__copy {
     padding-top: 8px;
+    padding-bottom: 12px;
   }
 
   h1 {
-    font-size: clamp(2.3rem, 11vw, 3rem);
+    font-size: clamp(2.4rem, 10vw, 3.2rem);
+    line-height: 1.05;
   }
 
   h2 {
-    font-size: clamp(1.8rem, 8vw, 2.2rem);
+    font-size: clamp(1.9rem, 7vw, 2.4rem);
+    line-height: 1.1;
   }
 
   .button {
     width: 100%;
+    min-height: 48px;
+    padding: 14px 20px;
   }
 
   .top-bar__actions {
-    gap: 10px;
-    align-items: stretch;
-    justify-content: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
   }
 
   .top-nav {
@@ -954,9 +1010,10 @@ span {
     justify-content: flex-start;
     flex-wrap: nowrap;
     overflow-x: auto;
-    padding-bottom: 2px;
+    padding-bottom: 4px;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    gap: 8px;
   }
 
   .top-nav::-webkit-scrollbar {
@@ -965,19 +1022,21 @@ span {
 
   .top-nav a {
     flex: 0 0 auto;
-    padding: 6px 12px;
-    min-height: 32px;
+    padding: 10px 16px;
+    min-height: 40px;
+    white-space: nowrap;
   }
 
   .theme-toggle {
-    width: auto;
-    margin-left: 0;
-    align-self: flex-start;
+    width: 64px;
+    height: 36px;
   }
 
   .call-pill {
     width: 100%;
-    min-height: 42px;
+    min-height: 48px;
+    padding: 12px 18px;
+    justify-content: center;
   }
 
   .gallery-card__body,

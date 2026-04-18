@@ -1671,13 +1671,14 @@ img {
   }
 }
 
+/* Mobile Breakpoint: Enhanced for better touch and readability */
 @media (max-width: 640px) {
   :root {
-    --shell: min(100% - 20px, 1180px);
+    --shell: min(100% - 32px, 1180px);
   }
 
   .site-header__inner {
-    min-height: 66px;
+    min-height: 64px;
   }
 
   .landing-hero {
@@ -1685,7 +1686,7 @@ img {
   }
 
   .schluessel-hero__surface {
-    border-radius: 24px;
+    border-radius: 20px;
   }
 
   .landing-actions {
@@ -1693,22 +1694,36 @@ img {
   }
 
   .landing-action {
-    min-height: 56px;
+    min-height: 64px;
+    padding: 16px 20px;
+    font-size: 1.05rem;
   }
 
+  /* Button Touch Optimization */
   .button-chip {
     width: 100%;
+    min-height: 48px;
+    padding: 14px 20px;
   }
 
   .detail-call,
   .detail-button {
     width: 100%;
+    min-height: 48px;
+    padding: 14px 20px;
+    font-size: 1rem;
   }
 
   .detail-nav {
     justify-content: space-between;
+    gap: 10px;
   }
 
+  .detail-nav a {
+    padding: 12px 16px;
+  }
+
+  /* Price Tables: Card-based mobile layout */
   .price-table__head {
     display: none;
   }
@@ -1719,36 +1734,105 @@ img {
 
   .price-table__row {
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 12px;
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--service-surface-alt);
+    border: 1px solid var(--service-border);
+    margin-bottom: 12px;
+  }
+
+  .price-table__row span:first-child {
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--service-border);
   }
 
   .detail-price-table__row {
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 12px;
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--detail-secondary-bg);
+    border: 1px solid var(--detail-secondary-border);
+    margin-bottom: 12px;
   }
 
+  .detail-price-table__row span:first-child {
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--detail-secondary-border);
+  }
+
+  /* Card Padding: More generous on mobile */
   .gallery-card__body,
   .detail-gallery-card__body,
   .detail-trust-card,
   .detail-hero__surface,
   .placeholder-card,
   .trust-card {
-    padding: 20px;
+    padding: 24px;
+    border-radius: 12px;
   }
 
   .slide-card {
-    flex-basis: 240px;
+    flex-basis: 260px;
   }
 
+  /* Image Improvements */
   .gallery-card img,
   .gallery-card--reverse img {
-    min-height: 220px;
+    min-height: 240px;
     max-height: none;
-    aspect-ratio: 1.28 / 1;
+    aspect-ratio: 4 / 3;
   }
 
   .detail-slide-card {
-    flex-basis: 240px;
+    flex-basis: 260px;
+  }
+
+  /* Typography: Better mobile readability */
+  .hero h1,
+  .detail-hero h1 {
+    font-size: clamp(2.4rem, 8vw, 3.2rem);
+    line-height: 1.05;
+  }
+
+  .hero__lead,
+  .detail-hero__lead {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+
+  .section-heading h2,
+  .detail-section__copy h2 {
+    font-size: clamp(1.9rem, 6vw, 2.4rem);
+    line-height: 1.1;
+  }
+
+  /* Section Spacing */
+  .schluessel-section,
+  .detail-section {
+    padding: 60px 0;
+  }
+
+  /* Call-to-action in header */
+  .call-pill,
+  .top-bar .call-pill {
+    min-height: 48px;
+    padding: 12px 18px;
+  }
+
+  /* Slider dots: Larger touch targets */
+  .slider__dot {
+    width: 16px;
+    height: 16px;
+  }
+
+  .slider__dots {
+    gap: 12px;
   }
 }
 

@@ -244,7 +244,7 @@ export function RohrPage() {
             <div className="rohr-service-grid">
               {services.map((item) => (
                 <article className="rohr-service-photo-card" key={item.title}>
-                  <img src={item.image} alt={item.alt} />
+                  <img src={item.image} alt={item.alt} loading="lazy" />
                   <div className="rohr-service-photo-card__body">
                     <h3>{item.title}</h3>
                     <p>{item.text}</p>
@@ -308,7 +308,7 @@ export function RohrPage() {
                   >
                     {carouselSlides.map((slide) => (
                       <div className="rohr-carousel__slide" key={slide.image}>
-                        <img src={slide.image} alt={slide.alt} />
+                        <img src={slide.image} alt={slide.alt} loading="lazy" />
                       </div>
                     ))}
                   </div>
