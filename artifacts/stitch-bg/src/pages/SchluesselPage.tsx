@@ -77,6 +77,13 @@ export function SchluesselPage() {
   const dragStartXRef = useRef<number | null>(null);
   const dragPointerIdRef = useRef<number | null>(null);
 
+  // Force light theme on Schlüsseldienst page
+  useEffect(() => {
+    if (theme === "dark") {
+      toggleTheme();
+    }
+  }, [theme, toggleTheme]);
+
   useEffect(() => {
     const onScroll = () => {
       setIsScrolled(window.scrollY > 24);

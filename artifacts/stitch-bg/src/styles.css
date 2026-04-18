@@ -362,8 +362,17 @@ img {
 .landing-hero__content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .landing-hero__content {
+    max-width: 360px;
+  }
 }
 
 .landing-title {
@@ -376,6 +385,8 @@ img {
   letter-spacing: -0.05em;
   line-height: 0.96;
   user-select: none;
+  text-align: left;
+  width: 100%;
 }
 
 [data-theme="light"] .landing-title {
@@ -418,14 +429,15 @@ img {
 /* 2x2 Grid Layout for Landing Actions */
 .landing-actions--grid {
   grid-template-columns: repeat(2, 1fr);
-  width: min(100%, 600px);
+  width: 100%;
+  max-width: 600px;
   gap: 16px;
 }
 
 @media (max-width: 640px) {
   .landing-actions--grid {
     grid-template-columns: 1fr;
-    width: min(100%, 360px);
+    max-width: 360px;
   }
 }
 

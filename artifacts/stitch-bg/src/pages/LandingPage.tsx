@@ -6,12 +6,19 @@ import { useTheme } from "@/lib/theme";
 export function LandingPage() {
   const { theme, toggleTheme } = useTheme();
 
-  // Force dark theme on landing page
+  // Force dark theme on landing page initial load only
   useEffect(() => {
-    if (theme === "light") {
+    const hasUserToggledTheme = sessionStorage.getItem("landing-user-toggled");
+
+    if (!hasUserToggledTheme && theme === "light") {
       toggleTheme();
     }
-  }, [theme, toggleTheme]);
+  }, []); // Empty dependency array - only runs once on mount
+
+  const handleThemeToggle = () => {
+    sessionStorage.setItem("landing-user-toggled", "true");
+    toggleTheme();
+  };
 
   return (
     <div className="landing-page">
@@ -20,7 +27,7 @@ export function LandingPage() {
       <button
         type="button"
         className="landing-theme-hotspot"
-        onClick={toggleTheme}
+        onClick={handleThemeToggle}
         aria-label={
           theme === "dark"
             ? "Zum hellen Modus wechseln"
@@ -31,11 +38,7 @@ export function LandingPage() {
       <main className="landing-main">
         <section className="landing-hero">
           <div className="landing-hero__content site-shell">
-            <h1 className="landing-title">
-              Willkommen bei
-              <br />
-              Spacefield Media
-            </h1>
+            <h1 className="landing-title">Willkommen bei Spacefield Media</h1>
 
             <div
               className="landing-actions landing-actions--grid"

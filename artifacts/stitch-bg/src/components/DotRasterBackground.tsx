@@ -30,12 +30,12 @@ export function DotRasterBackground({ theme }: DotRasterBackgroundProps) {
     const reducedMotionQuery = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     );
-    const dotSpacing = 9;
-    const dotSize = 0.65;
-    const hoverRadius = 100;
+    const dotSpacing = 11;
+    const dotSize = 0.85;
+    const hoverRadius = 140; // Even bigger circle
     const hoverRadiusSquared = hoverRadius * hoverRadius;
-    const idleThresholdMs = 70;
-    const idleIntensity = 0.62;
+    const idleThresholdMs = 200; // Wait longer before starting fade (was 70)
+    const idleIntensity = 0; // Return to original when idle (was 0.62)
     let frameId = 0;
     let width = window.innerWidth;
     let height = window.innerHeight;
@@ -50,7 +50,7 @@ export function DotRasterBackground({ theme }: DotRasterBackgroundProps) {
             bright: "255,255,255",
             dimAlpha: 0.12,
             brightAlpha: 0.28,
-            hoverAlpha: 0.72,
+            hoverAlpha: 0.82, // Brighter hover effect (was 0.72)
           }
         : {
             background: "#f7f7fb",
@@ -58,7 +58,7 @@ export function DotRasterBackground({ theme }: DotRasterBackgroundProps) {
             bright: "18,24,38",
             dimAlpha: 0.08,
             brightAlpha: 0.17,
-            hoverAlpha: 0.34,
+            hoverAlpha: 0.42, // Brighter hover effect (was 0.34)
           };
 
     const resize = () => {
@@ -106,24 +106,31 @@ export function DotRasterBackground({ theme }: DotRasterBackgroundProps) {
 
       const pointerActive = pointerTarget.active && !reducedMotionQuery.matches;
       const pointerIdle =
-        pointerActive && performance.now() - lastPointerMoveAt > idleThresholdMs;
+        pointerActive &&
+        performance.now() - lastPointerMoveAt > idleThresholdMs;
       const pointerIntensityTarget = pointerActive
         ? pointerIdle
           ? idleIntensity
           : 1
         : 0;
 
+      // Fast ramp up when active, slow fade down when idle/inactive
+      const intensitySpeed =
+        pointerIntensityTarget > pointerCurrent.intensity
+          ? 0.5 // Very fast increase to max brightness
+          : 0.03; // Very slow fade back to original
+
       pointerCurrent.intensity +=
-        (pointerIntensityTarget - pointerCurrent.intensity) * 0.22;
-      pointerCurrent.x += (pointerTarget.x - pointerCurrent.x) * 0.38;
-      pointerCurrent.y += (pointerTarget.y - pointerCurrent.y) * 0.38;
+        (pointerIntensityTarget - pointerCurrent.intensity) * intensitySpeed;
+      pointerCurrent.x += (pointerTarget.x - pointerCurrent.x) * 0.45;
+      pointerCurrent.y += (pointerTarget.y - pointerCurrent.y) * 0.45;
 
       let rowIndex = 0;
       for (let y = 0; y <= height + dotSpacing; y += dotSpacing) {
         let columnIndex = 0;
 
         for (let x = 0; x <= width + dotSpacing; x += dotSpacing) {
-          const brightDot = rowIndex % 2 === 1 && columnIndex % 2 === 1;
+          const brightDot = true; // All dots same brightness
           const dx = x - pointerCurrent.x;
           const dy = y - pointerCurrent.y;
           const distanceSquared = dx * dx + dy * dy;
@@ -133,20 +140,18 @@ export function DotRasterBackground({ theme }: DotRasterBackgroundProps) {
               ? (1 - distanceSquared / hoverRadiusSquared) ** 2.4 *
                 pointerCurrent.intensity
               : 0;
-          const baseAlpha = brightDot ? palette.brightAlpha : palette.dimAlpha;
+          const baseAlpha = palette.brightAlpha; // Use bright alpha for all dots
           const alpha =
             (baseAlpha + (palette.hoverAlpha - baseAlpha) * falloff) * breath;
           const darkGradientHue =
-            (((x / Math.max(width, 1)) * 220 +
+            ((x / Math.max(width, 1)) * 220 +
               (y / Math.max(height, 1)) * 140 +
               hueShift) %
-              360);
+            360;
           const darkGradientColor =
             theme === "dark"
-              ? brightDot
-                ? `hsla(${darkGradientHue} 92% 72% / ${Math.min(alpha, 1)})`
-                : `hsla(${darkGradientHue} 88% 64% / ${Math.min(alpha, 1)})`
-              : `rgba(${brightDot ? palette.bright : palette.dim}, ${alpha})`;
+              ? `hsla(${darkGradientHue} 92% 72% / ${Math.min(alpha, 1)})`
+              : `rgba(${palette.bright}, ${alpha})`;
 
           context.beginPath();
           context.fillStyle = darkGradientColor;
