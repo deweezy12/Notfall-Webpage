@@ -1,6 +1,7 @@
 import { useTheme } from "@/lib/theme";
 import { withBase } from "@/lib/site";
 import { DotRasterBackground } from "@/components/DotRasterBackground";
+import { MusicPlayer } from "@/components/MusicPlayer";
 
 export function SoundfieldPage() {
   const { theme, toggleTheme } = useTheme();
@@ -39,12 +40,18 @@ export function SoundfieldPage() {
 
       <main>
         <section className="soundfield-hero">
-          <DotRasterBackground theme={theme} contained={true} />
+          <DotRasterBackground
+            theme={theme}
+            contained={true}
+            backgroundColor="#000000"
+            rainbow={true}
+          />
           <div className="site-shell soundfield-hero__content">
             <h1 className="soundfield-title">Soundfield</h1>
             <p className="soundfield-lead">
               Welcome to Soundfield by Spacefield Media.
             </p>
+            <MusicPlayer />
             <div className="soundfield-actions">
               <a
                 className="soundfield-button soundfield-button--primary"

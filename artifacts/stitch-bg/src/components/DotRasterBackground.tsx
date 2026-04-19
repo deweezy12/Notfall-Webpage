@@ -4,6 +4,8 @@ import type { ThemeMode } from "@/lib/theme";
 type DotRasterBackgroundProps = {
   theme: ThemeMode;
   contained?: boolean;
+  backgroundColor?: string;
+  rainbow?: boolean;
 };
 
 type PointerState = {
@@ -15,6 +17,8 @@ type PointerState = {
 export function DotRasterBackground({
   theme,
   contained = false,
+  backgroundColor,
+  rainbow = false,
 }: DotRasterBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -49,7 +53,7 @@ export function DotRasterBackground({
     const palette =
       theme === "dark"
         ? {
-            background: "#000000",
+            background: backgroundColor ?? "#202124",
             dim: "255,255,255",
             bright: "255,255,255",
             dimAlpha: 0.12,
@@ -57,7 +61,7 @@ export function DotRasterBackground({
             hoverAlpha: 0.82, // Brighter hover effect (was 0.72)
           }
         : {
-            background: "#ffffff",
+            background: backgroundColor ?? "#ffffff",
             dim: "18,24,38",
             bright: "18,24,38",
             dimAlpha: 0.08,
@@ -165,18 +169,24 @@ export function DotRasterBackground({
           const baseAlpha = palette.brightAlpha; // Use bright alpha for all dots
           const alpha =
             (baseAlpha + (palette.hoverAlpha - baseAlpha) * falloff) * breath;
-          const darkGradientHue =
-            ((x / Math.max(width, 1)) * 220 +
-              (y / Math.max(height, 1)) * 140 +
-              hueShift) %
-            360;
-          const darkGradientColor =
-            theme === "dark"
-              ? `hsla(${darkGradientHue} 92% 72% / ${Math.min(alpha, 1)})`
-              : `rgba(${palette.bright}, ${alpha})`;
+
+          let dotColor: string;
+          if (rainbow && theme === "dark") {
+            const darkGradientHue =
+              ((x / Math.max(width, 1)) * 220 +
+                (y / Math.max(height, 1)) * 140 +
+                hueShift) %
+              360;
+            dotColor = `hsla(${darkGradientHue} 92% 72% / ${Math.min(alpha, 1)})`;
+          } else {
+            dotColor =
+              theme === "dark"
+                ? `rgba(${palette.bright}, ${Math.min(alpha, 1)})`
+                : `rgba(${palette.bright}, ${alpha})`;
+          }
 
           context.beginPath();
-          context.fillStyle = darkGradientColor;
+          context.fillStyle = dotColor;
           context.arc(x, y, dotSize, 0, Math.PI * 2);
           context.fill();
 
@@ -200,7 +210,7 @@ export function DotRasterBackground({
       window.removeEventListener("pointermove", updatePointer);
       window.removeEventListener("pointerleave", resetPointer);
     };
-  }, [theme, contained]);
+  }, [theme, contained, backgroundColor, rainbow]);
 
   return (
     <canvas
