@@ -1,9 +1,19 @@
-import { useTheme } from "@/lib/theme";
-import { asset, withBase } from "@/lib/site";
 import { DotRasterBackground } from "@/components/DotRasterBackground";
-import { MusicPlayer, type SoundfieldSource } from "@/components/MusicPlayer";
+import { MusicPlayer } from "@/components/MusicPlayer";
+import { asset, withBase } from "@/lib/site";
+import {
+  SoundfieldAudioProvider,
+  type SoundfieldSource,
+} from "@/lib/soundfield-audio";
+import { useTheme } from "@/lib/theme";
 
 const soundfieldSources: SoundfieldSource[] = [
+  {
+    id: "the-mountain-lofi",
+    label: "The Mountain LoFi",
+    kind: "file",
+    src: asset("audio/the-mountain-lofi.mp3"),
+  },
   {
     id: "brown-noise",
     label: "Brown Noise",
@@ -15,12 +25,6 @@ const soundfieldSources: SoundfieldSource[] = [
     label: "Pink Noise",
     kind: "noise",
     color: "pink",
-  },
-  {
-    id: "the-mountain-lofi",
-    label: "The Mountain LoFi",
-    kind: "file",
-    src: asset("audio/the-mountain-lofi.mp3"),
   },
 ];
 
@@ -60,32 +64,35 @@ export function SoundfieldPage() {
       </header>
 
       <main>
-        <section className="soundfield-hero">
-          <DotRasterBackground
-            theme={theme}
-            contained={true}
-            backgroundColor="#000000"
-            rainbow={true}
-          />
-          <div className="site-shell soundfield-hero__content">
-            <h1 className="soundfield-title">Soundfield</h1>
-            <p className="soundfield-lead">
-              Welcome to Soundfield by Spacefield Media.
-            </p>
-            <MusicPlayer
-              sources={soundfieldSources}
-              initialSourceId="brown-noise"
+        <SoundfieldAudioProvider
+          sources={soundfieldSources}
+          initialSourceId="the-mountain-lofi"
+        >
+          <section className="soundfield-hero">
+            <DotRasterBackground
+              theme={theme}
+              contained={true}
+              backgroundColor="#000000"
+              rainbow={true}
+              audioReactive={true}
             />
-            <div className="soundfield-actions">
-              <a
-                className="soundfield-button soundfield-button--primary"
-                href={withBase()}
-              >
-                Zurück zur Startseite
-              </a>
+            <div className="site-shell soundfield-hero__content">
+              <h1 className="soundfield-title">Soundfield</h1>
+              <p className="soundfield-lead">
+                Welcome to Soundfield by Spacefield Media.
+              </p>
+              <MusicPlayer />
+              <div className="soundfield-actions">
+                <a
+                  className="soundfield-button soundfield-button--primary"
+                  href={withBase()}
+                >
+                  Zurück zur Startseite
+                </a>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </SoundfieldAudioProvider>
       </main>
 
       <footer className="soundfield-footer">

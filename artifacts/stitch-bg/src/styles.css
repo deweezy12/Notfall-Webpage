@@ -2298,6 +2298,11 @@ body:has(.soundfield-page) {
   transition: color 0.2s ease;
 }
 
+[data-theme="light"] .soundfield-footer p,
+[data-theme="light"] .soundfield-footer a {
+  color: rgba(18, 24, 38, 0.72);
+}
+
 .soundfield-footer a:hover {
   color: var(--accent);
 }
@@ -2360,10 +2365,20 @@ body:has(.soundfield-page) {
   color: rgba(255, 255, 255, 0.92);
 }
 
+[data-theme="dark"] .music-player__select option {
+  background: #111318;
+  color: #f6f7fb;
+}
+
 [data-theme="light"] .music-player__select {
   border-color: rgba(0, 0, 0, 0.1);
   background: rgba(255, 255, 255, 0.85);
   color: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="light"] .music-player__select option {
+  background: #ffffff;
+  color: #171c26;
 }
 
 .music-player__transport {

@@ -38,8 +38,7 @@ function fillPinkNoise(channelData: Float32Array) {
     b4 = 0.55 * b4 + white * 0.5329522;
     b5 = -0.7616 * b5 - white * 0.016898;
 
-    const pink =
-      b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+    const pink = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
 
     b6 = white * 0.115926;
     channelData[index] = clampSample(pink * 0.11);
@@ -66,7 +65,7 @@ function createNoiseBuffer(
   return buffer;
 }
 
-function getNoiseBuffer(
+export function getNoiseBuffer(
   context: BaseAudioContext,
   color: NoiseColor,
 ): AudioBuffer {
@@ -86,94 +85,4 @@ function getNoiseBuffer(
   contextBuffers.set(color, nextBuffer);
 
   return nextBuffer;
-}
-
-export class NoisePlayer {
-  private context: AudioContext | null = null;
-  private gainNode: GainNode | null = null;
-  private activeSource: AudioBufferSourceNode | null = null;
-
-  private ensureContext(): AudioContext {
-    if (!this.context) {
-      const context = new window.AudioContext();
-      const gainNode = context.createGain();
-
-      gainNode.connect(context.destination);
-      this.context = context;
-      this.gainNode = gainNode;
-    }
-
-    return this.context;
-  }
-
-  async start(color: NoiseColor, volume: number) {
-    const context = this.ensureContext();
-    const gainNode = this.gainNode;
-
-    if (!gainNode) {
-      throw new Error("Noise gain node is not available.");
-    }
-
-    this.stop();
-
-    if (context.state === "suspended") {
-      await context.resume();
-    }
-
-    const source = context.createBufferSource();
-    source.buffer = getNoiseBuffer(context, color);
-    source.loop = true;
-    source.connect(gainNode);
-    gainNode.gain.value = volume;
-
-    source.onended = () => {
-      if (this.activeSource === source) {
-        this.activeSource = null;
-      }
-
-      source.disconnect();
-    };
-
-    source.start();
-    this.activeSource = source;
-  }
-
-  stop() {
-    const source = this.activeSource;
-
-    if (!source) {
-      return;
-    }
-
-    this.activeSource = null;
-    source.onended = null;
-
-    try {
-      source.stop();
-    } catch {
-      // Source nodes throw if they are already stopped.
-    }
-
-    source.disconnect();
-  }
-
-  setVolume(volume: number) {
-    if (!this.gainNode) {
-      return;
-    }
-
-    this.gainNode.gain.value = volume;
-  }
-
-  async dispose() {
-    this.stop();
-    this.gainNode?.disconnect();
-    this.gainNode = null;
-
-    if (this.context && this.context.state !== "closed") {
-      await this.context.close();
-    }
-
-    this.context = null;
-  }
 }
