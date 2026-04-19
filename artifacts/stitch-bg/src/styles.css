@@ -353,6 +353,12 @@ img {
   height: 100%;
 }
 
+.dot-raster--contained {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
 .landing-hero {
   display: grid;
   place-items: center;
@@ -2122,17 +2128,38 @@ select:focus-visible,
 .soundfield-page {
   min-height: 100vh;
   position: relative;
-  background: var(--bg);
+  overflow: clip;
   color: var(--text);
+  background: #000000;
+}
+
+/* Ensure body background matches the canvas background for soundfield */
+body:has(.soundfield-page) {
+  background: #000000;
+}
+
+[data-theme="light"] .soundfield-page {
+  background: #ffffff;
+}
+
+[data-theme="light"] body:has(.soundfield-page) {
+  background: #ffffff;
 }
 
 .soundfield-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
+  background: #000000;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 16px 0;
+}
+
+[data-theme="light"] .soundfield-header {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .soundfield-header__inner {
@@ -2161,17 +2188,20 @@ select:focus-visible,
 }
 
 .soundfield-hero {
-  min-height: calc(100vh - 200px);
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 80px 0;
   position: relative;
+  overflow: hidden;
 }
 
 .soundfield-hero__content {
   text-align: center;
   max-width: 800px;
+  position: relative;
+  z-index: 1;
 }
 
 .soundfield-title {
@@ -2232,9 +2262,16 @@ select:focus-visible,
 }
 
 .soundfield-footer {
-  border-top: 1px solid var(--border);
-  padding: 40px 0;
-  margin-top: 80px;
+  position: relative;
+  background: #000000;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 24px 0;
+  margin-top: 0;
+}
+
+[data-theme="light"] .soundfield-footer {
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .soundfield-footer .site-shell {

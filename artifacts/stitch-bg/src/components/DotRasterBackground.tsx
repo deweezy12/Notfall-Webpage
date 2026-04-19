@@ -3,6 +3,7 @@ import type { ThemeMode } from "@/lib/theme";
 
 type DotRasterBackgroundProps = {
   theme: ThemeMode;
+  contained?: boolean;
 };
 
 type PointerState = {
@@ -11,7 +12,10 @@ type PointerState = {
   y: number;
 };
 
-export function DotRasterBackground({ theme }: DotRasterBackgroundProps) {
+export function DotRasterBackground({
+  theme,
+  contained = false,
+}: DotRasterBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -45,7 +49,7 @@ export function DotRasterBackground({ theme }: DotRasterBackgroundProps) {
     const palette =
       theme === "dark"
         ? {
-            background: "#202124",
+            background: "#000000",
             dim: "255,255,255",
             bright: "255,255,255",
             dimAlpha: 0.12,
@@ -53,7 +57,7 @@ export function DotRasterBackground({ theme }: DotRasterBackgroundProps) {
             hoverAlpha: 0.82, // Brighter hover effect (was 0.72)
           }
         : {
-            background: "#f7f7fb",
+            background: "#ffffff",
             dim: "18,24,38",
             bright: "18,24,38",
             dimAlpha: 0.08,
@@ -62,8 +66,16 @@ export function DotRasterBackground({ theme }: DotRasterBackgroundProps) {
           };
 
     const resize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
+      if (contained && canvas.parentElement) {
+        // For contained mode, use parent element dimensions
+        const rect = canvas.parentElement.getBoundingClientRect();
+        width = rect.width;
+        height = rect.height;
+      } else {
+        // For fixed mode, use window dimensions
+        width = window.innerWidth;
+        height = window.innerHeight;
+      }
       const dpr = window.devicePixelRatio || 1;
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
@@ -74,13 +86,23 @@ export function DotRasterBackground({ theme }: DotRasterBackgroundProps) {
 
     const updatePointer = (event: PointerEvent) => {
       pointerTarget.active = true;
-      pointerTarget.x = event.clientX;
-      pointerTarget.y = event.clientY;
+
+      if (contained && canvas.parentElement) {
+        // For contained mode, calculate coordinates relative to canvas
+        const rect = canvas.getBoundingClientRect();
+        pointerTarget.x = event.clientX - rect.left;
+        pointerTarget.y = event.clientY - rect.top;
+      } else {
+        // For fixed mode, use viewport coordinates
+        pointerTarget.x = event.clientX;
+        pointerTarget.y = event.clientY;
+      }
+
       lastPointerMoveAt = performance.now();
 
       if (!pointerWasActive) {
-        pointerCurrent.x = event.clientX;
-        pointerCurrent.y = event.clientY;
+        pointerCurrent.x = pointerTarget.x;
+        pointerCurrent.y = pointerTarget.y;
         pointerCurrent.intensity = 1;
         pointerWasActive = true;
       }
@@ -178,7 +200,13 @@ export function DotRasterBackground({ theme }: DotRasterBackgroundProps) {
       window.removeEventListener("pointermove", updatePointer);
       window.removeEventListener("pointerleave", resetPointer);
     };
-  }, [theme]);
+  }, [theme, contained]);
 
-  return <canvas ref={canvasRef} className="dot-raster" aria-hidden="true" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className={contained ? "dot-raster dot-raster--contained" : "dot-raster"}
+      aria-hidden="true"
+    />
+  );
 }

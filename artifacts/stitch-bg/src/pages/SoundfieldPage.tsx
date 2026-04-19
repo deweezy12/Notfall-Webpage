@@ -7,8 +7,6 @@ export function SoundfieldPage() {
 
   return (
     <div className="soundfield-page" id="start">
-      <DotRasterBackground theme={theme} />
-
       <a href="#start" className="skip-link">
         Zum Hauptinhalt springen
       </a>
@@ -41,6 +39,7 @@ export function SoundfieldPage() {
 
       <main>
         <section className="soundfield-hero">
+          <DotRasterBackground theme={theme} contained={true} />
           <div className="site-shell soundfield-hero__content">
             <h1 className="soundfield-title">Soundfield</h1>
             <p className="soundfield-lead">
