@@ -1,4 +1,9 @@
-export type ServiceKey = "schluessel" | "rohr" | "elektrik" | "heizung";
+export type ServiceKey =
+  | "schluessel"
+  | "rohr"
+  | "elektrik"
+  | "heizung"
+  | "soundfield";
 
 export type ServiceLink = {
   key: ServiceKey;
@@ -47,5 +52,12 @@ export const serviceLinks: ServiceLink[] = [
     title: "Notfall Heizungsdienst",
     href: withBase("heizung/"),
     note: "Notdienst-Seite für Heizungsausfall und fehlendes Warmwasser.",
+  },
+  {
+    key: "soundfield",
+    label: "Soundfield",
+    title: "Soundfield",
+    href: withBase("soundfield/"),
+    note: "Soundfield service page.",
   },
 ];

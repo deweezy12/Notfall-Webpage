@@ -434,6 +434,13 @@ img {
   gap: 16px;
 }
 
+/* Center the 5th tile (2-2-1 layout) */
+.landing-actions--grid > .landing-action:nth-child(5) {
+  grid-column: 1 / -1;
+  max-width: 292px;
+  margin: 0 auto;
+}
+
 @media (max-width: 640px) {
   .landing-actions--grid {
     grid-template-columns: 1fr;
@@ -2106,4 +2113,183 @@ select:focus-visible,
 
 *:focus-visible {
   /* Custom outline applied above */
+}
+
+/* ===============================================
+   Soundfield Page Styles
+   =============================================== */
+
+.soundfield-page {
+  min-height: 100vh;
+  position: relative;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.soundfield-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+}
+
+.soundfield-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.soundfield-brand {
+  font-family: "Area Normal", "Space Grotesk", Arial, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.soundfield-brand:hover {
+  color: var(--accent);
+}
+
+.soundfield-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.soundfield-hero {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+  position: relative;
+}
+
+.soundfield-hero__content {
+  text-align: center;
+  max-width: 800px;
+}
+
+.soundfield-title {
+  font-family: "Area Normal", "Space Grotesk", Arial, sans-serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 24px;
+  color: var(--text);
+}
+
+.soundfield-lead {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0 0 40px;
+}
+
+.soundfield-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.soundfield-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.soundfield-button--primary {
+  background: var(--accent);
+  color: var(--accent-text);
+  border: 1px solid transparent;
+}
+
+.soundfield-button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.soundfield-button--secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.soundfield-button--secondary:hover {
+  background: var(--bg-subtle);
+  border-color: var(--text-muted);
+}
+
+.soundfield-footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 0;
+  margin-top: 80px;
+}
+
+.soundfield-footer .site-shell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.soundfield-footer p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.soundfield-footer div {
+  display: flex;
+  gap: 24px;
+}
+
+.soundfield-footer a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.soundfield-footer a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .soundfield-header {
+    padding: 12px 0;
+  }
+
+  .soundfield-brand {
+    font-size: 1.125rem;
+  }
+
+  .soundfield-hero {
+    min-height: calc(100vh - 150px);
+    padding: 60px 0;
+  }
+
+  .soundfield-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .soundfield-button {
+    width: 100%;
+  }
+
+  .soundfield-footer .site-shell {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
