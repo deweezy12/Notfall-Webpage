@@ -432,19 +432,12 @@ img {
   width: min(100%, 360px);
 }
 
-/* 2x2 Grid Layout for Landing Actions */
+/* 2x3 Grid Layout for Landing Actions */
 .landing-actions--grid {
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
   max-width: 600px;
   gap: 16px;
-}
-
-/* Center the 5th tile (2-2-1 layout) */
-.landing-actions--grid > .landing-action:nth-child(5) {
-  grid-column: 1 / -1;
-  max-width: 292px;
-  margin: 0 auto;
 }
 
 @media (max-width: 640px) {

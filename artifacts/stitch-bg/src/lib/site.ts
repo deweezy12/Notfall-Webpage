@@ -3,7 +3,8 @@ export type ServiceKey =
   | "rohr"
   | "elektrik"
   | "heizung"
-  | "soundfield";
+  | "soundfield"
+  | "wanzleben";
 
 export type ServiceLink = {
   key: ServiceKey;
@@ -59,5 +60,12 @@ export const serviceLinks: ServiceLink[] = [
     title: "Soundfield",
     href: withBase("soundfield/"),
     note: "Soundfield service page.",
+  },
+  {
+    key: "wanzleben",
+    label: "Sanitär Wanzleben",
+    title: "Sanitär Notdienst Wanzleben",
+    href: withBase("wanzleben/"),
+    note: "Sanitär-Notdienst-Seite für akute Probleme in Wanzleben-Börde.",
   },
 ];

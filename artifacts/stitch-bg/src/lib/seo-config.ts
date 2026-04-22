@@ -51,6 +51,13 @@ export const pageSEO: Record<ServiceKey | "landing", PageSEO> = {
       "Heizungs-Notdienst in Berlin für Heizungsausfall, fehlende Warmwasser und dringende Heizungsprobleme.",
     canonicalUrl: withBase("heizung/"),
   },
+
+  wanzleben: {
+    title: "Sanitär Notdienst Wanzleben | Schnelle Hilfe bei Verstopfungen",
+    description:
+      "Sanitär Notdienst in Wanzleben für schnelle Hilfe bei verstopften Abflüssen, WC-Verstopfungen und Rückstau.",
+    canonicalUrl: withBase("wanzleben/"),
+  },
 };
 
 /**

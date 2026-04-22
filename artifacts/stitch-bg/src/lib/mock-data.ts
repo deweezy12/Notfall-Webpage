@@ -5,7 +5,12 @@
  * Alle Firmen, Adressen, Telefonnummern und E-Mail-Adressen sind frei erfunden.
  */
 
-export type ServiceKey = "schluessel" | "rohr" | "elektrik" | "heizung";
+export type ServiceKey =
+  | "schluessel"
+  | "rohr"
+  | "elektrik"
+  | "heizung"
+  | "wanzleben";
 
 export interface MockCompany {
   /** Vollständiger Firmenname */
@@ -86,6 +91,21 @@ export const mockCompanies: Record<ServiceKey, MockCompany> = {
       "https://www.google.com/maps/search/?api=1&query=Varresbecker+Str.+193,+42115+Wuppertal",
     services:
       "Heizungs-Notdienst, Heizungsausfall, Warmwasser-Störungen, Thermostat-Reparatur",
+  },
+
+  wanzleben: {
+    name: "Sanitär Notdienst Wanzleben",
+    street: "Varresbecker Str. 193",
+    city: "39164 Wanzleben-Börde",
+    phone: "+4920212345679",
+    phoneDisplay: "0202 123 45 679",
+    email: "notdienst@example.de",
+    mapsEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2448.123!2d11.447!3d52.068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDA0JzA0LjgiTiAxMcKwMjYnNDkuMiJF!5e0!3m2!1sde!2sde!4v1000000000000!5m2!1sde!2sde",
+    mapsLinkUrl:
+      "https://www.google.com/maps/search/?api=1&query=Varresbecker+Str.+193,+39164+Wanzleben-Börde",
+    services:
+      "Sanitär Notdienst, Abflussreinigung, WC-Verstopfung, Rückstau-Notdienst",
   },
 };
 
