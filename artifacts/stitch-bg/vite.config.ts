@@ -30,6 +30,10 @@ export default defineConfig({
         rohr: path.resolve(import.meta.dirname, "rohr/index.html"),
         elektrik: path.resolve(import.meta.dirname, "elektrik/index.html"),
         heizung: path.resolve(import.meta.dirname, "heizung/index.html"),
+        nagelstudio: path.resolve(
+          import.meta.dirname,
+          "nagelstudio/index.html",
+        ),
         soundfield: path.resolve(import.meta.dirname, "soundfield/index.html"),
         wanzleben: path.resolve(import.meta.dirname, "wanzleben/index.html"),
         impressum: path.resolve(import.meta.dirname, "impressum/index.html"),

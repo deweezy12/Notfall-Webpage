@@ -3,6 +3,7 @@ export type ServiceKey =
   | "rohr"
   | "elektrik"
   | "heizung"
+  | "nagelstudio"
   | "soundfield"
   | "wanzleben";
 
@@ -53,6 +54,13 @@ export const serviceLinks: ServiceLink[] = [
     title: "Notfall Heizungsdienst",
     href: withBase("heizung/"),
     note: "Notdienst-Seite für Heizungsausfall und fehlendes Warmwasser.",
+  },
+  {
+    key: "nagelstudio",
+    label: "Nagelstudio",
+    title: "Nagelstudio",
+    href: withBase("nagelstudio/"),
+    note: "Leere Platzhalter-Seite für das Nagelstudio.",
   },
   {
     key: "soundfield",
