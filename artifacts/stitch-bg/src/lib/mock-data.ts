@@ -131,3 +131,9 @@ export const legalEntity = {
   disclaimer:
     "Dies ist eine fiktive Beispiel-Website für Demonstrationszwecke. Alle Daten sind frei erfunden.",
 };
+
+export const nagelstudioBooking = {
+  email: "termine@example.de",
+  // Fill this with the public Google appointment schedule URL once available.
+  googleCalendarBookingUrl: "",
+};
