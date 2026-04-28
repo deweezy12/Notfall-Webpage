@@ -15,7 +15,8 @@ export function NagelstudioPage() {
           <h1>Nagelstudio Termine</h1>
           <p className="service-placeholder__lead">
             Termine werden direkt ueber Google Calendar vergeben. Die Website
-            selbst verwaltet keine Slots oder Buchungen.
+            selbst verwaltet keine Slots oder Buchungen. Bitte planen Sie fuer
+            die Anfrage einen kurzen Moment ein.
           </p>
 
           <div className="service-placeholder__actions">
