@@ -630,6 +630,97 @@ img {
   color: var(--service-muted);
 }
 
+.nagelstudio-page {
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(248, 221, 229, 0.88), rgba(255, 255, 255, 0.7)),
+    #fff8fa;
+  color: #20171a;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.nagelstudio-page__main {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+}
+
+.nagelstudio-page__panel {
+  width: min(100%, 520px);
+  padding: clamp(28px, 6vw, 48px);
+  border: 1px solid rgba(32, 23, 26, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 24px 70px rgba(100, 54, 67, 0.14);
+}
+
+.nagelstudio-page__eyebrow {
+  margin: 0 0 12px;
+  color: #8b5363;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nagelstudio-page h1 {
+  margin: 0 0 14px;
+  font-family: "Space Grotesk", "Inter", Arial, sans-serif;
+  font-size: clamp(2.6rem, 8vw, 4.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.nagelstudio-page__lead {
+  margin: 0;
+  max-width: 36ch;
+  color: rgba(32, 23, 26, 0.72);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.nagelstudio-page__actions {
+  margin-top: 28px;
+}
+
+.nagelstudio-page__button {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: #20171a;
+  color: #ffffff;
+  font-weight: 700;
+  transition:
+    transform var(--transition),
+    background-color var(--transition);
+}
+
+.nagelstudio-page__button:hover,
+.nagelstudio-page__button:focus-visible {
+  transform: translateY(-1px);
+  background: #8b5363;
+}
+
+@media (max-width: 640px) {
+  .nagelstudio-page__main {
+    place-items: stretch;
+    align-content: center;
+    padding: 20px;
+  }
+
+  .nagelstudio-page__panel {
+    border-radius: 14px;
+  }
+
+  .nagelstudio-page__button {
+    width: 100%;
+  }
+}
+
 .schluessel-main {
   background: var(--service-page-bg);
 }
