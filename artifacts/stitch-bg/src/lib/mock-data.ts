@@ -133,7 +133,7 @@ export const legalEntity = {
 };
 
 export const nagelstudioBooking = {
-  email: "termine@example.de",
+  email: "d.weezy@web.de",
   // Fill this with the public Google appointment schedule URL once available.
-  googleCalendarBookingUrl: "",
+  googleCalendarBookingUrl: "https://calendar.app.google/w8dfQEEKc3qrH1kG6",
 };
