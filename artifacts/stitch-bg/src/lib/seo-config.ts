@@ -58,6 +58,13 @@ export const pageSEO: Record<ServiceKey | "landing", PageSEO> = {
       "Sanitär Notdienst in Wanzleben für schnelle Hilfe bei verstopften Abflüssen, WC-Verstopfungen und Rückstau.",
     canonicalUrl: withBase("wanzleben/"),
   },
+
+  nagelstudio: {
+    title: "Nagelstudio | Professionelle Maniküre, Pediküre & Nageldesign",
+    description:
+      "Professionelle Nagelkunst mit Leidenschaft. Maniküre, Pediküre, Gel-Nägel und individuelles Nageldesign zu fairen Preisen.",
+    canonicalUrl: withBase("nagelstudio/"),
+  },
 };
 
 /**

@@ -10,7 +10,8 @@ export type ServiceKey =
   | "rohr"
   | "elektrik"
   | "heizung"
-  | "wanzleben";
+  | "wanzleben"
+  | "nagelstudio";
 
 export interface MockCompany {
   /** Vollständiger Firmenname */
@@ -106,6 +107,21 @@ export const mockCompanies: Record<ServiceKey, MockCompany> = {
       "https://www.google.com/maps/search/?api=1&query=Varresbecker+Str.+193,+39164+Wanzleben-Börde",
     services:
       "Sanitär Notdienst, Abflussreinigung, WC-Verstopfung, Rückstau-Notdienst",
+  },
+
+  nagelstudio: {
+    name: "Nagelstudio",
+    street: "Musterstraße 123",
+    city: "12345 Musterstadt",
+    phone: "+49123456789",
+    phoneDisplay: "0123 456 789",
+    email: "kontakt@nagelstudio-beispiel.de",
+    mapsEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2497.14880073439!2d7.101293577003866!3d51.2531695717566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8d6e0b7a63ed9%3A0x8aea528dc914d126!2sVarresbecker%20Str.%20193%2C%2042115%20Wuppertal!5e0!3m2!1sde!2sde!4v1773623012764!5m2!1sde!2sde",
+    mapsLinkUrl:
+      "https://www.google.com/maps/search/?api=1&query=Musterstraße+123,+12345+Musterstadt",
+    services:
+      "Maniküre, Pediküre, Nageldesign, Gel-Nägel, Nail Art, Nagelverlängerung",
   },
 };
 
