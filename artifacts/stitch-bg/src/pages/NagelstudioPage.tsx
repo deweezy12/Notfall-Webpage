@@ -1,6 +1,7 @@
 import { useTheme } from "@/lib/theme";
 import { mockCompanies, nagelstudioBooking } from "@/lib/mock-data";
 import { StructuredData } from "@/components/StructuredData";
+import { asset } from "@/lib/site";
 
 const company = mockCompanies.nagelstudio;
 
@@ -48,15 +49,89 @@ const openingHours = [
   { day: "Sonntag", hours: "Geschlossen" },
 ];
 
-// Placeholder gallery items
+// Gallery items with real images
 const galleryItems = [
-  { id: 1, label: "French Nails" },
-  { id: 2, label: "Ombre Design" },
-  { id: 3, label: "Nail Art" },
-  { id: 4, label: "Glitzer Design" },
-  { id: 5, label: "3D Design" },
-  { id: 6, label: "Klassisch" },
+  {
+    id: 1,
+    label: "French Nails",
+    image: asset("images/nagelstudio/french_nails.png"),
+  },
+  {
+    id: 2,
+    label: "Ombre Design",
+    image: asset("images/nagelstudio/ombre.png"),
+  },
+  { id: 3, label: "Nail Art", image: asset("images/nagelstudio/artistic.png") },
+  {
+    id: 4,
+    label: "Glitzer Design",
+    image: asset("images/nagelstudio/glitzer.png"),
+  },
+  { id: 5, label: "3D Design", image: asset("images/nagelstudio/3d.png") },
+  { id: 6, label: "Klassisch", image: asset("images/nagelstudio/normal.png") },
 ];
+
+// Customer reviews
+const reviews = [
+  {
+    id: "1",
+    author: "Sarah M.",
+    rating: 5,
+    text: "Absolut begeistert! Die Nägel sehen fantastisch aus und halten super lange. Sehr professionell und mit viel Liebe zum Detail gearbeitet.",
+    date: "vor 1 Woche",
+  },
+  {
+    id: "2",
+    author: "Julia K.",
+    rating: 5,
+    text: "Endlich ein Nagelstudio, das meine Wünsche perfekt umsetzt! Die Atmosphäre ist entspannt und das Ergebnis immer top. Komme immer wieder gerne!",
+    date: "vor 2 Wochen",
+  },
+  {
+    id: "3",
+    author: "Lisa W.",
+    rating: 5,
+    text: "Sehr freundliche Beratung und wunderschöne Nägel! Die Preise sind fair und das Design ist genau nach meinen Vorstellungen. Absolute Empfehlung!",
+    date: "vor 3 Wochen",
+  },
+  {
+    id: "4",
+    author: "Anna S.",
+    rating: 5,
+    text: "Beste Nageldesignerin in der Stadt! Sie nimmt sich Zeit, berät super und die Nägel halten ewig. Ich bin so glücklich!",
+    date: "vor 1 Monat",
+  },
+  {
+    id: "5",
+    author: "Michelle B.",
+    rating: 5,
+    text: "Ich war schon in vielen Studios, aber hier fühle ich mich am wohlsten. Saubere Arbeit, kreative Designs und immer ein offenes Ohr für meine Ideen.",
+    date: "vor 2 Wochen",
+  },
+  {
+    id: "6",
+    author: "Vanessa L.",
+    rating: 5,
+    text: "Von der Terminvereinbarung bis zum Ergebnis – alles perfekt! Die Nägel sind ein Traum und ich bekomme ständig Komplimente dafür.",
+    date: "vor 3 Wochen",
+  },
+];
+
+// Star Rating Component
+function StarRating({ rating }: { rating: number }) {
+  return (
+    <div className="nagelstudio-review-stars">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <span
+          key={star}
+          className={star <= rating ? "star-filled" : "star-empty"}
+        >
+          ★
+        </span>
+      ))}
+    </div>
+  );
+}
 
 export function NagelstudioPage() {
   const { theme, toggleTheme } = useTheme();
@@ -83,6 +158,7 @@ export function NagelstudioPage() {
               <a href="#preise">Preise</a>
               <a href="#buchung">Buchung</a>
               <a href="#galerie">Galerie</a>
+              <a href="#bewertungen">Bewertungen</a>
               <a href="#kontakt">Kontakt</a>
             </nav>
 
@@ -274,7 +350,13 @@ export function NagelstudioPage() {
             <div className="nagelstudio-gallery__grid">
               {galleryItems.map((item) => (
                 <div key={item.id} className="nagelstudio-gallery__item">
-                  <div className="nagelstudio-gallery__placeholder">
+                  <img
+                    src={item.image}
+                    alt={item.label}
+                    className="nagelstudio-gallery__image"
+                    loading="lazy"
+                  />
+                  <div className="nagelstudio-gallery__overlay">
                     <span className="nagelstudio-gallery__label">
                       {item.label}
                     </span>
@@ -285,6 +367,34 @@ export function NagelstudioPage() {
             <p className="nagelstudio-gallery__note">
               Weitere Beispiele unserer Arbeiten finden Sie auf Instagram.
             </p>
+          </div>
+        </section>
+
+        {/* Reviews Section */}
+        <section
+          className="nagelstudio-reviews"
+          id="bewertungen"
+          aria-labelledby="reviews-title"
+        >
+          <div className="nagelstudio-shell">
+            <h2 id="reviews-title" className="nagelstudio-section-title">
+              Was unsere Kunden sagen
+            </h2>
+
+            <div className="nagelstudio-reviews__grid">
+              {reviews.map((review) => (
+                <article className="nagelstudio-review-card" key={review.id}>
+                  <StarRating rating={review.rating} />
+                  <p className="nagelstudio-review-text">{review.text}</p>
+                  <div className="nagelstudio-review-meta">
+                    <p className="nagelstudio-review-author">
+                      — {review.author}
+                    </p>
+                    <p className="nagelstudio-review-date">{review.date}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
