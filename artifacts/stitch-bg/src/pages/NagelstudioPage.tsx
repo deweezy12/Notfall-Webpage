@@ -178,7 +178,13 @@ export function NagelstudioPage() {
 
       <main className="nagelstudio-main">
         {/* Hero Section */}
-        <section className="nagelstudio-hero" aria-labelledby="hero-title">
+        <section
+          className="nagelstudio-hero"
+          aria-labelledby="hero-title"
+          style={{
+            backgroundImage: `url(${asset("images/nagelstudio/header.png")})`,
+          }}
+        >
           <div className="nagelstudio-hero__content">
             <p className="nagelstudio-hero__eyebrow">
               Professionelle Nagelkunst
