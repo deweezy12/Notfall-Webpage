@@ -1478,6 +1478,66 @@ img {
   color: #f8b9c9;
 }
 
+/* Social Media Links */
+.nagelstudio-social {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nagelstudio-social__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(139, 83, 99, 0.1);
+  color: #8b5363;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.nagelstudio-social__link:hover,
+.nagelstudio-social__link:focus-visible {
+  background: #8b5363;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .nagelstudio-social__link {
+  background: rgba(248, 185, 201, 0.1);
+  color: #f8b9c9;
+}
+
+[data-theme="dark"] .nagelstudio-social__link:hover,
+[data-theme="dark"] .nagelstudio-social__link:focus-visible {
+  background: #f8b9c9;
+  color: #20171a;
+}
+
+/* Small variant for footer */
+.nagelstudio-social--small .nagelstudio-social__link {
+  width: 36px;
+  height: 36px;
+}
+
+.nagelstudio-social--small svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Footer social media section */
+.nagelstudio-footer__social {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
 /* Responsive Design */
 @media (max-width: 900px) {
   .nagelstudio-contact__grid {

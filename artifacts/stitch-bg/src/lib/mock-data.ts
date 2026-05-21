@@ -32,6 +32,13 @@ export interface MockCompany {
   mapsLinkUrl: string;
   /** Kurzbeschreibung der Leistungen */
   services: string;
+  /** Social Media Links (optional) */
+  socialMedia?: {
+    instagram?: string;
+    facebook?: string;
+    tiktok?: string;
+    whatsapp?: string;
+  };
 }
 
 export const mockCompanies: Record<ServiceKey, MockCompany> = {
@@ -122,6 +129,12 @@ export const mockCompanies: Record<ServiceKey, MockCompany> = {
       "https://www.google.com/maps/search/?api=1&query=Musterstraße+123,+12345+Musterstadt",
     services:
       "Maniküre, Pediküre, Nageldesign, Gel-Nägel, Nail Art, Nagelverlängerung",
+    socialMedia: {
+      instagram: "https://instagram.com/nagelstudio.beispiel",
+      facebook: "https://facebook.com/nagelstudio.beispiel",
+      tiktok: "https://tiktok.com/@nagelstudio.beispiel",
+      whatsapp: "+49123456789",
+    },
   },
 };
 
