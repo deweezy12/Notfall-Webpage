@@ -94,27 +94,6 @@ const reviews = [
     text: "Sehr freundliche Beratung und wunderschöne Nägel! Die Preise sind fair und das Design ist genau nach meinen Vorstellungen. Absolute Empfehlung!",
     date: "vor 3 Wochen",
   },
-  {
-    id: "4",
-    author: "Anna S.",
-    rating: 5,
-    text: "Beste Nageldesignerin in der Stadt! Sie nimmt sich Zeit, berät super und die Nägel halten ewig. Ich bin so glücklich!",
-    date: "vor 1 Monat",
-  },
-  {
-    id: "5",
-    author: "Michelle B.",
-    rating: 5,
-    text: "Ich war schon in vielen Studios, aber hier fühle ich mich am wohlsten. Saubere Arbeit, kreative Designs und immer ein offenes Ohr für meine Ideen.",
-    date: "vor 2 Wochen",
-  },
-  {
-    id: "6",
-    author: "Vanessa L.",
-    rating: 5,
-    text: "Von der Terminvereinbarung bis zum Ergebnis – alles perfekt! Die Nägel sind ein Traum und ich bekomme ständig Komplimente dafür.",
-    date: "vor 3 Wochen",
-  },
 ];
 
 // Star Rating Component
