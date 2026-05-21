@@ -2,6 +2,7 @@ import { useTheme } from "@/lib/theme";
 import { mockCompanies, nagelstudioBooking } from "@/lib/mock-data";
 import { StructuredData } from "@/components/StructuredData";
 import { asset } from "@/lib/site";
+import { useState, useEffect } from "react";
 
 const company = mockCompanies.nagelstudio;
 
@@ -222,6 +223,27 @@ function SocialMediaLinks({
 
 export function NagelstudioPage() {
   const { theme, toggleTheme } = useTheme();
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < lastScrollY || currentScrollY < 100) {
+        // Scrolling up or near top - show header
+        setIsHeaderVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down and past threshold - hide header
+        setIsHeaderVisible(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
     <div className="nagelstudio-page" id="start">
@@ -233,7 +255,9 @@ export function NagelstudioPage() {
       </a>
 
       {/* Header / Navigation */}
-      <header className="nagelstudio-header">
+      <header
+        className={`nagelstudio-header ${isHeaderVisible ? "nagelstudio-header--visible" : "nagelstudio-header--hidden"}`}
+      >
         <div className="nagelstudio-header__inner">
           <a className="nagelstudio-brand" href="#start">
             {company.name}

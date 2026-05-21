@@ -109,6 +109,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Offset for anchor links with fixed header */
+html {
+  scroll-padding-top: 100px;
+}
+
 body {
   margin: 0;
   min-width: 320px;
@@ -645,6 +650,7 @@ img {
     #fff8fa;
   color: #20171a;
   font-family: "Inter", Arial, sans-serif;
+  padding-top: 84px; /* Header height compensation */
 }
 
 [data-theme="dark"] .nagelstudio-page {
@@ -656,14 +662,31 @@ img {
 
 /* Header / Navigation */
 .nagelstudio-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   padding: 20px 0;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(32, 23, 26, 0.08);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+  transform: translateY(0);
+}
+
+.nagelstudio-header--hidden {
+  transform: translateY(-100%);
+}
+
+.nagelstudio-header--visible {
+  transform: translateY(0);
 }
 
 [data-theme="dark"] .nagelstudio-header {
-  background: rgba(20, 15, 18, 0.6);
+  background: rgba(20, 15, 18, 0.95);
   border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 
