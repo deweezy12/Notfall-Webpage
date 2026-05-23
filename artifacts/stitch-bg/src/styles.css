@@ -944,8 +944,8 @@ img {
 
 .nagelstudio-pricing__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 24px);
   margin-bottom: 40px;
 }
 
@@ -953,8 +953,11 @@ img {
   background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(32, 23, 26, 0.08);
   border-radius: 16px;
-  padding: 28px;
+  padding: clamp(22px, 2.4vw, 28px);
   box-shadow: 0 4px 16px rgba(139, 83, 99, 0.08);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 
 [data-theme="dark"] .nagelstudio-pricing__category {
@@ -980,14 +983,22 @@ img {
 .nagelstudio-pricing__items {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
+  height: 100%;
 }
 
 .nagelstudio-pricing__item {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(139, 83, 99, 0.12);
+}
+
+.nagelstudio-pricing__item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 .nagelstudio-pricing__item-info {
@@ -1563,6 +1574,10 @@ img {
 
 /* Responsive Design */
 @media (max-width: 900px) {
+  .nagelstudio-pricing__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .nagelstudio-contact__grid {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -1604,11 +1619,6 @@ img {
     padding: 60px 0;
   }
 
-  .nagelstudio-pricing__grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
   .nagelstudio-gallery__grid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
@@ -1639,6 +1649,10 @@ img {
 
   .nagelstudio-pricing__category {
     padding: 20px;
+  }
+
+  .nagelstudio-pricing__grid {
+    grid-template-columns: 1fr;
   }
 
   .nagelstudio-gallery__grid {
