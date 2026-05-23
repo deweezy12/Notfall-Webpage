@@ -1167,18 +1167,47 @@ img {
 }
 
 .nagelstudio-gallery__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  display: flex;
   gap: 24px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 0 0 18px;
   margin-bottom: 32px;
+  scroll-padding: 0;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: rgba(139, 83, 99, 0.35) transparent;
+  scrollbar-width: thin;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.nagelstudio-gallery__grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.nagelstudio-gallery__grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nagelstudio-gallery__grid::-webkit-scrollbar-thumb {
+  background: rgba(139, 83, 99, 0.35);
+  border-radius: 999px;
+}
+
+.nagelstudio-gallery__grid--dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
 }
 
 .nagelstudio-gallery__item {
+  flex: 0 0 calc((100% - 72px) / 4);
   aspect-ratio: 1;
   border-radius: 12px;
   overflow: hidden;
   position: relative;
-  cursor: pointer;
+  cursor: inherit;
+  scroll-snap-align: start;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
@@ -1620,8 +1649,11 @@ img {
   }
 
   .nagelstudio-gallery__grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
+  }
+
+  .nagelstudio-gallery__item {
+    flex-basis: calc((100% - 32px) / 3);
   }
 
   .nagelstudio-reviews__grid {
@@ -1656,7 +1688,11 @@ img {
   }
 
   .nagelstudio-gallery__grid {
-    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .nagelstudio-gallery__item {
+    flex-basis: min(260px, 78vw);
   }
 
   .nagelstudio-booking__card {

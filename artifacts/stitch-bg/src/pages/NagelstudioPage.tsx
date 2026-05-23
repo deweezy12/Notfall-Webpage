@@ -2,7 +2,7 @@ import { useTheme } from "@/lib/theme";
 import { mockCompanies, nagelstudioBooking } from "@/lib/mock-data";
 import { StructuredData } from "@/components/StructuredData";
 import { asset } from "@/lib/site";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, type PointerEvent } from "react";
 
 const company = mockCompanies.nagelstudio;
 
@@ -224,7 +224,14 @@ function SocialMediaLinks({
 export function NagelstudioPage() {
   const { theme, toggleTheme } = useTheme();
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [isGalleryDragging, setIsGalleryDragging] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const galleryTrackRef = useRef<HTMLDivElement>(null);
+  const galleryDragRef = useRef({
+    isDragging: false,
+    startX: 0,
+    scrollLeft: 0,
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -244,6 +251,45 @@ export function NagelstudioPage() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
+  const handleGalleryPointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    const track = galleryTrackRef.current;
+
+    if (!track || (event.pointerType === "mouse" && event.button !== 0)) {
+      return;
+    }
+
+    galleryDragRef.current = {
+      isDragging: true,
+      startX: event.clientX,
+      scrollLeft: track.scrollLeft,
+    };
+    setIsGalleryDragging(true);
+    track.setPointerCapture(event.pointerId);
+  };
+
+  const handleGalleryPointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    const track = galleryTrackRef.current;
+    const dragState = galleryDragRef.current;
+
+    if (!track || !dragState.isDragging) {
+      return;
+    }
+
+    event.preventDefault();
+    track.scrollLeft = dragState.scrollLeft - (event.clientX - dragState.startX);
+  };
+
+  const stopGalleryDrag = (event?: PointerEvent<HTMLDivElement>) => {
+    const track = galleryTrackRef.current;
+
+    if (event && track?.hasPointerCapture(event.pointerId)) {
+      track.releasePointerCapture(event.pointerId);
+    }
+
+    galleryDragRef.current.isDragging = false;
+    setIsGalleryDragging(false);
+  };
 
   return (
     <div className="nagelstudio-page" id="start">
@@ -464,7 +510,18 @@ export function NagelstudioPage() {
             <h2 id="gallery-title" className="nagelstudio-section-title">
               Unsere Arbeiten
             </h2>
-            <div className="nagelstudio-gallery__grid">
+            <div
+              ref={galleryTrackRef}
+              className={`nagelstudio-gallery__grid${
+                isGalleryDragging ? " nagelstudio-gallery__grid--dragging" : ""
+              }`}
+              onPointerDown={handleGalleryPointerDown}
+              onPointerMove={handleGalleryPointerMove}
+              onPointerUp={stopGalleryDrag}
+              onPointerCancel={stopGalleryDrag}
+              onLostPointerCapture={() => stopGalleryDrag()}
+              aria-label="Galerie Karussell"
+            >
               {galleryItems.map((item) => (
                 <div key={item.id} className="nagelstudio-gallery__item">
                   <img
@@ -472,6 +529,7 @@ export function NagelstudioPage() {
                     alt={item.label}
                     className="nagelstudio-gallery__image"
                     loading="lazy"
+                    draggable={false}
                   />
                   <div className="nagelstudio-gallery__overlay">
                     <span className="nagelstudio-gallery__label">
