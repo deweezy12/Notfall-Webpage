@@ -70,7 +70,7 @@ export function SoundfieldPage() {
         >
           <section className="soundfield-hero">
             <DotRasterBackground
-              theme={theme}
+              theme="dark"
               contained={true}
               backgroundColor="#000000"
               rainbow={true}
