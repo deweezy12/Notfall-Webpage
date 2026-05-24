@@ -1601,6 +1601,10 @@ img {
   margin-bottom: 20px;
 }
 
+.nagelstudio-mobile-cta {
+  display: none;
+}
+
 /* Responsive Design */
 @media (max-width: 900px) {
   .nagelstudio-pricing__grid {
@@ -1663,6 +1667,114 @@ img {
 
   .nagelstudio-booking__iframe {
     height: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .nagelstudio-main {
+    padding-bottom: calc(116px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .nagelstudio-footer {
+    padding-bottom: calc(104px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .nagelstudio-mobile-cta {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    z-index: 1100;
+    display: grid;
+    grid-template-columns: 1fr 1.35fr 1fr;
+    gap: 8px;
+    padding: 8px;
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(139, 83, 99, 0.16);
+    border-radius: 24px;
+    box-shadow: 0 14px 34px rgba(32, 23, 26, 0.16);
+    backdrop-filter: blur(18px);
+  }
+
+  [data-theme="dark"] .nagelstudio-mobile-cta {
+    background: rgba(20, 15, 18, 0.9);
+    border-color: rgba(248, 185, 201, 0.18);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
+  }
+
+  .nagelstudio-mobile-cta__link {
+    display: inline-flex;
+    min-width: 0;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 8px;
+    color: rgba(32, 23, 26, 0.76);
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    border-radius: 18px;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .nagelstudio-mobile-cta__link svg {
+    flex: 0 0 auto;
+  }
+
+  .nagelstudio-mobile-cta__link span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .nagelstudio-mobile-cta__link:hover,
+  .nagelstudio-mobile-cta__link:focus-visible {
+    background: rgba(139, 83, 99, 0.1);
+    color: #8b5363;
+  }
+
+  .nagelstudio-mobile-cta__link:active {
+    transform: translateY(1px);
+  }
+
+  .nagelstudio-mobile-cta__link--primary {
+    color: #ffffff;
+    background: #8b5363;
+    box-shadow: 0 8px 18px rgba(139, 83, 99, 0.28);
+  }
+
+  .nagelstudio-mobile-cta__link--primary:hover,
+  .nagelstudio-mobile-cta__link--primary:focus-visible {
+    color: #ffffff;
+    background: #6f3e4d;
+  }
+
+  [data-theme="dark"] .nagelstudio-mobile-cta__link {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  [data-theme="dark"] .nagelstudio-mobile-cta__link:hover,
+  [data-theme="dark"] .nagelstudio-mobile-cta__link:focus-visible {
+    background: rgba(248, 185, 201, 0.12);
+    color: #f8b9c9;
+  }
+
+  [data-theme="dark"] .nagelstudio-mobile-cta__link--primary {
+    color: #20171a;
+    background: #f8b9c9;
+    box-shadow: 0 8px 18px rgba(248, 185, 201, 0.2);
+  }
+
+  [data-theme="dark"] .nagelstudio-mobile-cta__link--primary:hover,
+  [data-theme="dark"] .nagelstudio-mobile-cta__link--primary:focus-visible {
+    color: #20171a;
+    background: #fcd1dc;
   }
 }
 
