@@ -11,7 +11,8 @@ export type ServiceKey =
   | "elektrik"
   | "heizung"
   | "wanzleben"
-  | "nagelstudio";
+  | "nagelstudio"
+  | "physiotherapie";
 
 export interface MockCompany {
   /** Vollständiger Firmenname */
@@ -134,6 +135,25 @@ export const mockCompanies: Record<ServiceKey, MockCompany> = {
       facebook: "https://facebook.com/nagelstudio.beispiel",
       tiktok: "https://tiktok.com/@nagelstudio.beispiel",
       whatsapp: "+49123456789",
+    },
+  },
+
+  physiotherapie: {
+    name: "Physiotherapie Praxis Berlin",
+    street: "Friedrichstraße 85",
+    city: "10117 Berlin",
+    phone: "+493012345678",
+    phoneDisplay: "030 123 456 78",
+    email: "kontakt@physiotherapie-berlin-beispiel.de",
+    mapsEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2427.7283847!2d13.3888599!3d52.5200066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDMxJzEyLjAiTiAxM8KwMjMnMTkuOSJF!5e0!3m2!1sde!2sde!4v1000000000000!5m2!1sde!2sde",
+    mapsLinkUrl:
+      "https://www.google.com/maps/search/?api=1&query=Friedrichstraße+85,+10117+Berlin",
+    services:
+      "Manuelle Therapie, Krankengymnastik, Sportphysiotherapie, Lymphdrainage, Massage",
+    socialMedia: {
+      instagram: "https://instagram.com/physiotherapie.berlin",
+      facebook: "https://facebook.com/physiotherapie.berlin",
     },
   },
 };

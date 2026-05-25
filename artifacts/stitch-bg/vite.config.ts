@@ -34,6 +34,10 @@ export default defineConfig({
           import.meta.dirname,
           "nagelstudio/index.html",
         ),
+        physiotherapie: path.resolve(
+          import.meta.dirname,
+          "physiotherapie/index.html",
+        ),
         soundfield: path.resolve(import.meta.dirname, "soundfield/index.html"),
         wanzleben: path.resolve(import.meta.dirname, "wanzleben/index.html"),
         impressum: path.resolve(import.meta.dirname, "impressum/index.html"),
