@@ -197,11 +197,19 @@ const reviews = [
 // Star Rating Component
 function StarRating({ rating }: { rating: number }) {
   return (
-    <div className="physiotherapie-review-stars">
+    <div
+      className="physiotherapie-review-stars"
+      role="img"
+      aria-label={`${rating} von 5 Sternen`}
+    >
       {[1, 2, 3, 4, 5].map((star) => (
         <span
           key={star}
           className={star <= rating ? "star-filled" : "star-empty"}
+          style={{
+            transition: "color 0.2s ease, transform 0.2s ease",
+            display: "inline-block",
+          }}
         >
           ★
         </span>
@@ -384,6 +392,9 @@ export function PhysiotherapiePage() {
       {/* Header / Navigation */}
       <header
         className={`physiotherapie-header ${isHeaderVisible ? "physiotherapie-header--visible" : "physiotherapie-header--hidden"}`}
+        style={{
+          transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease",
+        }}
       >
         <div className="physiotherapie-header__inner">
           <a className="physiotherapie-brand" href="#start">
@@ -416,23 +427,36 @@ export function PhysiotherapiePage() {
 
       <main className="physiotherapie-main">
         {/* Hero Section */}
-        <section className="physiotherapie-hero" aria-labelledby="hero-title">
+        <section
+          className="physiotherapie-hero"
+          aria-labelledby="hero-title"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%)",
+          }}
+        >
           <div className="physiotherapie-hero__content">
             <p className="physiotherapie-hero__eyebrow">
-              Professionelle Physiotherapie
+              Professionelle Physiotherapie in Berlin
             </p>
             <h1 id="hero-title" className="physiotherapie-hero__title">
               Ihre Gesundheit in besten Händen
             </h1>
             <p className="physiotherapie-hero__lead">
-              Moderne Therapie mit Herz - für Ihre Mobilität und Lebensqualität
+              Moderne Therapie mit Herz — für Ihre Mobilität und Lebensqualität
             </p>
             <div className="physiotherapie-hero__actions">
               <a
                 href="#kontakt"
-                className="physiotherapie-button physiotherapie-button--primary"
+                className="physiotherapie-button physiotherapie-button--primary physiotherapie-button--shadow"
               >
                 Jetzt Termin vereinbaren
+              </a>
+              <a
+                href="#preise"
+                className="physiotherapie-button physiotherapie-button--secondary"
+              >
+                Leistungen ansehen
               </a>
             </div>
           </div>
@@ -466,7 +490,7 @@ export function PhysiotherapiePage() {
             </div>
 
             <div className="physiotherapie-features">
-              <div className="physiotherapie-feature">
+              <div className="physiotherapie-feature physiotherapie-feature--highlight">
                 <div className="physiotherapie-feature__icon">
                   <svg
                     width="32"
@@ -475,6 +499,8 @@ export function PhysiotherapiePage() {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
                   </svg>
@@ -487,7 +513,7 @@ export function PhysiotherapiePage() {
                 </p>
               </div>
 
-              <div className="physiotherapie-feature">
+              <div className="physiotherapie-feature physiotherapie-feature--highlight">
                 <div className="physiotherapie-feature__icon">
                   <svg
                     width="32"
@@ -496,6 +522,8 @@ export function PhysiotherapiePage() {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                     <circle cx="9" cy="7" r="4" />
@@ -511,7 +539,7 @@ export function PhysiotherapiePage() {
                 </p>
               </div>
 
-              <div className="physiotherapie-feature">
+              <div className="physiotherapie-feature physiotherapie-feature--highlight">
                 <div className="physiotherapie-feature__icon">
                   <svg
                     width="32"
@@ -520,6 +548,8 @@ export function PhysiotherapiePage() {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <circle cx="12" cy="12" r="10" />
                     <polyline points="12 6 12 12 16 14" />
@@ -556,8 +586,21 @@ export function PhysiotherapiePage() {
                   <div className="physiotherapie-pricing__items">
                     {serviceCategory.items.map((item, itemIdx) => (
                       <div
-                        key={itemIdx}
-                        className="physiotherapie-pricing__item"
+                        ref={galleryTrackRef}
+                        className={`physiotherapie-gallery__grid${
+                          isGalleryDragging
+                            ? " physiotherapie-gallery__grid--dragging"
+                            : ""
+                        }`}
+                        onPointerDown={handleGalleryPointerDown}
+                        onPointerMove={handleGalleryPointerMove}
+                        onPointerUp={stopGalleryDrag}
+                        onPointerCancel={stopGalleryDrag}
+                        onLostPointerCapture={() => stopGalleryDrag()}
+                        aria-label="Galerie Karussell"
+                        style={{
+                          scrollBehavior: isGalleryDragging ? "auto" : "smooth",
+                        }}
                       >
                         <div className="physiotherapie-pricing__item-info">
                           <span className="physiotherapie-pricing__item-name">
@@ -578,15 +621,34 @@ export function PhysiotherapiePage() {
             </div>
 
             <div className="physiotherapie-pricing__notes">
-              <p>
-                <strong>Hinweis:</strong> Viele Behandlungen werden auf Rezept
-                von Ihrer Krankenkasse übernommen. Wir sind Vertragspartner
-                aller gesetzlichen und privaten Krankenkassen.
-              </p>
-              <p>
-                Selbstzahlerleistungen und Wellnessangebote können ohne Rezept
-                in Anspruch genommen werden.
-              </p>
+              <div className="physiotherapie-info-box">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="physiotherapie-info-box__icon"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="16" x2="12" y2="12" />
+                  <line x1="12" y1="8" x2="12.01" y2="8" />
+                </svg>
+                <div>
+                  <p>
+                    <strong>Kassenleistungen:</strong> Viele Behandlungen werden
+                    auf Rezept von Ihrer Krankenkasse übernommen. Wir sind
+                    Vertragspartner aller gesetzlichen und privaten
+                    Krankenkassen.
+                  </p>
+                  <p style={{ marginTop: "0.5rem" }}>
+                    <strong>Privatleistungen:</strong> Selbstzahlerleistungen
+                    und Wellnessangebote können ohne Rezept in Anspruch genommen
+                    werden.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -609,7 +671,7 @@ export function PhysiotherapiePage() {
                 Therapiemethoden.
               </p>
               <div className="physiotherapie-team__specializations">
-                <div className="physiotherapie-specialization">
+                <div className="physiotherapie-specialization physiotherapie-specialization--accent">
                   <svg
                     width="24"
                     height="24"
@@ -617,12 +679,14 @@ export function PhysiotherapiePage() {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
                   </svg>
                   <span>Manuelle Therapie</span>
                 </div>
-                <div className="physiotherapie-specialization">
+                <div className="physiotherapie-specialization physiotherapie-specialization--accent">
                   <svg
                     width="24"
                     height="24"
@@ -630,6 +694,8 @@ export function PhysiotherapiePage() {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <circle cx="12" cy="12" r="10" />
                     <path d="M12 16v-4" />
@@ -637,7 +703,7 @@ export function PhysiotherapiePage() {
                   </svg>
                   <span>Sportphysiotherapie</span>
                 </div>
-                <div className="physiotherapie-specialization">
+                <div className="physiotherapie-specialization physiotherapie-specialization--accent">
                   <svg
                     width="24"
                     height="24"
@@ -645,13 +711,15 @@ export function PhysiotherapiePage() {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                     <polyline points="22 4 12 14.01 9 11.01" />
                   </svg>
                   <span>Lymphdrainage</span>
                 </div>
-                <div className="physiotherapie-specialization">
+                <div className="physiotherapie-specialization physiotherapie-specialization--accent">
                   <svg
                     width="24"
                     height="24"
@@ -659,6 +727,8 @@ export function PhysiotherapiePage() {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
                   </svg>
@@ -694,7 +764,13 @@ export function PhysiotherapiePage() {
               aria-label="Galerie Karussell"
             >
               {galleryItems.map((item) => (
-                <div key={item.id} className="physiotherapie-gallery__item">
+                <div
+                  key={item.id}
+                  className="physiotherapie-gallery__item"
+                  style={{
+                    transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                  }}
+                >
                   <img
                     src={item.image}
                     alt={item.label}
@@ -730,7 +806,10 @@ export function PhysiotherapiePage() {
 
             <div className="physiotherapie-reviews__grid">
               {reviews.map((review) => (
-                <article className="physiotherapie-review-card" key={review.id}>
+                <article
+                  className="physiotherapie-review-card physiotherapie-review-card--elevated"
+                  key={review.id}
+                >
                   <StarRating rating={review.rating} />
                   <p className="physiotherapie-review-text">{review.text}</p>
                   <div className="physiotherapie-review-meta">
@@ -816,8 +895,19 @@ export function PhysiotherapiePage() {
                 <div className="physiotherapie-contact__cta">
                   <a
                     href={`tel:${company.phone}`}
-                    className="physiotherapie-button physiotherapie-button--primary physiotherapie-button--large"
+                    className="physiotherapie-button physiotherapie-button--primary physiotherapie-button--large physiotherapie-button--shadow"
                   >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      style={{ marginRight: "0.5rem" }}
+                    >
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.11 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.35 1.9.65 2.81a2 2 0 0 1-.45 2.11L8.04 9.91a16 16 0 0 0 6.05 6.05l1.27-1.27a2 2 0 0 1 2.11-.45c.91.3 1.85.52 2.81.65A2 2 0 0 1 22 16.92z" />
+                    </svg>
                     Jetzt anrufen
                   </a>
                 </div>
