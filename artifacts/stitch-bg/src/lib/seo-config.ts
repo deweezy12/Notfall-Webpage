@@ -65,6 +65,13 @@ export const pageSEO: Record<ServiceKey | "landing", PageSEO> = {
       "Professionelle Nagelkunst mit Leidenschaft. Maniküre, Pediküre, Gel-Nägel und individuelles Nageldesign zu fairen Preisen.",
     canonicalUrl: withBase("nagelstudio/"),
   },
+
+  physiotherapie: {
+    title: "Physiotherapie Berlin | Professionelle Krankengymnastik & Therapie",
+    description:
+      "Professionelle Physiotherapie in Berlin. Manuelle Therapie, Sportphysiotherapie, Krankengymnastik und mehr. Jetzt Termin vereinbaren.",
+    canonicalUrl: withBase("physiotherapie/"),
+  },
 };
 
 /**
