@@ -4,6 +4,7 @@ export type ServiceKey =
   | "elektrik"
   | "heizung"
   | "nagelstudio"
+  | "physiotherapie"
   | "soundfield"
   | "wanzleben";
 
@@ -61,6 +62,13 @@ export const serviceLinks: ServiceLink[] = [
     title: "Nagelstudio",
     href: withBase("nagelstudio/"),
     note: "Leere Platzhalter-Seite für das Nagelstudio.",
+  },
+  {
+    key: "physiotherapie",
+    label: "Physiotherapie",
+    title: "Physiotherapie Praxis",
+    href: withBase("physiotherapie/"),
+    note: "Professionelle Physiotherapie mit modernen Therapiemethoden.",
   },
   {
     key: "soundfield",
