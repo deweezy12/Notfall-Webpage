@@ -636,6 +636,617 @@ img {
 }
 
 /* ============================================================
+   PHYSIOTHERAPIE PAGE
+   ============================================================ */
+
+.physiotherapie-page {
+  --physio-bg: #f6f8f5;
+  --physio-surface: #ffffff;
+  --physio-soft: #e8f0eb;
+  --physio-text: #17211c;
+  --physio-muted: #5f6f66;
+  --physio-accent: #477465;
+  --physio-accent-strong: #274f43;
+  --physio-gold: #c59b57;
+  --physio-border: rgba(23, 33, 28, 0.1);
+  --physio-shadow: 0 24px 70px rgba(39, 79, 67, 0.14);
+  min-height: 100vh;
+  background: var(--physio-bg);
+  color: var(--physio-text);
+  font-family: "Inter", Arial, sans-serif;
+}
+
+[data-theme="dark"] .physiotherapie-page {
+  --physio-bg: #101715;
+  --physio-surface: #17211e;
+  --physio-soft: #1d2c27;
+  --physio-text: #f1f7f3;
+  --physio-muted: rgba(241, 247, 243, 0.72);
+  --physio-accent: #9ccfbd;
+  --physio-accent-strong: #c7eadb;
+  --physio-border: rgba(255, 255, 255, 0.1);
+  --physio-shadow: none;
+}
+
+.physiotherapie-page h1,
+.physiotherapie-page h2,
+.physiotherapie-page h3,
+.physiotherapie-page p {
+  margin-top: 0;
+}
+
+.physiotherapie-page h1,
+.physiotherapie-page h2,
+.physiotherapie-page h3 {
+  color: var(--physio-text);
+  font-family: "Area Normal", "Inter", Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+.physiotherapie-page p {
+  color: var(--physio-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.physiotherapie-shell {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.physiotherapie-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--physio-bg) 88%, transparent);
+  border-bottom: 1px solid var(--physio-border);
+  backdrop-filter: blur(18px);
+}
+
+.physiotherapie-header__inner {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.physiotherapie-brand {
+  color: var(--physio-text);
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.physiotherapie-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.physiotherapie-nav a,
+.physiotherapie-theme {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  color: var(--physio-muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.physiotherapie-nav a {
+  padding: 0 14px;
+}
+
+.physiotherapie-nav a:hover,
+.physiotherapie-theme:hover {
+  color: var(--physio-text);
+  background: var(--physio-soft);
+  border-color: var(--physio-border);
+}
+
+.physiotherapie-theme {
+  padding: 0 16px;
+  background: var(--physio-surface);
+  cursor: pointer;
+}
+
+.physiotherapie-hero {
+  padding: clamp(56px, 8vw, 96px) 0 72px;
+  background:
+    linear-gradient(120deg, rgba(232, 240, 235, 0.94), rgba(246, 248, 245, 0.68)),
+    var(--physio-bg);
+}
+
+[data-theme="dark"] .physiotherapie-hero {
+  background:
+    linear-gradient(120deg, rgba(29, 44, 39, 0.94), rgba(16, 23, 21, 0.78)),
+    var(--physio-bg);
+}
+
+.physiotherapie-hero__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(420px, 1.12fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+}
+
+.physiotherapie-eyebrow {
+  margin-bottom: 12px;
+  color: var(--physio-accent-strong);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.physiotherapie-hero h1 {
+  margin-bottom: 22px;
+  font-size: clamp(2.7rem, 6.2vw, 5.7rem);
+  font-weight: 800;
+  line-height: 0.98;
+}
+
+.physiotherapie-hero__lead {
+  max-width: 56ch;
+  margin-bottom: 30px;
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+}
+
+.physiotherapie-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.physiotherapie-button {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  border-radius: 999px;
+  border: 1px solid var(--physio-border);
+  font-weight: 800;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.physiotherapie-button:hover {
+  transform: translateY(-1px);
+}
+
+.physiotherapie-button--primary {
+  background: var(--physio-accent-strong);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.physiotherapie-button--secondary {
+  background: var(--physio-surface);
+  color: var(--physio-text);
+}
+
+.physiotherapie-hero__media {
+  position: relative;
+}
+
+.physiotherapie-hero__media img,
+.physiotherapie-gallery__layout img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--physio-border);
+  object-fit: cover;
+  box-shadow: var(--physio-shadow);
+}
+
+.physiotherapie-hero__media img {
+  aspect-ratio: 1.12 / 1;
+}
+
+.physiotherapie-hero__card {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  width: min(210px, calc(100% - 44px));
+  padding: 18px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 18px 40px rgba(23, 33, 28, 0.18);
+  backdrop-filter: blur(14px);
+}
+
+[data-theme="dark"] .physiotherapie-hero__card {
+  background: rgba(23, 33, 30, 0.88);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.physiotherapie-hero__card strong {
+  display: block;
+  color: var(--physio-accent-strong);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.physiotherapie-hero__card span {
+  color: var(--physio-muted);
+  font-size: 0.9rem;
+}
+
+.physiotherapie-section,
+.physiotherapie-gallery,
+.physiotherapie-contact {
+  padding: clamp(64px, 8vw, 104px) 0;
+}
+
+.physiotherapie-section--soft {
+  background: var(--physio-soft);
+}
+
+.physiotherapie-section--reviews {
+  background: var(--physio-surface);
+}
+
+.physiotherapie-section__head {
+  max-width: 760px;
+  margin-bottom: 34px;
+}
+
+.physiotherapie-section__head h2,
+.physiotherapie-gallery__layout h2,
+.physiotherapie-contact h2 {
+  margin-bottom: 14px;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  font-weight: 800;
+  line-height: 1.04;
+}
+
+.physiotherapie-highlight-grid,
+.physiotherapie-service-grid,
+.physiotherapie-review-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.physiotherapie-highlight-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.physiotherapie-highlight,
+.physiotherapie-service,
+.physiotherapie-review,
+.physiotherapie-contact__panel {
+  border-radius: 8px;
+  border: 1px solid var(--physio-border);
+  background: var(--physio-surface);
+  box-shadow: var(--physio-shadow);
+}
+
+.physiotherapie-highlight {
+  padding: 28px;
+}
+
+.physiotherapie-highlight span {
+  display: inline-flex;
+  margin-bottom: 28px;
+  color: var(--physio-gold);
+  font-weight: 900;
+}
+
+.physiotherapie-highlight h3,
+.physiotherapie-service h3 {
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+}
+
+.physiotherapie-highlight p,
+.physiotherapie-service p,
+.physiotherapie-review p {
+  margin-bottom: 0;
+}
+
+.physiotherapie-service-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.physiotherapie-service {
+  padding: 28px;
+}
+
+.physiotherapie-service__icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--physio-accent) 18%, transparent);
+  color: var(--physio-accent-strong);
+}
+
+.physiotherapie-service__icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.physiotherapie-price-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.physiotherapie-price-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 14px;
+  align-items: center;
+  min-height: 48px;
+  padding: 12px 0;
+  border-top: 1px solid var(--physio-border);
+}
+
+.physiotherapie-price-row span {
+  min-width: 0;
+  color: var(--physio-text);
+  font-weight: 700;
+}
+
+.physiotherapie-price-row small {
+  color: var(--physio-muted);
+}
+
+.physiotherapie-price-row strong {
+  color: var(--physio-accent-strong);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.physiotherapie-gallery {
+  background: var(--physio-bg);
+}
+
+.physiotherapie-gallery__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+
+.physiotherapie-gallery__layout img {
+  aspect-ratio: 1.45 / 1;
+}
+
+.physiotherapie-review-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.physiotherapie-review {
+  padding: 26px;
+}
+
+.physiotherapie-stars {
+  margin-bottom: 14px;
+  color: var(--physio-gold);
+  letter-spacing: 0;
+}
+
+.physiotherapie-review strong {
+  display: block;
+  margin-top: 20px;
+  color: var(--physio-text);
+}
+
+.physiotherapie-contact {
+  background: var(--physio-soft);
+}
+
+.physiotherapie-contact__layout {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
+  gap: 22px;
+  align-items: stretch;
+}
+
+.physiotherapie-contact__panel {
+  padding: 32px;
+}
+
+.physiotherapie-contact__links {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.physiotherapie-contact__links a {
+  color: var(--physio-accent-strong);
+  font-weight: 800;
+}
+
+.physiotherapie-hours {
+  display: grid;
+  gap: 10px;
+}
+
+.physiotherapie-hours p {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--physio-border);
+}
+
+.physiotherapie-hours strong {
+  color: var(--physio-text);
+}
+
+.physiotherapie-contact iframe {
+  width: 100%;
+  min-height: 460px;
+  border: 1px solid var(--physio-border);
+  border-radius: 8px;
+  background: var(--physio-surface);
+  box-shadow: var(--physio-shadow);
+}
+
+.physiotherapie-footer {
+  padding: 28px 0 96px;
+  background: var(--physio-accent-strong);
+}
+
+.physiotherapie-footer p,
+.physiotherapie-footer a {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.physiotherapie-mobile-cta {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  z-index: 60;
+  display: none;
+  width: min(420px, calc(100% - 24px));
+  transform: translateX(-50%);
+  overflow: hidden;
+  border: 1px solid var(--physio-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--physio-surface) 92%, transparent);
+  box-shadow: 0 18px 44px rgba(23, 33, 28, 0.18);
+  backdrop-filter: blur(14px);
+}
+
+.physiotherapie-mobile-cta a {
+  flex: 1;
+  min-height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--physio-text);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.physiotherapie-mobile-cta a:nth-child(2) {
+  background: var(--physio-accent-strong);
+  color: #ffffff;
+}
+
+@media (max-width: 980px) {
+  .physiotherapie-header__inner,
+  .physiotherapie-nav {
+    flex-wrap: wrap;
+  }
+
+  .physiotherapie-nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .physiotherapie-hero__layout,
+  .physiotherapie-gallery__layout,
+  .physiotherapie-contact__layout,
+  .physiotherapie-highlight-grid,
+  .physiotherapie-review-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .physiotherapie-service-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .physiotherapie-shell {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .physiotherapie-header {
+    position: static;
+  }
+
+  .physiotherapie-header__inner {
+    min-height: auto;
+    padding: 16px 0;
+  }
+
+  .physiotherapie-brand,
+  .physiotherapie-theme {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .physiotherapie-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .physiotherapie-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .physiotherapie-nav a {
+    flex: 0 0 auto;
+  }
+
+  .physiotherapie-hero {
+    padding-top: 44px;
+  }
+
+  .physiotherapie-button {
+    width: 100%;
+  }
+
+  .physiotherapie-hero__card {
+    position: static;
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .physiotherapie-highlight,
+  .physiotherapie-service,
+  .physiotherapie-review,
+  .physiotherapie-contact__panel {
+    padding: 22px;
+  }
+
+  .physiotherapie-price-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    align-items: start;
+  }
+
+  .physiotherapie-price-row strong {
+    text-align: left;
+  }
+
+  .physiotherapie-hours p {
+    display: grid;
+    gap: 2px;
+  }
+
+  .physiotherapie-contact iframe {
+    min-height: 340px;
+  }
+
+  .physiotherapie-mobile-cta {
+    display: flex;
+  }
+}
+
+/* ============================================================
    NAGELSTUDIO PAGE
    ============================================================ */
 
