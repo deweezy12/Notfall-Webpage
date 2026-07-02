@@ -40,6 +40,7 @@ export default defineConfig({
         ),
         soundfield: path.resolve(import.meta.dirname, "soundfield/index.html"),
         wanzleben: path.resolve(import.meta.dirname, "wanzleben/index.html"),
+        annkafalk: path.resolve(import.meta.dirname, "annkafalk/index.html"),
         impressum: path.resolve(import.meta.dirname, "impressum/index.html"),
         datenschutz: path.resolve(
           import.meta.dirname,

@@ -6,7 +6,8 @@ export type ServiceKey =
   | "nagelstudio"
   | "physiotherapie"
   | "soundfield"
-  | "wanzleben";
+  | "wanzleben"
+  | "annkafalk";
 
 export type ServiceLink = {
   key: ServiceKey;
@@ -83,5 +84,12 @@ export const serviceLinks: ServiceLink[] = [
     title: "Sanitär Notdienst Wanzleben",
     href: withBase("wanzleben/"),
     note: "Sanitär-Notdienst-Seite für akute Probleme in Wanzleben-Börde.",
+  },
+  {
+    key: "annkafalk",
+    label: "Annka Falk",
+    title: "Annka Falk",
+    href: withBase("annkafalk/"),
+    note: "Persönliche Webseite von Annka Falk.",
   },
 ];
