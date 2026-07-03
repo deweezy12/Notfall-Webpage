@@ -32,7 +32,7 @@ const SEDCARD_ROWS: Array<[string, string]> = [
 const POLAS_ITEMS: Array<{ label: string; file: string }> = [
   { label: "Front", file: "polas-front.jpg" },
   { label: "Side", file: "polas-side.jpg" },
-  { label: "Profile", file: "polas-profile.jpg" },
+  { label: "Close-up", file: "polas-closeup.jpg" },
   { label: "Full Body", file: "polas-fullbody.jpg" },
 ];
 
@@ -265,12 +265,6 @@ export function AnnkaFalkPage() {
               </p>
 
               <div className="annkafalk-contact__links">
-                <a
-                  href="mailto:booking@annkafalk.com"
-                  className="annkafalk-contact__link"
-                >
-                  booking@annkafalk.com
-                </a>
                 <a
                   href="https://instagram.com/annkafalk_"
                   target="_blank"
