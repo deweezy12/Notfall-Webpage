@@ -10,10 +10,15 @@ const NAV_LINKS = [
   { href: "#contact", label: "Contact" },
 ] as const;
 
-const PORTFOLIO_COUNT = 17;
-const PORTFOLIO_IMAGES = Array.from({ length: PORTFOLIO_COUNT }, (_, i) =>
-  asset(`images/annkafalk/portfolio-${String(i + 1).padStart(2, "0")}.jpg`),
+const PORTFOLIO_ORDER = [
+  6, 12, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17,
+] as const;
+const PORTFOLIO_IMAGES = PORTFOLIO_ORDER.map((imageNumber) =>
+  asset(
+    `images/annkafalk/portfolio-${String(imageNumber).padStart(2, "0")}.jpg`,
+  ),
 );
+const PORTFOLIO_COUNT = PORTFOLIO_IMAGES.length;
 
 const SEDCARD_ROWS: Array<[string, string]> = [
   ["Height", "166 cm / 5'5\""],
@@ -25,15 +30,15 @@ const SEDCARD_ROWS: Array<[string, string]> = [
   ["Shoes", "EU 39"],
   ["Hair", "Blonde"],
   ["Eyes", "Blue"],
-  ["Location", "Germany"],
+  ["Location", "Germany • Düsseldorf / Berlin"],
   ["Languages", "German • English"],
 ];
 
 const POLAS_ITEMS: Array<{ label: string; file: string }> = [
-  { label: "Front", file: "polas-front.jpg" },
-  { label: "Side", file: "polas-side.jpg" },
-  { label: "Close-up", file: "polas-closeup.jpg" },
   { label: "Full Body", file: "polas-fullbody.jpg" },
+  { label: "Side", file: "polas-side.jpg" },
+  { label: "Front", file: "polas-closeup.jpg" },
+  { label: "Close Up", file: "polas-closeup2.jpg" },
 ];
 
 const ABOUT_TEXT =
@@ -140,7 +145,7 @@ export function AnnkaFalkPage() {
             </div>
 
             <div className="annkafalk-hero__content">
-              <p className="annkafalk-hero__eyebrow">Model Portfolio</p>
+              <p className="annkafalk-hero__eyebrow">Commercial Model</p>
               <h1 className="annkafalk-hero__name">Annka Falk</h1>
               <p className="annkafalk-hero__tagline">
                 Model • Yoga Teacher • Social Impact Advocate
@@ -180,8 +185,8 @@ export function AnnkaFalkPage() {
               ))}
 
               <p className="annkafalk-sedcard__note">
-                Available for fashion, commercial, beauty and lifestyle
-                productions.
+                Available for commercial, fashion, sport, beauty, jewelry and
+                lifestyle productions.
               </p>
             </div>
           </div>
@@ -271,7 +276,33 @@ export function AnnkaFalkPage() {
                   rel="noreferrer"
                   className="annkafalk-contact__link"
                 >
-                  @annkafalk_
+                  <svg
+                    className="annkafalk-contact__icon"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    focusable="false"
+                  >
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                    />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                    />
+                    <circle cx="17.2" cy="6.8" r="1.15" fill="currentColor" />
+                  </svg>
+                  @annkafalk
                 </a>
               </div>
 
