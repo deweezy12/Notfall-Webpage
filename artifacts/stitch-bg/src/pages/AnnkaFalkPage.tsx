@@ -11,7 +11,7 @@ const NAV_LINKS = [
 ] as const;
 
 const PORTFOLIO_ORDER = [
-  6, 12, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17,
+  6, 12, 18, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 19, 20,
 ] as const;
 const PORTFOLIO_IMAGES = PORTFOLIO_ORDER.map((imageNumber) =>
   asset(
@@ -35,7 +35,7 @@ const SEDCARD_ROWS: Array<[string, string]> = [
 ];
 
 const POLAS_ITEMS: Array<{ label: string; file: string }> = [
-  { label: "Full Body", file: "polas-fullbody.jpg" },
+  { label: "Full Body", file: "polas-fullbody-2.jpg" },
   { label: "Side", file: "polas-side.jpg" },
   { label: "Front", file: "polas-closeup.jpg" },
   { label: "Close Up", file: "polas-closeup2.jpg" },
@@ -185,7 +185,7 @@ export function AnnkaFalkPage() {
               ))}
 
               <p className="annkafalk-sedcard__note">
-                Available for commercial, fashion, sport, beauty, jewelry and
+                Available for commercial beauty, fashion, sport, jewelry and
                 lifestyle productions.
               </p>
             </div>
