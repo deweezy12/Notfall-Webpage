@@ -39,6 +39,7 @@ export default defineConfig({
           "physiotherapie/index.html",
         ),
         soundfield: path.resolve(import.meta.dirname, "soundfield/index.html"),
+        spacefield: path.resolve(import.meta.dirname, "spacefield/index.html"),
         spacefieldMedia: path.resolve(
           import.meta.dirname,
           "spacefield-media/index.html",
