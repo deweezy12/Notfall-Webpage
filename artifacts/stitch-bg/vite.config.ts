@@ -14,6 +14,8 @@ const basePath = process.env.BASE_PATH ?? "/";
 
 const originalSpacefieldPath = "/spacefield/";
 const spacefieldMedia2Path = "/spacefieldmedia2/";
+const spacefieldMediaDescription =
+  "Wir sind Lasse und Oli und wir sind da um euch zu helfen.";
 
 function replaceOnce(source: string, search: string, replacement: string) {
   const occurrences = source.split(search).length - 1;
@@ -50,10 +52,11 @@ function createSpacefieldMedia2() {
       const rewritePaths = (content: string) =>
         content.replaceAll(originalSpacefieldPath, spacefieldMedia2Path);
 
-      await writeFile(
-        path.join(outputDirectory, "index.html"),
-        rewritePaths(await readFile(originalHomepage, "utf8")),
+      const homepage = rewritePaths(await readFile(originalHomepage, "utf8")).replaceAll(
+        "Cuberto — built on Replit. Update this description to reflect the app.",
+        spacefieldMediaDescription,
       );
+      await writeFile(path.join(outputDirectory, "index.html"), homepage);
 
       for (const directory of ["company", "contacts", "projects", "services"]) {
         const pagePath = path.join(outputDirectory, directory, "index.html");
