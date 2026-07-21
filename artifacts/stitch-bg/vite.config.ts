@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
-import { cp, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 
 const rawPort = process.env.PORT ?? "5173";
 const port = Number(rawPort);
@@ -38,34 +38,51 @@ function createSpacefieldMedia2() {
     name: "create-spacefield-media2",
     async closeBundle() {
       const projectRoot = path.resolve(import.meta.dirname);
-      const outputDirectory = path.resolve(projectRoot, "dist", "spacefieldmedia2");
+      const outputDirectory = path.resolve(
+        projectRoot,
+        "dist",
+        "spacefieldmedia2",
+      );
       const originalStaticDirectory = path.resolve(
         projectRoot,
         "public",
         "spacefield",
       );
-      const originalHomepage = path.resolve(projectRoot, "spacefield", "index.html");
+      const originalHomepage = path.resolve(
+        projectRoot,
+        "spacefield",
+        "index.html",
+      );
 
       await mkdir(outputDirectory, { recursive: true });
       await cp(originalStaticDirectory, outputDirectory, { recursive: true });
+      await rm(path.join(outputDirectory, "company"), {
+        recursive: true,
+        force: true,
+      });
 
       const rewritePaths = (content: string) =>
         content.replaceAll(originalSpacefieldPath, spacefieldMedia2Path);
 
-      const homepage = rewritePaths(await readFile(originalHomepage, "utf8")).replaceAll(
+      const homepage = rewritePaths(
+        await readFile(originalHomepage, "utf8"),
+      ).replaceAll(
         "Cuberto — built on Replit. Update this description to reflect the app.",
         spacefieldMediaDescription,
       );
       await writeFile(path.join(outputDirectory, "index.html"), homepage);
 
-      for (const directory of ["company", "contacts", "projects", "services"]) {
+      for (const directory of ["contacts", "projects", "services"]) {
         const pagePath = path.join(outputDirectory, directory, "index.html");
-        await writeFile(pagePath, rewritePaths(await readFile(pagePath, "utf8")));
+        await writeFile(
+          pagePath,
+          rewritePaths(await readFile(pagePath, "utf8")),
+        );
       }
 
       const assetsDirectory = path.join(outputDirectory, "assets");
-      const scriptName = (await readdir(assetsDirectory)).find(
-        (fileName) => /^index-.*\.js$/.test(fileName),
+      const scriptName = (await readdir(assetsDirectory)).find((fileName) =>
+        /^index-.*\.js$/.test(fileName),
       );
 
       if (!scriptName) {
@@ -78,7 +95,7 @@ function createSpacefieldMedia2() {
       script = replaceOnce(
         script,
         'const n=[{href:"/services",label:"Services"},{href:"/projects",label:"Projects"},{href:"/company",label:"Company"},{href:"/contacts",label:"Contacts"}]',
-        'const n=[{href:"/company",label:"Unternehmen"},{href:"/projects",label:"Projekte"},{href:"/services",label:"Leistungen"},{href:"/contacts",label:"Über uns"}]',
+        'const n=[{href:"/",label:"Startseite"},{href:"/projects",label:"Projekte"},{href:"/services",label:"Leistungen"},{href:"/contacts",label:"Über uns"}]',
       );
       script = replaceOnce(
         script,
@@ -95,7 +112,11 @@ function createSpacefieldMedia2() {
         'j.jsx(xa,{href:"/",className:"font-display font-bold text-2xl tracking-tighter",children:"Spacefield Media"}),',
         "",
       );
-      script = replaceOnce(script, 'text:"Digital design &"', 'text:"Willkommen bei"');
+      script = replaceOnce(
+        script,
+        'text:"Digital design &"',
+        'text:"Willkommen bei"',
+      );
       script = replaceOnce(
         script,
         'text:"development agency"',
@@ -104,9 +125,14 @@ function createSpacefieldMedia2() {
       script = replaceOnce(
         script,
         'className:"text-lg md:text-xl text-foreground max-w-3xl mx-auto font-light leading-relaxed mt-12",children:"We help companies build scalable digital products with thoughtful design systems and carefully crafted development."',
-        'className:"text-lg md:text-xl text-foreground max-w-3xl mx-auto font-light leading-relaxed mt-12",children:"Wir helfen dir mit deinem Unternehmen die Brücke zur digitalen Welt zu schlagen, ohne dabei eure Vision aus den Augen zu verlieren."',
+        'className:"text-lg md:text-xl text-foreground max-w-3xl mx-auto font-light leading-relaxed mt-12",children:"Wir helfen dir mit deinem Unternehmen die Brücke zur digitalen Welt zu schlagen, ohne dabei deine Vision aus den Augen zu verlieren."',
       );
-      script = replaceOnce(script, 'j.jsx(w2,{}),j.jsx(M2,{})', 'j.jsx(w2,{})');
+      script = replaceOnce(
+        script,
+        "transition:{delay:2.15,duration:.85,ease:[.22,1,.36,1]}",
+        "transition:{delay:.8,duration:.6,ease:[.22,1,.36,1]}",
+      );
+      script = replaceOnce(script, "j.jsx(w2,{}),j.jsx(M2,{})", "j.jsx(w2,{})");
       await writeFile(scriptPath, script);
 
       const tweaksPath = path.join(outputDirectory, "spacefield-tweaks.css");
