@@ -129,6 +129,16 @@ function createSpacefieldMedia2() {
       );
       script = replaceOnce(
         script,
+        'children:"cuberto"',
+        'children:"Spacefield Media"',
+      );
+      script = replaceOnce(
+        script,
+        '" Cuberto. All rights reserved."',
+        '" Spacefield Media. All rights reserved."',
+      );
+      script = replaceOnce(
+        script,
         "transition:{delay:2.15,duration:.85,ease:[.22,1,.36,1]}",
         "transition:{delay:.8,duration:.6,ease:[.22,1,.36,1]}",
       );
