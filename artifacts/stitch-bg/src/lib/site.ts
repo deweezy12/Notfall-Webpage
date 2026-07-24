@@ -7,7 +7,6 @@ export type ServiceKey =
   | "physiotherapie"
   | "soundfield"
   | "spacefieldMedia"
-  | "spacefieldMediaYellow"
   | "wanzleben"
   | "annkafalk";
 
@@ -84,15 +83,8 @@ export const serviceLinks: ServiceLink[] = [
     key: "spacefieldMedia",
     label: "Spacefield Media",
     title: "Spacefield Media",
-    href: withBase("spacefield-media/"),
-    note: "Spacefield Media scroll animation landing page.",
-  },
-  {
-    key: "spacefieldMediaYellow",
-    label: "Spacefield Media yellow",
-    title: "Spacefield Media yellow",
-    href: withBase("spacefield-media-yellow/"),
-    note: "Spacefield Media yellow scroll animation landing page.",
+    href: withBase("spacefieldmedia2/"),
+    note: "Spacefield Media website.",
   },
   {
     key: "wanzleben",

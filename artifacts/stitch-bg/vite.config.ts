@@ -187,14 +187,6 @@ export default defineConfig({
         ),
         soundfield: path.resolve(import.meta.dirname, "soundfield/index.html"),
         spacefield: path.resolve(import.meta.dirname, "spacefield/index.html"),
-        spacefieldMedia: path.resolve(
-          import.meta.dirname,
-          "spacefield-media/index.html",
-        ),
-        spacefieldMediaYellow: path.resolve(
-          import.meta.dirname,
-          "spacefield-media-yellow/index.html",
-        ),
         wanzleben: path.resolve(import.meta.dirname, "wanzleben/index.html"),
         annkafalk: path.resolve(import.meta.dirname, "annkafalk/index.html"),
         impressum: path.resolve(import.meta.dirname, "impressum/index.html"),
