@@ -1,16 +1,12 @@
 {
-  "name": "notfall-webpage",
-  "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {
-    "build": "pnpm --filter @workspace/stitch-bg run build",
-    "dev": "pnpm --filter @workspace/stitch-bg run dev",
-    "serve": "pnpm --filter @workspace/stitch-bg run serve",
-    "typecheck": "pnpm --filter @workspace/stitch-bg run typecheck"
-  },
+  "name": "spacefield-media",
+  "version": "1.0.0",
+  "description": "Static website for Spacefield Media",
   "private": true,
-  "devDependencies": {
-    "typescript": "~5.9.2",
-    "prettier": "^3.8.1"
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/serve.mjs site",
+    "serve": "node scripts/serve.mjs dist",
+    "check": "node scripts/check.mjs"
   }
 }

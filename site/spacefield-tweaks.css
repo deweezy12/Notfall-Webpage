@@ -1,0 +1,58 @@
+main section:nth-of-type(2) {
+  border-radius: 36px 36px 0 0;
+}
+
+/* The desktop header's link underlines are decorative rather than navigational. */
+#root > div > nav > div:nth-child(2) a > span {
+  display: none;
+}
+
+#root > div > nav > div:nth-child(2),
+#root > div > nav > div:nth-child(3) {
+  animation: spacefield-menu-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+@keyframes spacefield-menu-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.5rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (min-width: 768px) {
+  #root > div > nav {
+    padding-right: clamp(3rem, 6vw, 6rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #root > div > nav > div:nth-child(2),
+  #root > div > nav > div:nth-child(3) {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  main section:nth-of-type(2) {
+    border-radius: 26px 26px 0 0;
+  }
+}
+
+
+/* Spacefield Media has no left-side wordmark. */
+#root > div > nav {
+  justify-content: flex-end;
+}
+
+#root > div > nav > div a > span {
+  display: none;
+}
+
+#root > div > nav > div {
+  animation: spacefield-menu-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
