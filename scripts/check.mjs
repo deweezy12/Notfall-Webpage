@@ -11,6 +11,8 @@ const requiredFiles = [
   "contacts/index.html",
   "assets/index-BumH1Iou.js",
   "assets/index-kANS6a2Z.css",
+  "home.css",
+  "home.js",
   "favicon.svg",
   "robots.txt",
   "CNAME",

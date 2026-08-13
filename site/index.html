@@ -2,40 +2,242 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1"
-    />
-    <title>Spacefield Media</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Spacefield Media | Webdesign, Social Media & Klangwelten</title>
     <meta
       name="description"
-      content="Wir sind Lasse und Oli und wir sind da um euch zu helfen."
+      content="Spacefield Media entwickelt ehrliches Webdesign, nahbare Social-Media-Auftritte und individuelle Klangwelten für Menschen und Marken mit einer eigenen Geschichte."
     />
     <meta name="robots" content="index, follow" />
     <meta property="og:title" content="Spacefield Media" />
     <meta
       property="og:description"
-      content="Wir sind Lasse und Oli und wir sind da um euch zu helfen."
+      content="Ein sicherer Raum für deine Idee. Wir gestalten digitale Auftritte, die sich nach dir anfühlen."
     />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Spacefield Media" />
     <meta
       name="twitter:description"
-      content="Wir sind Lasse und Oli und wir sind da um euch zu helfen."
+      content="Webdesign, Social Media und Klangwelten mit Raum für deine eigene Geschichte."
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/assets/index-BumH1Iou.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-kANS6a2Z.css" />
-    <link rel="stylesheet" href="/spacefield-tweaks.css" />
+    <link rel="stylesheet" href="/home.css" />
+    <script src="/home.js" defer></script>
   </head>
   <body>
-    <div id="root"></div>
+    <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+    <header class="site-header" data-header>
+      <a class="wordmark" href="/" aria-label="Spacefield Media Startseite">
+        <span class="wordmark-mark" aria-hidden="true"></span>
+        <span>Spacefield Media</span>
+      </a>
+      <nav class="site-nav" aria-label="Hauptnavigation">
+        <a href="/projects/">Projekte</a>
+        <a href="/services/">Leistungen</a>
+        <a href="/contacts/">Über uns</a>
+      </nav>
+    </header>
+
+    <main id="inhalt">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-orbit hero-orbit-one" aria-hidden="true"></div>
+        <div class="hero-orbit hero-orbit-two" aria-hidden="true"></div>
+        <p class="eyebrow reveal">Unabhängiges Kreativstudio</p>
+        <h1 id="hero-title" class="hero-title">
+          <span class="hero-line hero-line-left">Willkommen bei</span>
+          <span class="hero-line hero-line-right">Spacefield Media</span>
+        </h1>
+        <p class="hero-copy reveal">
+          Wir schlagen die Brücke zur digitalen Welt, ohne deine Vision aus
+          den Augen zu verlieren. Gemeinsam machen wir sichtbar, was dich
+          wirklich ausmacht.
+        </p>
+        <a class="hero-link reveal" href="#projekte">
+          Entdecke unsere Möglichkeiten
+          <span aria-hidden="true">↓</span>
+        </a>
+      </section>
+
+      <section class="projects-section" id="projekte" aria-labelledby="projects-title">
+        <div class="section-heading section-heading-light reveal">
+          <div>
+            <p class="eyebrow">01 · Projekte</p>
+            <h2 id="projects-title">Ideen bekommen<br />eine eigene Sprache.</h2>
+          </div>
+          <p>
+            Drei Disziplinen, ein gemeinsames Ziel: einen Auftritt zu schaffen,
+            der nicht austauschbar ist, sondern nach dir klingt und aussieht.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card project-card-social reveal">
+            <div class="project-visual" role="img" aria-label="Platzhalter für ein Social-Media-Referenzbild">
+              <span class="visual-index">01</span>
+              <span class="visual-note">Bild folgt</span>
+              <span class="visual-word">verbinden</span>
+            </div>
+            <div class="project-meta">
+              <h3>Social Media</h3>
+              <p>Strategie, Inhalte und eine Stimme, die Menschen gerne zuhören.</p>
+            </div>
+          </article>
+
+          <article class="project-card project-card-web reveal">
+            <div class="project-visual" role="img" aria-label="Platzhalter für ein Webdesign-Referenzbild">
+              <span class="visual-index">02</span>
+              <span class="visual-note">Bild folgt</span>
+              <span class="visual-word">erleben</span>
+            </div>
+            <div class="project-meta">
+              <h3>Webdesign</h3>
+              <p>Digitale Räume, die klar funktionieren und sich trotzdem menschlich anfühlen.</p>
+            </div>
+          </article>
+
+          <article class="project-card project-card-audio reveal">
+            <div class="project-visual" role="img" aria-label="Platzhalter für ein Klangwelten-Referenzbild">
+              <span class="visual-index">03</span>
+              <span class="visual-note">Bild folgt</span>
+              <span class="visual-word">eintauchen</span>
+            </div>
+            <div class="project-meta">
+              <h3>Klangwelten</h3>
+              <p>Individuelle Soundscapes und Musik, die Atmosphäre schafft und lange nachwirkt.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="pricing-section" id="leistungen" aria-labelledby="pricing-title">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">02 · Leistungen</p>
+            <h2 id="pricing-title">So viel Unterstützung,<br />wie du gerade brauchst.</h2>
+          </div>
+          <p>
+            Transparent starten, gemeinsam wachsen. Alle Pakete lassen Raum
+            für deine Situation und werden vor dem Start persönlich abgestimmt.
+          </p>
+        </div>
+
+        <div class="pricing-controls reveal">
+          <div class="segmented-control" role="group" aria-label="Leistungsbereich auswählen">
+            <button class="is-active" type="button" data-service="webdesign" aria-pressed="true">Webdesign</button>
+            <button type="button" data-service="social" aria-pressed="false">Social Media</button>
+          </div>
+          <div class="billing-control" role="group" aria-label="Abrechnungszeitraum auswählen">
+            <button class="is-active" type="button" data-billing="monthly" aria-pressed="true">Monatlich</button>
+            <button type="button" data-billing="yearly" aria-pressed="false">
+              Jährlich <span>−15 %</span>
+            </button>
+          </div>
+        </div>
+
+        <p class="pricing-status" aria-live="polite" data-pricing-status>
+          Webdesign · monatliche Abrechnung
+        </p>
+        <div class="pricing-grid" data-pricing-grid></div>
+        <p class="pricing-note reveal">
+          Alle Preise verstehen sich als Richtwerte. Nach einem kostenlosen
+          Kennenlernen erhältst du ein Angebot, das wirklich zu deinem Vorhaben passt.
+        </p>
+      </section>
+
+      <section class="about-section" id="ueber-uns" aria-labelledby="about-title">
+        <div class="about-intro reveal">
+          <p class="eyebrow">03 · Über uns</p>
+          <h2 id="about-title">Kein Agenturgefühl.<br />Ein Ort für deine Idee.</h2>
+          <p>
+            Bei uns musst du nicht mit einem fertigen Konzept ankommen. Wir
+            hören zu, stellen ehrliche Fragen und entwickeln mit dir eine
+            Sprache, in der du dich wiederfindest. Ohne Druck, ohne
+            Fachchinesisch und ohne deine Geschichte glattzubügeln.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <article class="team-card reveal">
+            <div class="portrait-placeholder portrait-lasse" role="img" aria-label="Platzhalter für ein Porträt von Lasse">
+              <span>Foto folgt</span>
+              <strong>L</strong>
+            </div>
+            <div class="team-copy">
+              <p>Gründer</p>
+              <h3>Lasse</h3>
+              <ul aria-label="Rollen von Lasse">
+                <li>Social Media</li>
+                <li>Sound Design</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="team-card reveal">
+            <div class="portrait-placeholder portrait-julia" role="img" aria-label="Platzhalter für ein Porträt von Julia">
+              <span>Foto folgt</span>
+              <strong>J</strong>
+            </div>
+            <div class="team-copy">
+              <p>Social Media</p>
+              <h3>Julia</h3>
+              <ul aria-label="Rollen von Julia">
+                <li>Content</li>
+                <li>Community</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="team-card reveal">
+            <div class="portrait-placeholder portrait-oliver" role="img" aria-label="Platzhalter für ein Porträt von Oliver Jan">
+              <span>Foto folgt</span>
+              <strong>OJ</strong>
+            </div>
+            <div class="team-copy">
+              <p>Softwareentwickler</p>
+              <h3>Oliver Jan</h3>
+              <ul aria-label="Rollen von Oliver Jan">
+                <li>Webdesign</li>
+                <li>KI-Integration</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-section" aria-labelledby="contact-title">
+        <p class="eyebrow reveal">Was möchtest du erzählen?</p>
+        <h2 id="contact-title" class="reveal">Deine Idee darf<br />erst einmal unfertig sein.</h2>
+        <p class="reveal">
+          Schreib uns, was dich beschäftigt. Wir finden gemeinsam heraus,
+          welcher nächste Schritt sich richtig anfühlt.
+        </p>
+        <a class="contact-button reveal" href="/contacts/">
+          Unverbindlich kennenlernen
+          <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <span class="wordmark-mark" aria-hidden="true"></span>
+        <p>Spacefield Media</p>
+      </div>
+      <p class="footer-message">Digitale Geschichten, ehrlich gestaltet.</p>
+      <div class="footer-links">
+        <a href="/projects/">Projekte</a>
+        <a href="/services/">Leistungen</a>
+        <a href="/contacts/">Kontakt</a>
+      </div>
+      <p class="footer-legal">© <span data-year></span> Spacefield Media. Alle Rechte vorbehalten.</p>
+    </footer>
   </body>
 </html>
