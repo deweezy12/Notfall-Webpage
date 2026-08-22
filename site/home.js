@@ -132,5 +132,91 @@ const revealObserver = new IntersectionObserver(
 );
 
 document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+
+const projectsSection = document.querySelector(".projects-section");
+
+if (projectsSection) {
+  const reduceDimmingMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let dimFrameRequested = false;
+
+  function updateWorkDimming() {
+    dimFrameRequested = false;
+    const rect = projectsSection.getBoundingClientRect();
+    const fadeDistance = window.innerHeight * 0.45;
+    const entering = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / fadeDistance));
+    const leaving = Math.min(1, Math.max(0, rect.bottom / fadeDistance));
+    const opacity = reduceDimmingMotion.matches
+      ? Number(rect.top < window.innerHeight && rect.bottom > 0)
+      : Math.min(entering, leaving);
+
+    document.body.style.setProperty("--work-dim", opacity.toFixed(3));
+  }
+
+  function requestDimUpdate() {
+    if (!dimFrameRequested) {
+      dimFrameRequested = true;
+      requestAnimationFrame(updateWorkDimming);
+    }
+  }
+
+  window.addEventListener("scroll", requestDimUpdate, { passive: true });
+  window.addEventListener("resize", requestDimUpdate);
+  reduceDimmingMotion.addEventListener("change", requestDimUpdate);
+  requestDimUpdate();
+}
+
+const scrollVideo = document.querySelector("[data-scroll-video]");
+
+if (scrollVideo) {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const videoCard = scrollVideo.closest(".project-card-web");
+  let frameRequested = false;
+  let targetTime = 0;
+
+  function updateScrollVideo() {
+    frameRequested = false;
+
+    if (scrollVideo.readyState < HTMLMediaElement.HAVE_METADATA) {
+      return;
+    }
+
+    const rect = videoCard.getBoundingClientRect();
+    const viewportCenter = window.innerHeight / 2;
+    const cardCenter = rect.top + rect.height / 2;
+    const fadeStart = window.innerHeight;
+    const fadeProgress = Math.min(1, Math.max(0, (fadeStart - cardCenter) / (fadeStart - viewportCenter)));
+
+    videoCard.style.setProperty("--video-opacity", fadeProgress.toFixed(3));
+
+    if (reduceMotion.matches) {
+      targetTime = 0;
+    } else {
+      const scrubDistance = Math.max(window.innerHeight, rect.height);
+      const scrubProgress = Math.min(1, Math.max(0, (viewportCenter - cardCenter) / scrubDistance));
+      targetTime = scrubProgress * Math.max(0, scrollVideo.duration - 0.05);
+    }
+
+    if (Math.abs(scrollVideo.currentTime - targetTime) > 0.01) {
+      scrollVideo.currentTime = targetTime;
+    }
+  }
+
+  function requestVideoUpdate() {
+    if (!frameRequested) {
+      frameRequested = true;
+      requestAnimationFrame(updateScrollVideo);
+    }
+  }
+
+  scrollVideo.addEventListener("loadedmetadata", requestVideoUpdate);
+  scrollVideo.addEventListener("loadeddata", () => {
+    scrollVideo.currentTime = targetTime;
+  });
+  window.addEventListener("scroll", requestVideoUpdate, { passive: true });
+  window.addEventListener("resize", requestVideoUpdate);
+  reduceMotion.addEventListener("change", requestVideoUpdate);
+  requestVideoUpdate();
+}
+
 document.querySelector("[data-year]").textContent = new Date().getFullYear();
 renderPricing();

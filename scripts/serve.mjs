@@ -17,6 +17,7 @@ const contentTypes = {
   ".html": "text/html; charset=utf-8",
   ".jpg": "image/jpeg",
   ".js": "text/javascript; charset=utf-8",
+  ".mp4": "video/mp4",
   ".svg": "image/svg+xml",
   ".txt": "text/plain; charset=utf-8",
 };
@@ -32,15 +33,43 @@ createServer(async (request, response) => {
       return;
     }
 
-    const fileStats = await stat(file);
+    let fileStats = await stat(file);
     if (fileStats.isDirectory()) {
       file = path.join(file, "index.html");
-      await stat(file);
+      fileStats = await stat(file);
+    }
+
+    const contentType =
+      contentTypes[path.extname(file)] ?? "application/octet-stream";
+    const range = request.headers.range?.match(/bytes=(\d*)-(\d*)/);
+
+    if (range) {
+      const start = range[1] ? Number(range[1]) : 0;
+      const end = range[2]
+        ? Math.min(Number(range[2]), fileStats.size - 1)
+        : fileStats.size - 1;
+
+      if (start > end || start >= fileStats.size) {
+        response.writeHead(416, {
+          "Content-Range": `bytes */${fileStats.size}`,
+        }).end();
+        return;
+      }
+
+      response.writeHead(206, {
+        "Accept-Ranges": "bytes",
+        "Content-Length": end - start + 1,
+        "Content-Range": `bytes ${start}-${end}/${fileStats.size}`,
+        "Content-Type": contentType,
+      });
+      createReadStream(file, { start, end }).pipe(response);
+      return;
     }
 
     response.writeHead(200, {
-      "Content-Type":
-        contentTypes[path.extname(file)] ?? "application/octet-stream",
+      "Accept-Ranges": "bytes",
+      "Content-Length": fileStats.size,
+      "Content-Type": contentType,
     });
     createReadStream(file).pipe(response);
   } catch {
