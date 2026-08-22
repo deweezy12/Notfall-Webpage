@@ -165,12 +165,21 @@ if (projectsSection) {
   requestDimUpdate();
 }
 
-const scrollVideo = document.querySelector("[data-scroll-video]");
-
-if (scrollVideo) {
-  const videoCard = scrollVideo.closest(".project-card-web");
+document.querySelectorAll("[data-scroll-video]").forEach((scrollVideo) => {
+  const projectCard = scrollVideo.closest(".project-card");
   let frameRequested = false;
   let targetTime = 0;
+
+  function seekToTarget() {
+    if (
+      scrollVideo.seeking ||
+      Math.abs(scrollVideo.currentTime - targetTime) <= 0.01
+    ) {
+      return;
+    }
+
+    scrollVideo.currentTime = targetTime;
+  }
 
   function updateScrollVideo() {
     frameRequested = false;
@@ -179,21 +188,20 @@ if (scrollVideo) {
       return;
     }
 
-    const rect = videoCard.getBoundingClientRect();
+    const rect = projectCard.getBoundingClientRect();
     const viewportCenter = window.innerHeight / 2;
     const cardCenter = rect.top + rect.height / 2;
-    const fadeStart = window.innerHeight;
-    const fadeProgress = Math.min(1, Math.max(0, (fadeStart - cardCenter) / (fadeStart - viewportCenter)));
+    const revealStart = window.innerHeight;
+    const revealProgress = Math.min(1, Math.max(0, (revealStart - cardCenter) / (revealStart - viewportCenter)));
 
-    videoCard.style.setProperty("--video-opacity", fadeProgress.toFixed(3));
+    projectCard.style.setProperty("--video-opacity", revealProgress > 0.001 ? "1" : "0");
+    projectCard.style.setProperty("--video-reveal", `${(revealProgress * 100).toFixed(2)}%`);
 
     const scrubDistance = Math.max(window.innerHeight, rect.height);
     const scrubProgress = Math.min(1, Math.max(0, (viewportCenter - cardCenter) / scrubDistance));
     targetTime = scrubProgress * Math.max(0, scrollVideo.duration - 0.05);
 
-    if (Math.abs(scrollVideo.currentTime - targetTime) > 0.01) {
-      scrollVideo.currentTime = targetTime;
-    }
+    seekToTarget();
   }
 
   function requestVideoUpdate() {
@@ -205,12 +213,13 @@ if (scrollVideo) {
 
   scrollVideo.addEventListener("loadedmetadata", requestVideoUpdate);
   scrollVideo.addEventListener("loadeddata", () => {
-    scrollVideo.currentTime = targetTime;
+    seekToTarget();
   });
+  scrollVideo.addEventListener("seeked", seekToTarget);
   window.addEventListener("scroll", requestVideoUpdate, { passive: true });
   window.addEventListener("resize", requestVideoUpdate);
   requestVideoUpdate();
-}
+});
 
 document.querySelector("[data-year]").textContent = new Date().getFullYear();
 renderPricing();

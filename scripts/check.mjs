@@ -13,6 +13,7 @@ const requiredFiles = [
   "assets/index-kANS6a2Z.css",
   "home.css",
   "home.js",
+  "projects/ari-social.mp4",
   "projects/website-annka.mp4",
   "favicon.svg",
   "robots.txt",

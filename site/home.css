@@ -308,6 +308,15 @@ button {
   width: min(100%, 72rem);
 }
 
+.project-card-web,
+.project-card-social {
+  width: min(90%, 64.8rem);
+}
+
+.project-card-social {
+  margin-left: auto;
+}
+
 .project-visual {
   position: relative;
   display: flex;
@@ -325,19 +334,16 @@ button {
 }
 
 .project-card-social .project-visual {
-  background: #d36b4f;
+  background: #000;
 }
 
-.project-card-social .project-visual::before {
-  width: 62%;
-  aspect-ratio: 1;
-  border: 1px solid rgba(23, 24, 23, 0.4);
-  border-radius: 50%;
-  box-shadow: 0 0 0 4vw rgba(23, 24, 23, 0.05), 0 0 0 8vw rgba(23, 24, 23, 0.05);
+.project-card-social .project-visual::before,
+.project-card-social .project-visual::after {
+  content: none;
 }
 
 .project-card-web .project-visual {
-  background: rgb(234, 3, 19);
+  background: #000;
 }
 
 .project-card-web .project-visual::before,
@@ -350,7 +356,21 @@ button {
   height: 100%;
   object-fit: cover;
   opacity: var(--video-opacity, 0);
-  will-change: opacity;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0,
+    #000 var(--video-reveal, 0%),
+    transparent calc(var(--video-reveal, 0%) + 3%),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0,
+    #000 var(--video-reveal, 0%),
+    transparent calc(var(--video-reveal, 0%) + 3%),
+    transparent 100%
+  );
+  will-change: opacity, mask-image;
 }
 
 .visual-index,
@@ -832,6 +852,7 @@ button {
   .project-card,
   .project-card:nth-child(2) {
     width: 100%;
+    margin-left: 0;
     padding-top: 0;
   }
 
