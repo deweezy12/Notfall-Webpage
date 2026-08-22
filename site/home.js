@@ -168,7 +168,6 @@ if (projectsSection) {
 const scrollVideo = document.querySelector("[data-scroll-video]");
 
 if (scrollVideo) {
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const videoCard = scrollVideo.closest(".project-card-web");
   let frameRequested = false;
   let targetTime = 0;
@@ -188,13 +187,9 @@ if (scrollVideo) {
 
     videoCard.style.setProperty("--video-opacity", fadeProgress.toFixed(3));
 
-    if (reduceMotion.matches) {
-      targetTime = 0;
-    } else {
-      const scrubDistance = Math.max(window.innerHeight, rect.height);
-      const scrubProgress = Math.min(1, Math.max(0, (viewportCenter - cardCenter) / scrubDistance));
-      targetTime = scrubProgress * Math.max(0, scrollVideo.duration - 0.05);
-    }
+    const scrubDistance = Math.max(window.innerHeight, rect.height);
+    const scrubProgress = Math.min(1, Math.max(0, (viewportCenter - cardCenter) / scrubDistance));
+    targetTime = scrubProgress * Math.max(0, scrollVideo.duration - 0.05);
 
     if (Math.abs(scrollVideo.currentTime - targetTime) > 0.01) {
       scrollVideo.currentTime = targetTime;
@@ -214,7 +209,6 @@ if (scrollVideo) {
   });
   window.addEventListener("scroll", requestVideoUpdate, { passive: true });
   window.addEventListener("resize", requestVideoUpdate);
-  reduceMotion.addEventListener("change", requestVideoUpdate);
   requestVideoUpdate();
 }
 
