@@ -337,8 +337,7 @@ button {
   background: #000;
 }
 
-.project-card-social .project-visual::before,
-.project-card-social .project-visual::after {
+.project-card-social .project-visual::before {
   content: none;
 }
 
@@ -346,9 +345,17 @@ button {
   background: #000;
 }
 
-.project-card-web .project-visual::before,
-.project-card-web .project-visual::after {
+.project-card-web .project-visual::before {
   content: none;
+}
+
+.project-card-web .project-visual::after,
+.project-card-social .project-visual::after {
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to right, transparent 0, #000 3%, #000 100%);
+  transform: translate3d(var(--video-reveal, 0%), 0, 0);
+  will-change: transform;
 }
 
 .project-video {
@@ -356,21 +363,7 @@ button {
   height: 100%;
   object-fit: cover;
   opacity: var(--video-opacity, 0);
-  -webkit-mask-image: linear-gradient(
-    to right,
-    #000 0,
-    #000 var(--video-reveal, 0%),
-    transparent calc(var(--video-reveal, 0%) + 3%),
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    #000 0,
-    #000 var(--video-reveal, 0%),
-    transparent calc(var(--video-reveal, 0%) + 3%),
-    transparent 100%
-  );
-  will-change: opacity, mask-image;
+  will-change: opacity;
 }
 
 .visual-index,

@@ -136,7 +136,6 @@ document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe
 const projectsSection = document.querySelector(".projects-section");
 
 if (projectsSection) {
-  const reduceDimmingMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let dimFrameRequested = false;
 
   function updateWorkDimming() {
@@ -145,9 +144,7 @@ if (projectsSection) {
     const fadeDistance = window.innerHeight * 0.45;
     const entering = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / fadeDistance));
     const leaving = Math.min(1, Math.max(0, rect.bottom / fadeDistance));
-    const opacity = reduceDimmingMotion.matches
-      ? Number(rect.top < window.innerHeight && rect.bottom > 0)
-      : Math.min(entering, leaving);
+    const opacity = Math.min(entering, leaving);
 
     document.body.style.setProperty("--work-dim", opacity.toFixed(3));
   }
@@ -161,14 +158,34 @@ if (projectsSection) {
 
   window.addEventListener("scroll", requestDimUpdate, { passive: true });
   window.addEventListener("resize", requestDimUpdate);
-  reduceDimmingMotion.addEventListener("change", requestDimUpdate);
   requestDimUpdate();
 }
 
 document.querySelectorAll("[data-scroll-video]").forEach((scrollVideo) => {
   const projectCard = scrollVideo.closest(".project-card");
   let frameRequested = false;
+  let isPrimed = false;
   let targetTime = 0;
+
+  function primeVideo() {
+    if (isPrimed) {
+      return;
+    }
+
+    isPrimed = true;
+    const playAttempt = scrollVideo.play();
+
+    if (playAttempt) {
+      playAttempt
+        .then(() => {
+          scrollVideo.pause();
+          seekToTarget();
+        })
+        .catch(() => {
+          isPrimed = false;
+        });
+    }
+  }
 
   function seekToTarget() {
     if (
@@ -184,10 +201,6 @@ document.querySelectorAll("[data-scroll-video]").forEach((scrollVideo) => {
   function updateScrollVideo() {
     frameRequested = false;
 
-    if (scrollVideo.readyState < HTMLMediaElement.HAVE_METADATA) {
-      return;
-    }
-
     const rect = projectCard.getBoundingClientRect();
     const viewportCenter = window.innerHeight / 2;
     const cardCenter = rect.top + rect.height / 2;
@@ -196,6 +209,10 @@ document.querySelectorAll("[data-scroll-video]").forEach((scrollVideo) => {
 
     projectCard.style.setProperty("--video-opacity", revealProgress > 0.001 ? "1" : "0");
     projectCard.style.setProperty("--video-reveal", `${(revealProgress * 100).toFixed(2)}%`);
+
+    if (scrollVideo.readyState < HTMLMediaElement.HAVE_METADATA) {
+      return;
+    }
 
     const scrubDistance = Math.max(window.innerHeight, rect.height);
     const scrubProgress = Math.min(1, Math.max(0, (viewportCenter - cardCenter) / scrubDistance));
@@ -211,13 +228,17 @@ document.querySelectorAll("[data-scroll-video]").forEach((scrollVideo) => {
     }
   }
 
-  scrollVideo.addEventListener("loadedmetadata", requestVideoUpdate);
+  scrollVideo.addEventListener("loadedmetadata", () => {
+    requestVideoUpdate();
+    primeVideo();
+  });
   scrollVideo.addEventListener("loadeddata", () => {
     seekToTarget();
   });
   scrollVideo.addEventListener("seeked", seekToTarget);
   window.addEventListener("scroll", requestVideoUpdate, { passive: true });
   window.addEventListener("resize", requestVideoUpdate);
+  scrollVideo.load();
   requestVideoUpdate();
 });
 
