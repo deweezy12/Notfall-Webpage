@@ -7,7 +7,8 @@ Static website for [Spacefield Media](https://www.spacefieldmedia.com/), deploye
 - Node.js 24 or newer
 - pnpm 10
 
-The project has no third-party runtime or build dependencies.
+The project has no third-party build dependencies. GSAP and ScrollTrigger are
+vendored under `site/vendor/gsap/` for the homepage project showcase.
 
 ## Commands
 
@@ -33,6 +34,7 @@ site/                   Authoritative website files
   contacts/             About/contact route
   projects/             Projects route and project images
   services/             Services route
+  vendor/               Pinned browser libraries used by the homepage
 scripts/                Dependency-free build, validation, and preview tools
 .github/workflows/      GitHub Pages deployment
 dist/                   Generated output; never edit or commit

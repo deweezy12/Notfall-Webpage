@@ -28,8 +28,10 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/home.css?v=20260823-1" />
-    <script src="/home.js?v=20260823-1" defer></script>
+    <link rel="stylesheet" href="/home.css?v=20260830-1" />
+    <script src="/vendor/gsap/gsap-3.15.0.min.js" defer></script>
+    <script src="/vendor/gsap/ScrollTrigger-3.15.0.min.js" defer></script>
+    <script src="/home.js?v=20260830-1" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -62,72 +64,87 @@
       </section>
 
       <section class="projects-section" id="projekte" aria-labelledby="projects-title">
-        <div class="section-heading section-heading-light reveal">
-          <div>
-            <h2 id="projects-title">Unsere Kreationen</h2>
+        <div class="projects-stage" data-projects-stage>
+          <div class="project-progress" aria-hidden="true">
+            <span data-project-progress></span>
           </div>
-        </div>
+          <div class="project-track" data-project-track>
+            <div class="project-intro project-panel">
+              <p class="project-kicker">Ausgewählte Arbeiten · 01–03</p>
+              <h2 id="projects-title">Unsere<br />Kreationen</h2>
+              <p>
+                Digitale Auftritte, die nicht lauter sein müssen, um in
+                Erinnerung zu bleiben.
+              </p>
+              <span class="project-scroll-cue" aria-hidden="true">Scrollen, um zu entdecken <b>→</b></span>
+            </div>
 
-        <div class="project-grid">
-          <a
-            class="project-card project-card-web"
-            href="https://annkafalk.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Webdesign-Projekt Annka Falk in einem neuen Tab öffnen"
-          >
-            <div class="project-visual">
-              <video
-                class="project-video"
-                muted
-                playsinline
-                preload="auto"
-                poster="/projects/website-annka-poster.jpg"
-                aria-label="Webdesign-Projekt für Annka"
-                data-scroll-video
-              >
-                <source
-                  src="/projects/website-annka-mobile.mp4"
-                  type="video/mp4"
-                  media="(max-width: 720px)"
+            <a
+              class="project-card project-panel project-card-web"
+              href="https://annkafalk.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Webdesign-Projekt Annka Falk in einem neuen Tab öffnen"
+            >
+              <div class="project-visual">
+                <img
+                  src="/projects/website-annka-poster.jpg"
+                  alt="Website von Annka Falk auf einem hellen, redaktionellen Layout"
+                  width="1440"
+                  height="1080"
                 />
-                <source src="/projects/website-annka.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="project-meta">
-              <h3>Webdesign</h3>
-            </div>
-          </a>
+                <span class="project-frame-label">Live Website</span>
+              </div>
+              <div class="project-meta">
+                <span>01 / Webdesign</span>
+                <h3>Annka Falk</h3>
+                <p>Konzept, Gestaltung und Entwicklung einer persönlichen Website.</p>
+              </div>
+            </a>
 
-          <a
-            class="project-card project-card-social"
-            href="https://www.instagram.com/ari.tattooart/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Social-Media-Projekt Ari Tattooart auf Instagram in einem neuen Tab öffnen"
-          >
-            <div class="project-visual">
-              <video
-                class="project-video"
-                muted
-                playsinline
-                preload="auto"
-                poster="/projects/ari-social-poster.jpg"
-                aria-label="Social-Media-Projekt für Ari"
-                data-scroll-video
-              >
-                <source
-                  src="/projects/ari-social-mobile.mp4"
-                  type="video/mp4"
-                  media="(max-width: 720px)"
+            <a
+              class="project-card project-panel project-card-social"
+              href="https://www.instagram.com/ari.tattooart/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Social-Media-Projekt Ari Tattooart auf Instagram in einem neuen Tab öffnen"
+            >
+              <div class="project-visual">
+                <img
+                  src="/projects/ari-social-poster.jpg"
+                  alt="Social-Media-Auftritt von Ari Tattooart"
+                  width="1440"
+                  height="1080"
                 />
-                <source src="/projects/ari-social.mp4" type="video/mp4" />
-              </video>
+                <span class="project-frame-label">Social Presence</span>
+              </div>
+              <div class="project-meta">
+                <span>02 / Social Media</span>
+                <h3>Ari Tattooart</h3>
+                <p>Eine visuelle Sprache, die Handwerk, Persönlichkeit und Haltung verbindet.</p>
+              </div>
+            </a>
+
+            <article class="project-card project-panel project-card-upcoming">
+              <div class="project-visual project-placeholder" role="img" aria-label="Platzhalter für ein kommendes Social-Media-Projekt">
+                <span class="project-placeholder-index">03</span>
+                <p>Dein nächstes<br />Projektbild</p>
+                <span class="project-frame-label">Bild folgt</span>
+              </div>
+              <div class="project-meta">
+                <span>03 / Social Media</span>
+                <h3>Neues Projekt</h3>
+                <p>Der Platz für dein drittes Projekt ist vorbereitet und einfach austauschbar.</p>
+              </div>
+            </article>
+
+            <div class="project-outro project-panel">
+              <p class="project-kicker">Mehr Arbeiten</p>
+              <h3>Jede Idee braucht<br />ihren eigenen Raum.</h3>
+              <a href="/projects/">Alle Projekte ansehen <span aria-hidden="true">↗</span></a>
             </div>
-            <div class="project-meta">
-              <h3>Social Media</h3>
-            </div>
-          </a>
+          </div>
+          <p class="project-position" aria-hidden="true"><span data-project-current>01</span> / 03</p>
         </div>
       </section>
 
@@ -152,55 +169,49 @@
         </div>
 
         <div class="pricing-grid" data-pricing-grid></div>
+        <div class="value-strip reveal" aria-label="Was immer enthalten ist">
+          <p>Immer dabei</p>
+          <span>Persönlicher Kontakt</span>
+          <span>Transparenter Umfang</span>
+          <span>Saubere Übergabe</span>
+          <span>Raum für Entwicklung</span>
+        </div>
       </section>
 
       <section class="about-section" id="ueber-uns" aria-labelledby="about-title">
         <div class="about-intro reveal">
+          <p class="eyebrow">Das Studio</p>
           <h2 id="about-title">Kein Agenturgefühl.<br />Ein Ort für deine Idee.</h2>
         </div>
 
-        <div class="team-grid">
-          <article class="team-card reveal">
-            <div class="portrait-placeholder portrait-lasse" role="img" aria-label="Platzhalter für ein Porträt von Lasse">
-              <span>Foto folgt</span>
-              <strong>L</strong>
-            </div>
-            <div class="team-copy">
-              <h3>Lasse</h3>
-              <ul aria-label="Rollen von Lasse">
-                <li>Social Media</li>
-                <li>Sound Design</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="team-card reveal">
-            <div class="portrait-placeholder portrait-julia" role="img" aria-label="Platzhalter für ein Porträt von Julia">
-              <span>Foto folgt</span>
-              <strong>J</strong>
-            </div>
-            <div class="team-copy">
-              <h3>Julia</h3>
-              <ul aria-label="Rollen von Julia">
-                <li>Content</li>
-                <li>Social Media</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="team-card reveal">
-            <div class="portrait-placeholder portrait-oliver" role="img" aria-label="Platzhalter für ein Porträt von Oliver Jan">
-              <span>Foto folgt</span>
-              <strong>OJ</strong>
-            </div>
-            <div class="team-copy">
-              <h3>Oliver Jan</h3>
-              <ul aria-label="Rollen von Oliver Jan">
-                <li>Webdesign</li>
-                <li>Softwareentwickler</li>
-              </ul>
-            </div>
-          </article>
+        <div class="studio-layout">
+          <div class="studio-portrait reveal" role="img" aria-label="Abstrakter Platzhalter für ein gemeinsames Studiofoto">
+            <span>Gemeinsames Studiofoto</span>
+            <div aria-hidden="true">S<span>F</span>M</div>
+          </div>
+          <div class="studio-copy reveal">
+            <p class="studio-lead">
+              Drei Perspektiven, ein gemeinsamer Anspruch: Wir hören erst zu
+              und gestalten dann das, was wirklich zu dir passt.
+            </p>
+            <ol class="team-list">
+              <li>
+                <span>01</span>
+                <h3>Lasse</h3>
+                <p>Social Media · Sound Design</p>
+              </li>
+              <li>
+                <span>02</span>
+                <h3>Julia</h3>
+                <p>Content · Social Media</p>
+              </li>
+              <li>
+                <span>03</span>
+                <h3>Oliver Jan</h3>
+                <p>Webdesign · Softwareentwicklung</p>
+              </li>
+            </ol>
+          </div>
         </div>
       </section>
 
@@ -215,6 +226,11 @@
           Unverbindlich kennenlernen
           <span aria-hidden="true">↗</span>
         </a>
+        <dl class="contact-facts reveal">
+          <div><dt>Kontakt</dt><dd>Persönlich und direkt</dd></div>
+          <div><dt>Antwort</dt><dd>In der Regel binnen 48 Stunden</dd></div>
+          <div><dt>Zusammenarbeit</dt><dd>Remote und vor Ort</dd></div>
+        </dl>
       </section>
     </main>
 

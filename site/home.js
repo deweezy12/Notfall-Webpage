@@ -119,128 +119,115 @@ document.querySelectorAll("[data-billing]").forEach((button) => {
   });
 });
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.12 },
-);
+renderPricing();
 
-document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+if (!reduceMotion.matches) {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 },
+  );
+
+  document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+} else {
+  document.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible"));
+}
 
 const projectsSection = document.querySelector(".projects-section");
 
-if (projectsSection) {
-  let dimFrameRequested = false;
+if (projectsSection && window.gsap && window.ScrollTrigger) {
+  window.gsap.registerPlugin(window.ScrollTrigger);
 
-  function updateWorkDimming() {
-    dimFrameRequested = false;
-    const rect = projectsSection.getBoundingClientRect();
-    const fadeDistance = window.innerHeight * 0.45;
-    const entering = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / fadeDistance));
-    const leaving = Math.min(1, Math.max(0, rect.bottom / fadeDistance));
-    const opacity = Math.min(entering, leaving);
+  const stage = projectsSection.querySelector("[data-projects-stage]");
+  const track = projectsSection.querySelector("[data-project-track]");
+  const progress = projectsSection.querySelector("[data-project-progress]");
+  const current = projectsSection.querySelector("[data-project-current]");
+  const projectCards = [...projectsSection.querySelectorAll(".project-card")];
+  const media = window.gsap.matchMedia();
 
-    document.body.style.setProperty("--work-dim", opacity.toFixed(3));
-  }
+  media.add("(min-width: 981px) and (prefers-reduced-motion: no-preference)", () => {
+    const distance = () => Math.max(0, track.scrollWidth - window.innerWidth);
+    const setProgress = window.gsap.quickSetter(progress, "scaleX");
 
-  function requestDimUpdate() {
-    if (!dimFrameRequested) {
-      dimFrameRequested = true;
-      requestAnimationFrame(updateWorkDimming);
-    }
-  }
+    const horizontalTween = window.gsap.to(track, {
+      x: () => -distance(),
+      ease: "none",
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: () => `+=${Math.max(distance(), window.innerWidth * 2.5)}`,
+        pin: true,
+        scrub: 0.7,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: ({ progress: timelineProgress }) => {
+          setProgress(timelineProgress);
+          document.body.style.setProperty("--work-dim", String(Math.min(1, timelineProgress * 8, (1 - timelineProgress) * 8)));
 
-  window.addEventListener("scroll", requestDimUpdate, { passive: true });
-  window.addEventListener("resize", requestDimUpdate);
-  requestDimUpdate();
+          const closestIndex = projectCards.reduce((closest, card, index) => {
+            const cardCenter = card.getBoundingClientRect().left + card.offsetWidth / 2;
+            const closestCenter = projectCards[closest].getBoundingClientRect().left + projectCards[closest].offsetWidth / 2;
+            return Math.abs(cardCenter - window.innerWidth / 2) < Math.abs(closestCenter - window.innerWidth / 2)
+              ? index
+              : closest;
+          }, 0);
+
+          current.textContent = String(closestIndex + 1).padStart(2, "0");
+        },
+        onLeave: () => document.body.style.setProperty("--work-dim", "0"),
+        onLeaveBack: () => document.body.style.setProperty("--work-dim", "0"),
+      },
+    });
+
+    projectCards.forEach((card) => {
+      const image = card.querySelector("img");
+      if (image) {
+        window.gsap.fromTo(
+          image,
+          { xPercent: -3 },
+          {
+            xPercent: 3,
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              containerAnimation: horizontalTween,
+              start: "left right",
+              end: "right left",
+              scrub: true,
+            },
+          },
+        );
+      }
+    });
+
+    const focusCard = (event) => {
+      const card = event.target.closest(".project-card");
+      if (!card) {
+        return;
+      }
+
+      const targetX = Math.min(distance(), Math.max(0, card.offsetLeft - (window.innerWidth - card.offsetWidth) / 2));
+      const scrollTrigger = horizontalTween.scrollTrigger;
+      const targetScroll = scrollTrigger.start + (targetX / Math.max(1, distance())) * (scrollTrigger.end - scrollTrigger.start);
+      window.scrollTo({ top: targetScroll, behavior: "smooth" });
+    };
+
+    track.addEventListener("focusin", focusCard);
+    document.fonts?.ready.then(() => window.ScrollTrigger.refresh());
+
+    return () => {
+      track.removeEventListener("focusin", focusCard);
+      document.body.style.setProperty("--work-dim", "0");
+    };
+  });
 }
 
-document.querySelectorAll("[data-scroll-video]").forEach((scrollVideo) => {
-  const projectCard = scrollVideo.closest(".project-card");
-  let frameRequested = false;
-  let isPrimed = false;
-  let targetTime = 0;
-
-  function primeVideo() {
-    if (isPrimed) {
-      return;
-    }
-
-    isPrimed = true;
-    const playAttempt = scrollVideo.play();
-
-    if (playAttempt) {
-      playAttempt
-        .then(() => {
-          scrollVideo.pause();
-          seekToTarget();
-        })
-        .catch(() => {
-          isPrimed = false;
-        });
-    }
-  }
-
-  function seekToTarget() {
-    if (
-      scrollVideo.seeking ||
-      Math.abs(scrollVideo.currentTime - targetTime) <= 0.01
-    ) {
-      return;
-    }
-
-    scrollVideo.currentTime = targetTime;
-  }
-
-  function updateScrollVideo() {
-    frameRequested = false;
-
-    const rect = projectCard.getBoundingClientRect();
-    const viewportCenter = window.innerHeight / 2;
-    const cardCenter = rect.top + rect.height / 2;
-    const revealStart = window.innerHeight;
-    const revealProgress = Math.min(1, Math.max(0, (revealStart - cardCenter) / (revealStart - viewportCenter)));
-
-    projectCard.style.setProperty("--video-opacity", revealProgress > 0.001 ? "1" : "0");
-    projectCard.style.setProperty("--video-reveal", `${(revealProgress * 100).toFixed(2)}%`);
-
-    if (scrollVideo.readyState < HTMLMediaElement.HAVE_METADATA) {
-      return;
-    }
-
-    const scrubDistance = Math.max(window.innerHeight, rect.height);
-    const scrubProgress = Math.min(1, Math.max(0, (viewportCenter - cardCenter) / scrubDistance));
-    targetTime = scrubProgress * Math.max(0, scrollVideo.duration - 0.05);
-
-    seekToTarget();
-  }
-
-  function requestVideoUpdate() {
-    if (!frameRequested) {
-      frameRequested = true;
-      requestAnimationFrame(updateScrollVideo);
-    }
-  }
-
-  scrollVideo.addEventListener("loadedmetadata", () => {
-    requestVideoUpdate();
-    primeVideo();
-  });
-  scrollVideo.addEventListener("loadeddata", () => {
-    seekToTarget();
-  });
-  scrollVideo.addEventListener("seeked", seekToTarget);
-  window.addEventListener("scroll", requestVideoUpdate, { passive: true });
-  window.addEventListener("resize", requestVideoUpdate);
-  scrollVideo.load();
-  requestVideoUpdate();
-});
-
 document.querySelector("[data-year]").textContent = new Date().getFullYear();
-renderPricing();

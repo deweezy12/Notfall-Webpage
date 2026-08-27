@@ -13,6 +13,8 @@ const requiredFiles = [
   "assets/index-kANS6a2Z.css",
   "home.css",
   "home.js",
+  "vendor/gsap/gsap-3.15.0.min.js",
+  "vendor/gsap/ScrollTrigger-3.15.0.min.js",
   "projects/ari-social-mobile.mp4",
   "projects/ari-social.mp4",
   "projects/ari-social-poster.jpg",
