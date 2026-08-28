@@ -148,15 +148,11 @@ if (projectsSection && window.gsap && window.ScrollTrigger) {
 
   const stage = projectsSection.querySelector("[data-projects-stage]");
   const track = projectsSection.querySelector("[data-project-track]");
-  const progress = projectsSection.querySelector("[data-project-progress]");
-  const current = projectsSection.querySelector("[data-project-current]");
   const projectCards = [...projectsSection.querySelectorAll(".project-card")];
   const media = window.gsap.matchMedia();
 
   media.add("(min-width: 981px) and (prefers-reduced-motion: no-preference)", () => {
     const distance = () => Math.max(0, track.scrollWidth - window.innerWidth);
-    const setProgress = window.gsap.quickSetter(progress, "scaleX");
-
     const horizontalTween = window.gsap.to(track, {
       x: () => -distance(),
       ease: "none",
@@ -169,18 +165,7 @@ if (projectsSection && window.gsap && window.ScrollTrigger) {
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: ({ progress: timelineProgress }) => {
-          setProgress(timelineProgress);
           document.body.style.setProperty("--work-dim", String(Math.min(1, timelineProgress * 8, (1 - timelineProgress) * 8)));
-
-          const closestIndex = projectCards.reduce((closest, card, index) => {
-            const cardCenter = card.getBoundingClientRect().left + card.offsetWidth / 2;
-            const closestCenter = projectCards[closest].getBoundingClientRect().left + projectCards[closest].offsetWidth / 2;
-            return Math.abs(cardCenter - window.innerWidth / 2) < Math.abs(closestCenter - window.innerWidth / 2)
-              ? index
-              : closest;
-          }, 0);
-
-          current.textContent = String(closestIndex + 1).padStart(2, "0");
         },
         onLeave: () => document.body.style.setProperty("--work-dim", "0"),
         onLeaveBack: () => document.body.style.setProperty("--work-dim", "0"),
