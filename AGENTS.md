@@ -17,9 +17,8 @@ The application in `site/assets/` is a prebuilt bundle recovered without its ori
 ## Public Routes
 
 - `/`
-- `/projects/`
-- `/services/`
-- `/contacts/`
+
+The former `/projects/`, `/services/`, and `/contacts/` routes only redirect to `/`.
 
 Do not reintroduce `/archive/`, `/spacefield/`, or `/spacefieldmedia2/` paths.
 
@@ -48,6 +47,6 @@ Run `pnpm build && pnpm check` after every website change. Use `PORT=4173 pnpm s
 
 1. Build succeeds with `pnpm build`.
 2. Validation succeeds with `pnpm check`.
-3. `/`, `/projects/`, `/services/`, and `/contacts/` load directly.
+3. `/` loads directly and the former subpage routes redirect to it.
 4. JavaScript, CSS, favicon, and project images resolve from root paths.
 5. No removed legacy or archive paths are referenced.

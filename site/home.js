@@ -88,7 +88,7 @@ function renderPricing() {
             <p class="plan-cycle">${billingText}${yearly && price > 0 ? " · jährlich abgerechnet" : ""}</p>
           </div>
           <ul>${features}</ul>
-          <a href="/contacts/">${plan.cta}<span aria-hidden="true">↗</span></a>
+          <a href="/#kontakt">${plan.cta}<span aria-hidden="true">↗</span></a>
         </article>`;
     })
     .join("");

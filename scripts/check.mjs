@@ -9,8 +9,6 @@ const requiredFiles = [
   "projects/index.html",
   "services/index.html",
   "contacts/index.html",
-  "assets/index-BumH1Iou.js",
-  "assets/index-kANS6a2Z.css",
   "home.css",
   "home.js",
   "vendor/gsap/gsap-3.15.0.min.js",
@@ -61,6 +59,18 @@ for (const file of textFiles) {
         `${path.relative(root, file)} contains forbidden text: ${forbidden}`,
       );
     }
+  }
+}
+
+const homepage = await readFile(path.join(output, "index.html"), "utf8");
+for (const route of ["projects", "services", "contacts"]) {
+  if (homepage.includes(`href="/${route}/"`)) {
+    throw new Error(`dist/index.html still links to removed route: /${route}/`);
+  }
+
+  const redirect = await readFile(path.join(output, route, "index.html"), "utf8");
+  if (!redirect.includes('window.location.replace("/")')) {
+    throw new Error(`dist/${route}/index.html does not redirect to the homepage`);
   }
 }
 
