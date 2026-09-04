@@ -7,8 +7,7 @@ Static website for [Spacefield Media](https://www.spacefieldmedia.com/), deploye
 - Node.js 24 or newer
 - pnpm 10
 
-The project has no third-party build dependencies. GSAP and ScrollTrigger are
-vendored under `site/vendor/gsap/` for the homepage project showcase.
+The project has no third-party build dependencies.
 
 ## Commands
 
@@ -30,19 +29,16 @@ These commands create, validate, and preview the production output in `dist/`.
 
 ```text
 site/                   Authoritative website files
-  assets/               Compiled application JavaScript and CSS
+  team/                 Optimized team portraits
   contacts/             About/contact route
   projects/             Projects route and project images
   services/             Services route
-  vendor/               Pinned browser libraries used by the homepage
 scripts/                Dependency-free build, validation, and preview tools
 .github/workflows/      GitHub Pages deployment
 dist/                   Generated output; never edit or commit
 ```
 
 ## Editing
-
-The current website was recovered from a prebuilt application. The files in `site/assets/` are compiled bundles, not original application source. Small content and presentation changes can be made there carefully, but substantial development should begin by restoring or recreating the original source application.
 
 Edit files only in `site/`, then run `pnpm build && pnpm check`. Do not edit `dist/`; every build replaces it.
 

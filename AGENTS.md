@@ -10,9 +10,11 @@ This repository contains only the active Spacefield Media website. Read this fil
 - The website is deployed from GitHub Actions to GitHub Pages.
 - There are intentionally no legacy websites or `/archive/` routes.
 
-## Important Constraint
+## Implementation
 
-The application in `site/assets/` is a prebuilt bundle recovered without its original React source. Treat the hashed JavaScript and CSS as vendored compiled output. Prefer small, verified changes. For a major redesign or architectural feature, recreate a normal source application rather than layering more fragile string patches onto the bundle.
+The website is maintained as dependency-free HTML, CSS, and JavaScript in
+`site/`. Keep the source readable and prefer native browser APIs unless a new
+dependency has a clear product benefit.
 
 ## Public Routes
 

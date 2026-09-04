@@ -3,35 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Spacefield Media | Webdesign, Social Media & Klangwelten</title>
+    <title>Spacefield Media | Webdesign, Social Media & Content</title>
     <meta
       name="description"
-      content="Spacefield Media entwickelt ehrliches Webdesign, nahbare Social-Media-Auftritte und individuelle Klangwelten für Menschen und Marken mit einer eigenen Geschichte."
+      content="Spacefield Media gestaltet individuelle Websites, durchdachte Social-Media-Auftritte und Content mit einer eigenen Handschrift."
     />
     <meta name="robots" content="index, follow" />
     <meta property="og:title" content="Spacefield Media" />
     <meta
       property="og:description"
-      content="Ein sicherer Raum für deine Idee. Wir gestalten digitale Auftritte, die sich nach dir anfühlen."
+      content="Ein sicherer Raum für deine Idee. Webdesign, Social Media und Content, die sich nach dir anfühlen."
     />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Spacefield Media" />
     <meta
       name="twitter:description"
-      content="Webdesign, Social Media und Klangwelten mit Raum für deine eigene Geschichte."
+      content="Webdesign, Social Media und Content mit Raum für deine eigene Geschichte."
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/home.css?v=20260830-1" />
-    <script src="/vendor/gsap/gsap-3.15.0.min.js" defer></script>
-    <script src="/vendor/gsap/ScrollTrigger-3.15.0.min.js" defer></script>
-    <script src="/home.js?v=20260830-1" defer></script>
+    <link rel="stylesheet" href="/home.css?v=20260904-1" />
+    <script src="/home.js?v=20260904-1" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -42,10 +40,19 @@
         <span>Spacefield Media</span>
       </a>
       <nav class="site-nav" aria-label="Hauptnavigation">
-        <a href="/">Startseite</a>
-        <a href="/#projekte">Projekte</a>
-        <a href="/#leistungen">Leistungen</a>
-        <a href="/#ueber-uns">Über uns</a>
+        <a href="#projekte">Projekte</a>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#ueber-uns">Über uns</a>
+      </nav>
+      <button class="menu-button" type="button" data-menu-button aria-expanded="false" aria-controls="mobile-navigation">
+        <span>Menü</span>
+        <span class="menu-lines" aria-hidden="true"></span>
+      </button>
+      <nav class="mobile-nav" id="mobile-navigation" data-mobile-nav aria-label="Mobile Navigation" hidden>
+        <p>Spacefield Media</p>
+        <a href="#projekte">Projekte</a>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#ueber-uns">Über uns</a>
       </nav>
     </header>
 
@@ -57,164 +64,115 @@
           <span class="hero-line hero-line-left">Willkommen bei</span>
           <span class="hero-line hero-line-right">Spacefield Media</span>
         </h1>
-        <p class="hero-copy reveal">
+        <p class="hero-copy">
           Wir schlagen die Brücke zur digitalen Welt, ohne deine Vision aus
           den Augen zu verlieren. Gemeinsam machen wir sichtbar, was dich
           wirklich ausmacht.
         </p>
+        <div class="service-tiles" id="leistungen" aria-label="Unsere Leistungen">
+          <a class="service-tile" href="/website-building/">
+            <h3>Website<br />Building</h3>
+            <span class="service-tile-action">Mehr erfahren <i aria-hidden="true">↗</i></span>
+          </a>
+          <a class="service-tile" href="/social-media-management/">
+            <h3>Social Media<br />Management</h3>
+            <span class="service-tile-action">Mehr erfahren <i aria-hidden="true">↗</i></span>
+          </a>
+          <a class="service-tile" href="/sound-licences/">
+            <h3>Sound<br />Licences</h3>
+            <span class="service-tile-action">Entdecken <i aria-hidden="true">↗</i></span>
+          </a>
+        </div>
       </section>
 
-      <section class="projects-section" id="projekte" aria-labelledby="projects-title">
-        <div class="projects-stage" data-projects-stage>
-          <div class="project-track" data-project-track>
-            <div class="project-intro project-panel">
-              <h2 id="projects-title">Unsere<br />Kreationen</h2>
+      <section class="showcase-section" aria-label="Projektbeispiele">
+        <div class="cosmic-examples" id="projekte">
+          <a class="cosmic-example cosmic-example-web reveal" href="/website-building/" aria-label="Website-Building-Projekte ansehen">
+            <div class="cosmic-square">
+              <span class="star star-one" aria-hidden="true"></span>
+              <span class="star star-two" aria-hidden="true"></span>
+              <span class="star star-three" aria-hidden="true"></span>
+              <div class="media-slot">
+                <span>Website Screenshot</span>
+                <small>Projektbild hier einsetzen</small>
+              </div>
             </div>
+            <div class="example-caption">
+              <span>Website Building</span>
+            </div>
+          </a>
 
-            <a
-              class="project-card project-panel project-card-web"
-              href="https://annkafalk.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Webdesign-Projekt Annka Falk in einem neuen Tab öffnen"
-            >
-              <div class="project-visual">
-                <img
-                  src="/projects/website-annka-poster.jpg"
-                  alt="Website von Annka Falk auf einem hellen, redaktionellen Layout"
-                  width="1440"
-                  height="1080"
-                />
+          <a class="cosmic-example cosmic-example-social reveal" href="/social-media-management/" aria-label="Social-Media-Projekte ansehen">
+            <div class="cosmic-square">
+              <span class="orbit" aria-hidden="true"></span>
+              <span class="star star-one" aria-hidden="true"></span>
+              <span class="star star-two" aria-hidden="true"></span>
+              <div class="media-slot media-slot-portrait">
+                <span>Social Post</span>
+                <small>Projektbild hier einsetzen</small>
               </div>
-            </a>
+            </div>
+            <div class="example-caption">
+              <span>Social Media</span>
+            </div>
+          </a>
 
-            <a
-              class="project-card project-panel project-card-social"
-              href="https://www.instagram.com/ari.tattooart/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Social-Media-Projekt Ari Tattooart auf Instagram in einem neuen Tab öffnen"
-            >
-              <div class="project-visual">
-                <img
-                  src="/projects/ari-social-poster.jpg"
-                  alt="Social-Media-Auftritt von Ari Tattooart"
-                  width="1440"
-                  height="1080"
-                />
-              </div>
-            </a>
-
-            <article
-              class="project-card project-panel project-card-upcoming"
-              aria-label="Platzhalter für ein kommendes Social-Media-Projekt"
-            >
-              <div class="project-visual project-placeholder" role="img" aria-label="Projektbild folgt">
-                <span aria-hidden="true"></span>
-              </div>
-            </article>
-          </div>
+          <a class="cosmic-example cosmic-example-sound reveal" href="/sound-licences/" aria-label="Sound-Licences-Projekte ansehen">
+            <div class="cosmic-square">
+              <span class="sound-wave" aria-hidden="true"></span>
+              <span class="star star-one" aria-hidden="true"></span>
+              <span class="star star-two" aria-hidden="true"></span>
+              <span class="star star-three" aria-hidden="true"></span>
+            </div>
+            <div class="example-caption">
+              <span>Sound Licences</span>
+            </div>
+          </a>
         </div>
       </section>
 
-      <section class="pricing-section" id="leistungen" aria-labelledby="pricing-title">
-        <div class="section-heading reveal">
-          <div>
-            <h2 id="pricing-title">So viel Unterstützung,<br />wie du gerade brauchst.</h2>
-          </div>
-        </div>
-
-        <div class="pricing-controls reveal">
-          <div class="segmented-control" role="group" aria-label="Leistungsbereich auswählen">
-            <button class="is-active" type="button" data-service="webdesign" aria-pressed="true">Webdesign</button>
-            <button type="button" data-service="social" aria-pressed="false">Social Media</button>
-          </div>
-          <div class="billing-control" role="group" aria-label="Abrechnungszeitraum auswählen">
-            <button class="is-active" type="button" data-billing="monthly" aria-pressed="true">Monatlich</button>
-            <button type="button" data-billing="yearly" aria-pressed="false">
-              Jährlich <span>−15 %</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="pricing-grid" data-pricing-grid></div>
-        <div class="value-strip reveal" aria-label="Was immer enthalten ist">
-          <p>Immer dabei</p>
-          <span>Persönlicher Kontakt</span>
-          <span>Transparenter Umfang</span>
-          <span>Saubere Übergabe</span>
-          <span>Raum für Entwicklung</span>
-        </div>
-      </section>
+      <div class="transition" aria-hidden="true">
+        <span>Idee</span>
+        <i></i>
+        <span>Richtung</span>
+        <i></i>
+        <span>Ausdruck</span>
+      </div>
 
       <section class="about-section" id="ueber-uns" aria-labelledby="about-title">
-        <div class="about-intro reveal">
-          <p class="eyebrow">Das Studio</p>
-          <h2 id="about-title">Kein Agenturgefühl.<br />Ein Ort für deine Idee.</h2>
+        <div class="team-intro reveal">
+          <p class="eyebrow" id="about-title">Das Studio</p>
+          <p>
+            Drei Menschen, drei Blickwinkel und ein gemeinsamer Anspruch:
+            digitale Arbeit zu gestalten, die nahbar, eigenständig und gut gemacht ist.
+          </p>
         </div>
 
-        <div class="studio-layout">
-          <div class="studio-portrait reveal" role="img" aria-label="Abstrakter Platzhalter für ein gemeinsames Studiofoto">
-            <span>Gemeinsames Studiofoto</span>
-            <div aria-hidden="true">S<span>F</span>M</div>
-          </div>
-          <div class="studio-copy reveal">
-            <p class="studio-lead">
-              Drei Perspektiven, ein gemeinsamer Anspruch: Wir hören erst zu
-              und gestalten dann das, was wirklich zu dir passt.
-            </p>
-            <ol class="team-list">
-              <li>
-                <span>01</span>
-                <h3>Lasse</h3>
-                <p>Social Media · Sound Design</p>
-              </li>
-              <li>
-                <span>02</span>
-                <h3>Julia</h3>
-                <p>Content · Social Media</p>
-              </li>
-              <li>
-                <span>03</span>
-                <h3>Oliver Jan</h3>
-                <p>Webdesign · Softwareentwicklung</p>
-              </li>
-            </ol>
-          </div>
+        <div class="team-grid">
+          <article class="person person-lasse reveal">
+            <figure><img src="/team/lasse.jpg" alt="Lasse von Spacefield Media" width="1200" height="1800" loading="lazy" /></figure>
+            <div><h3>Lasse</h3><p>Social Media · Sound Design</p></div>
+          </article>
+          <article class="person person-julia reveal">
+            <figure><img src="/team/julia.jpg" alt="Julia von Spacefield Media" width="1200" height="1800" loading="lazy" /></figure>
+            <div><h3>Julia</h3><p>Content · Social Media</p></div>
+          </article>
+          <article class="person person-oliver reveal">
+            <figure><img src="/team/oliver.jpg" alt="Oliver Jan von Spacefield Media" width="1200" height="1800" loading="lazy" /></figure>
+            <div><h3>Oliver Jan</h3><p>Webdesign · Entwicklung</p></div>
+          </article>
         </div>
       </section>
 
-      <section class="contact-section" id="kontakt" aria-labelledby="contact-title">
-        <p class="eyebrow reveal">Was möchtest du erzählen?</p>
-        <h2 id="contact-title" class="reveal">Deine Idee darf<br />erst einmal unfertig sein.</h2>
-        <p class="reveal">
-          Schreib uns, was dich beschäftigt. Wir finden gemeinsam heraus,
-          welcher nächste Schritt sich richtig anfühlt.
-        </p>
-        <a class="contact-button reveal" href="/#kontakt">
-          Unverbindlich kennenlernen
-          <span aria-hidden="true">↗</span>
-        </a>
-        <dl class="contact-facts reveal">
-          <div><dt>Kontakt</dt><dd>Persönlich und direkt</dd></div>
-          <div><dt>Antwort</dt><dd>In der Regel binnen 48 Stunden</dd></div>
-          <div><dt>Zusammenarbeit</dt><dd>Remote und vor Ort</dd></div>
-        </dl>
-      </section>
     </main>
 
     <footer class="site-footer">
-      <div class="footer-brand">
+      <a class="footer-brand" href="/">
         <span class="wordmark-mark" aria-hidden="true"></span>
-        <p>Spacefield Media</p>
-      </div>
-      <div class="footer-links">
-        <a href="/">Startseite</a>
-        <a href="/#projekte">Projekte</a>
-        <a href="/#leistungen">Leistungen</a>
-        <a href="/#kontakt">Kontakt</a>
-      </div>
-      <p class="footer-legal">© <span data-year></span> Spacefield Media. Alle Rechte vorbehalten.</p>
+        <span>Spacefield Media</span>
+      </a>
+      <p>© <span data-year></span> · Alle Rechte vorbehalten</p>
+      <a href="#inhalt">Nach oben ↑</a>
     </footer>
   </body>
 </html>
