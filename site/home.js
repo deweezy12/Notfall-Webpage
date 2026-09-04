@@ -1,7 +1,6 @@
 const header = document.querySelector("[data-header]");
 const menuButton = document.querySelector("[data-menu-button]");
 const mobileNav = document.querySelector("[data-mobile-nav]");
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function updateHeader() {
   header?.classList.toggle("is-scrolled", window.scrollY > 24);
@@ -27,20 +26,16 @@ mobileNav?.querySelectorAll("a").forEach((link) => link.addEventListener("click"
 window.addEventListener("scroll", updateHeader, { passive: true });
 updateHeader();
 
-if (!reduceMotion.matches) {
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.1 },
-  );
-  document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
-} else {
-  document.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible"));
-}
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    });
+  },
+  { threshold: 0.1 },
+);
+document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
 
 document.querySelector("[data-year]").textContent = new Date().getFullYear();
