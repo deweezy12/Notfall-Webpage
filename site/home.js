@@ -37,5 +37,3 @@ const revealObserver = new IntersectionObserver(
   { threshold: 0.1 },
 );
 document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
-
-document.querySelector("[data-year]").textContent = new Date().getFullYear();

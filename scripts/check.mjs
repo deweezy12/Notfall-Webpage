@@ -13,6 +13,7 @@ const requiredFiles = [
   "social-media-management/index.html",
   "home.css",
   "home.js",
+  "hero-background.avif",
   "projects/website-background.jpg",
   "projects/social-background.jpg",
   "team/julia.jpg",
