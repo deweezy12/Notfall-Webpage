@@ -3,23 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Spacefield Media | Webdesign, Social Media & Sound</title>
+    <title>Spacefield Media | Webdesign & Social Media</title>
     <meta
       name="description"
-      content="Spacefield Media gestaltet individuelle Websites, durchdachte Social-Media-Auftritte und Sound mit einer eigenen Handschrift."
+      content="Spacefield Media gestaltet individuelle Websites und durchdachte Social-Media-Auftritte mit einer eigenen Handschrift."
     />
     <meta name="robots" content="index, follow" />
     <meta property="og:title" content="Spacefield Media" />
     <meta
       property="og:description"
-      content="Ein sicherer Raum für deine Idee. Webdesign, Social Media und Sound, die sich nach dir anfühlen."
+      content="Ein sicherer Raum für deine Idee. Webdesign und Social Media, die sich nach dir anfühlen."
     />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Spacefield Media" />
     <meta
       name="twitter:description"
-      content="Webdesign, Social Media und Sound mit Raum für deine eigene Geschichte."
+      content="Webdesign und Social Media mit Raum für deine eigene Geschichte."
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,8 +28,8 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/home.css?v=20260904-12" />
-    <script src="/home.js?v=20260904-12" defer></script>
+    <link rel="stylesheet" href="/home.css?v=20260906-30" />
+    <script src="/home.js?v=20260906-13" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -40,9 +40,11 @@
         <span>Spacefield Media</span>
       </a>
       <nav class="site-nav" aria-label="Hauptnavigation">
-        <a href="#projekte">Projekte</a>
-        <a href="#leistungen">Leistungen</a>
+        <a href="/">Start</a>
+        <a href="/website-building/">Webseiten Bau</a>
+        <a href="/social-media-management/">Social Media</a>
         <a href="#ueber-uns">Über uns</a>
+        <a href="mailto:hello@spacefieldmedia.com">Kontakt</a>
       </nav>
       <button class="menu-button" type="button" data-menu-button aria-expanded="false" aria-controls="mobile-navigation">
         <span>Menü</span>
@@ -50,9 +52,11 @@
       </button>
       <nav class="mobile-nav" id="mobile-navigation" data-mobile-nav aria-label="Mobile Navigation" hidden>
         <p>Spacefield Media</p>
-        <a href="#projekte">Projekte</a>
-        <a href="#leistungen">Leistungen</a>
+        <a href="/">Start</a>
+        <a href="/website-building/">Webseiten Bau</a>
+        <a href="/social-media-management/">Social Media</a>
         <a href="#ueber-uns">Über uns</a>
+        <a href="mailto:hello@spacefieldmedia.com">Kontakt</a>
       </nav>
     </header>
 
@@ -61,35 +65,24 @@
         <div class="hero-orbit hero-orbit-one" aria-hidden="true"></div>
         <div class="hero-orbit hero-orbit-two" aria-hidden="true"></div>
         <h1 id="hero-title" class="hero-title">
-          <span class="hero-line hero-line-left">Willkommen bei</span>
-          <span class="hero-line hero-line-right">Spacefield Media</span>
+          <span class="hero-line hero-line-left">Spacefield</span>
+          <span class="hero-line hero-line-right">Media</span>
         </h1>
         <p class="hero-copy">
-          Wir schlagen die Brücke zur digitalen Welt, ohne deine Vision aus
-          den Augen zu verlieren. Gemeinsam machen wir sichtbar, was dich
-          wirklich ausmacht.
+          Wir schlagen die Brücke zu dir und der digitalen Welt. Gemeinsam
+          machen wir sichtbar, was dich wirklich ausmacht.
         </p>
-        <div class="service-tiles" id="leistungen" aria-label="Unsere Leistungen">
-          <h2 class="visually-hidden">Unsere Leistungen</h2>
-          <a class="service-tile" href="/website-building/">
-            <h3>Website<br />Building</h3>
-            <span class="service-tile-action">Mehr erfahren</span>
-          </a>
-          <a class="service-tile" href="/social-media-management/">
-            <h3>Social Media<br />Management</h3>
-            <span class="service-tile-action">Mehr erfahren</span>
-          </a>
-          <a class="service-tile" href="/sound-licences/">
-            <h3>Sound<br />Licences</h3>
-            <span class="service-tile-action">Entdecken</span>
-          </a>
-        </div>
       </section>
 
-      <section class="showcase-section" aria-label="Projektbeispiele">
-        <div class="cosmic-examples" id="projekte">
+      <section class="showcase-section" id="leistungen" aria-labelledby="services-title">
+        <h2 class="visually-hidden" id="services-title">Unsere Leistungen</h2>
+        <div class="cosmic-examples">
           <a class="cosmic-example cosmic-example-web reveal" href="/website-building/" aria-label="Website-Building-Projekte ansehen">
             <div class="cosmic-square">
+              <div class="cosmic-copy">
+                <h3>Webseiten Bau</h3>
+                <p>Von einfach bis spezifisch &amp; maßgeschneidert. Wir bauen deine Website exakt nach deinen Vorstellungen. Performant, modern und pflegeleicht.</p>
+              </div>
               <div class="media-slot media-slot-website">
                 <img src="/projects/website.webp" alt="Website-Projekt von Spacefield Media" width="1400" height="1004" loading="lazy" />
               </div>
@@ -98,15 +91,16 @@
 
           <a class="cosmic-example cosmic-example-social reveal" href="/social-media-management/" aria-label="Social-Media-Projekte ansehen">
             <div class="cosmic-square">
+              <div class="cosmic-copy">
+                <h3>Social Media Management</h3>
+                <p>Kanalbetreuung nach deinen Wünschen. Einzigartiger Content, der deinen Vibe trifft. Authentisch, ästhetisch und voll auf dich zugeschnitten.</p>
+              </div>
               <div class="media-slot media-slot-portrait">
                 <img src="/projects/instagram.webp" alt="Social-Media-Projekt von Spacefield Media" width="600" height="1302" loading="lazy" />
               </div>
             </div>
           </a>
 
-          <a class="cosmic-example cosmic-example-sound reveal" href="/sound-licences/" aria-label="Sound-Licences-Projekte ansehen">
-            <div class="cosmic-square"></div>
-          </a>
         </div>
       </section>
 
