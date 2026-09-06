@@ -222,10 +222,3 @@ img { display: block; max-width: 100%; }
   .cosmic-copy p { font-size: .72rem; }
   .footer-meta p:last-child { font-size: .56rem; }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .hero-letter { opacity: 1; filter: none; transform: none; animation: none; }
-  .hero-title::after, .hero-orbit, .hero-copy { animation: none; }
-  .reveal { opacity: 1; transform: none; transition: none; }
-}
