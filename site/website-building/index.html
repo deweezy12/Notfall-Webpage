@@ -3,36 +3,178 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Website Building | Spacefield Media</title>
-    <meta name="description" content="Individuelles Webdesign und Entwicklung von Spacefield Media am Beispiel von Annka Falk." />
+    <title>Webseiten Bau | Spacefield Media</title>
+    <meta name="description" content="Individuelle Websites von Spacefield Media: kreative Gestaltung, moderne Entwicklung und verlässliche Betreuung nach dem Launch." />
     <meta name="robots" content="index, follow" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/home.css?v=20260906-49" />
+    <link rel="stylesheet" href="/home.css?v=20260906-59" />
+    <script src="/home.js?v=20260906-14" defer></script>
+    <script src="/website-building/page.js?v=20260906-1" defer></script>
   </head>
-  <body class="detail-service detail-web">
-    <main class="detail-page">
-      <a class="detail-back" href="/#projekte"><span aria-hidden="true">←</span> Zurück zur Übersicht</a>
-      <section class="detail-hero" aria-labelledby="detail-title">
-        <p class="detail-index">01 / 02</p>
-        <h1 id="detail-title">Website <i>Building</i></h1>
-        <p>Individuelle digitale Räume, die deine Geschichte klar erzählen und auf jedem Gerät selbstverständlich funktionieren.</p>
+  <body class="web-build-page">
+    <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+    <header class="site-header web-build-nav" data-header>
+      <a class="wordmark" href="/" aria-label="Spacefield Media Startseite">
+        <span class="wordmark-mark" aria-hidden="true"></span>
+        <span>Spacefield Media</span>
+      </a>
+      <nav class="site-nav" aria-label="Hauptnavigation">
+        <a href="/">Start</a>
+        <a href="/website-building/">Webseiten Bau</a>
+        <a href="/social-media-management/">Social Media</a>
+        <a href="/#ueber-uns">Über uns</a>
+        <a href="mailto:hello@spacefieldmedia.com">Kontakt</a>
+      </nav>
+      <button class="menu-button" type="button" data-menu-button aria-expanded="false" aria-controls="mobile-navigation">
+        <span>Menü</span>
+        <span class="menu-lines" aria-hidden="true"></span>
+      </button>
+      <nav class="mobile-nav" id="mobile-navigation" data-mobile-nav aria-label="Mobile Navigation" hidden>
+        <p>Spacefield Media</p>
+        <a href="/">Start</a>
+        <a href="/website-building/">Webseiten Bau</a>
+        <a href="/social-media-management/">Social Media</a>
+        <a href="/#ueber-uns">Über uns</a>
+        <a href="mailto:hello@spacefieldmedia.com">Kontakt</a>
+      </nav>
+    </header>
+
+    <main id="inhalt">
+      <section class="web-build-hero" aria-labelledby="web-build-title">
+        <div class="web-build-hero-copy">
+          <h1 id="web-build-title">Wir verstehen, wie Persönlichkeit und Charakter in der heutigen Zeit funktionieren.</h1>
+          <button class="liquid-button" type="button">Kontaktiere uns</button>
+        </div>
       </section>
-      <section class="detail-stage detail-stage-embed detail-stage-website" aria-label="Live-Vorschau der Website von Annka Falk">
-        <div class="detail-preview-frame">
-          <div class="detail-browser">
-            <div class="detail-browser-bar" aria-hidden="true">
-              <span></span><span></span><span></span>
-              <p>annkafalk.com</p>
+
+      <section class="web-process" aria-label="Unser Ansatz">
+        <div class="web-process-copy">
+          <article class="web-process-step is-active" data-web-step="0">
+            <p>Spacefield Medias Aufgabe ist der Bau einer individuellen Website. Wir sind kein generischer Provider, sondern nutzen neueste Technologien und kreative Ideen, um deiner Gestaltung Leben zu verleihen.</p>
+          </article>
+          <article class="web-process-step" data-web-step="1">
+            <p>Du bekommst die Möglichkeit, dich kreativ auszuleben. Gemeinsam übersetzen wir deine Persönlichkeit, deine Vorstellungen und deinen Charakter in ein digitales Erscheinungsbild, das nicht austauschbar wirkt.</p>
+          </article>
+          <article class="web-process-step" data-web-step="2">
+            <p>Eine starke Idee braucht eine ebenso starke Umsetzung. Deshalb verbinden wir präzises Design mit sauberer Entwicklung, schnellen Ladezeiten und einer Darstellung, die auf jedem Gerät selbstverständlich funktioniert.</p>
+          </article>
+          <article class="web-process-step" data-web-step="3">
+            <p>Nach dem Launch soll deine Website kein abgeschlossenes Projekt sein. Wir schaffen eine verständliche, erweiterbare Grundlage und begleiten dich bei neuen Inhalten, Funktionen und den nächsten Schritten deiner Marke.</p>
+          </article>
+        </div>
+
+        <div class="web-process-sticky" aria-hidden="true">
+          <div class="web-process-visual" data-active-step="0">
+            <div class="web-visual web-visual-one is-active">
+              <div class="visual-browser">
+                <span class="visual-browser-label">Deine digitale Identität</span>
+                <strong>Einzigartig<br /><i>wie du.</i></strong>
+                <span class="visual-browser-line"></span>
+              </div>
             </div>
-            <iframe src="https://annkafalk.com/" title="Website von Annka Falk" loading="lazy"></iframe>
+            <div class="web-visual web-visual-two">
+              <span class="visual-note">Farbe</span>
+              <span class="visual-note">Typografie</span>
+              <span class="visual-note">Bildsprache</span>
+              <strong>Du gibst<br />den Impuls.</strong>
+              <span class="visual-cursor">↗</span>
+            </div>
+            <div class="web-visual web-visual-three">
+              <div class="visual-device visual-device-desktop"><span></span></div>
+              <div class="visual-device visual-device-mobile"><span></span></div>
+              <p>Desktop / Mobile<br />schnell &amp; klar</p>
+            </div>
+            <div class="web-visual web-visual-four">
+              <div class="visual-module visual-module-a"></div>
+              <div class="visual-module visual-module-b"></div>
+              <div class="visual-module visual-module-c"></div>
+              <strong>Bereit für<br />das, was kommt.</strong>
+            </div>
           </div>
         </div>
-        <a class="detail-external-link" href="https://annkafalk.com/" target="_blank" rel="noopener noreferrer">Website öffnen ↗</a>
       </section>
-      <footer class="detail-footer"><span>Spacefield Media</span><a href="mailto:hello@spacefieldmedia.com">Projekt anfragen ↗</a></footer>
+
+      <div class="web-build-breath" aria-hidden="true"></div>
+
+      <section class="web-examples" aria-labelledby="examples-title">
+        <div class="web-examples-heading">
+          <h2 id="examples-title">Beispiele</h2>
+        </div>
+        <div class="web-example-grid">
+          <div class="web-example-card web-example-half" aria-hidden="true"></div>
+          <div class="web-example-card web-example-half" aria-hidden="true"></div>
+          <div class="web-example-card web-example-wide" aria-hidden="true"></div>
+          <div class="web-example-card web-example-half" aria-hidden="true"></div>
+          <div class="web-example-card web-example-half" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <section class="web-pricing" aria-labelledby="pricing-title">
+        <div class="web-pricing-intro">
+          <h2 id="pricing-title">Leistungen &amp; Pakete</h2>
+        </div>
+        <div class="web-price-grid">
+          <article class="web-price-card">
+            <div class="web-price-copy">
+              <h3>Essential Web</h3>
+              <p class="price-description">Ideal für Landingpages, Portfolios &amp; One-Pager</p>
+              <p class="price-value">ab 299 € <span>einmalig</span></p>
+              <ul>
+                <li>Individuelle One-Page Website</li>
+                <li>Responsives Design für alle Endgeräte</li>
+                <li>Grundlegende SEO-Einrichtung</li>
+                <li>Einbindung von Datenschutz &amp; Impressum</li>
+              </ul>
+            </div>
+            <a class="web-price-link" href="mailto:hello@spacefieldmedia.com?subject=Projektanfrage%20Essential%20Web">Projekt anfragen</a>
+          </article>
+          <article class="web-price-card web-price-featured">
+            <div class="web-price-copy">
+              <h3>Business &amp; Launch</h3>
+              <p class="price-description">Ideal für Dienstleister, Studios &amp; Unternehmen</p>
+              <p class="price-value">ab 599 € <span>einmalig</span></p>
+              <ul>
+                <li>Website mit bis zu 5 Unterseiten</li>
+                <li>Individuelles Webdesign passend zur Marke</li>
+                <li>Kontaktformulare &amp; Buchungsfunktionen</li>
+                <li>Optimierte Ladezeiten &amp; Performance</li>
+              </ul>
+            </div>
+            <a class="web-price-link" href="mailto:hello@spacefieldmedia.com?subject=Projektanfrage%20Business%20%26%20Launch">Projekt anfragen</a>
+          </article>
+          <article class="web-price-card">
+            <div class="web-price-copy">
+              <h3>Custom / Tailored</h3>
+              <p class="price-description">Für individuelle Anforderungen, Shops &amp; digitale Systeme</p>
+              <p class="price-value price-value-request">Preis auf Anfrage</p>
+              <ul>
+                <li>E-Commerce- &amp; Shop-Lösungen</li>
+                <li>Integration von Drittanbieter-Tools</li>
+                <li>Individuelle Funktionen &amp; Interaktionen</li>
+                <li>Maßgeschneiderte Designs &amp; Systeme</li>
+              </ul>
+            </div>
+            <a class="web-price-link" href="mailto:hello@spacefieldmedia.com?subject=Projektanfrage%20Custom%20%2F%20Tailored">Projekt besprechen</a>
+          </article>
+        </div>
+      </section>
+      <div class="web-build-ending">
+        <section class="web-care" aria-labelledby="care-title">
+          <h2 id="care-title">Rundum-Sorglos: Nach dem Launch übernimmt Oli Updates, Backups, Sicherheit, Performance und unkomplizierte Inhaltsänderungen für dich. Hosting, Wunschdomain und technischer Support sind <strong>ab 39 € / Monat</strong> verfügbar.</h2>
+        </section>
+
+        <footer class="site-footer">
+          <div class="footer-meta">
+            <p>© Spacefield Media</p>
+            <p>Terms of Service <span>|</span> Privacy Policy <span>|</span> Imprint</p>
+          </div>
+          <strong class="footer-wordmark">SPACEFIELD MEDIA</strong>
+        </footer>
+      </div>
     </main>
   </body>
 </html>
