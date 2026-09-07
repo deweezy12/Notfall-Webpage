@@ -32,6 +32,8 @@ const requiredFiles = [
   "images/rohr/notdienst7.png",
   "fonts/Area-Normal-Regular.otf",
   "projects/website-background.jpg",
+  "projects/annka-falk-website.png",
+  "projects/technical-portfolio.mp4",
   "projects/social-background.jpg",
   "team/julia.jpg",
   "team/lasse.jpg",

@@ -205,14 +205,23 @@ img { display: block; max-width: 100%; }
 .web-examples-heading { margin-bottom: clamp(3rem, 6vw, 7rem); text-align: center; }
 .web-examples-heading h2 { margin: 0; font: 500 clamp(3.6rem, 8vw, 8.5rem)/.8 var(--display); letter-spacing: -.085em; text-transform: uppercase; }
 .web-example-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-.web-example-card { position: relative; min-width: 0; aspect-ratio: 1; overflow: hidden; border: 1px solid rgba(25,26,24,.08); border-radius: 14px; box-shadow: 0 1.4rem 4rem rgba(44,40,54,.08); background-color: #ddd8d0; background-image: radial-gradient(145% 105% at 52% 126%, #080b1d 0 28%, rgba(15,20,48,.96) 42%, rgba(93,82,130,.82) 61%, rgba(177,164,190,.62) 76%, rgba(221,216,208,.15) 91%), radial-gradient(110% 74% at 2% 83%, rgba(121,103,154,.62), transparent 73%), radial-gradient(105% 72% at 98% 72%, rgba(77,74,119,.54), transparent 72%); transition: transform 700ms var(--ease), filter 500ms ease; }
+.web-example-card { position: relative; display: block; min-width: 0; aspect-ratio: 1; overflow: hidden; border: 1px solid rgba(25,26,24,.08); border-radius: 14px; box-shadow: 0 1.4rem 4rem rgba(44,40,54,.08); background-color: #ddd8d0; background-image: radial-gradient(145% 105% at 52% 126%, #080b1d 0 28%, rgba(15,20,48,.96) 42%, rgba(93,82,130,.82) 61%, rgba(177,164,190,.62) 76%, rgba(221,216,208,.15) 91%), radial-gradient(110% 74% at 2% 83%, rgba(121,103,154,.62), transparent 73%), radial-gradient(105% 72% at 98% 72%, rgba(77,74,119,.54), transparent 72%); transition: transform 700ms var(--ease), filter 500ms ease; }
 .web-example-card::after, .web-price-card::after { position: absolute; inset: -20%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.58'/%3E%3C/svg%3E"); content: ""; opacity: .12; mix-blend-mode: soft-light; pointer-events: none; }
-.web-example-card:nth-child(2), .web-example-card:nth-child(5) { background-color: #d7d4c9; background-image: radial-gradient(175% 130% at 52% 130%, #2a170f 0 31%, rgba(52,45,29,.96) 42%, rgba(69,94,72,.84) 59%, rgba(122,146,129,.6) 74%, rgba(215,212,201,.14) 89%), radial-gradient(116% 82% at 3% 62%, rgba(83,111,92,.55), transparent 70%); }
-.web-example-card:nth-child(3) { background-color: #e1d6ca; background-image: radial-gradient(150% 120% at 52% 124%, #30150c 0 27%, rgba(103,43,22,.94) 43%, rgba(184,91,48,.78) 61%, rgba(224,153,100,.55) 76%, rgba(247,244,232,.12) 91%), radial-gradient(90% 80% at 8% 34%, rgba(110,88,145,.48), transparent 72%), radial-gradient(85% 78% at 94% 30%, rgba(203,119,68,.46), transparent 70%); }
+.web-example-card:nth-child(2) { background-color: #d7d4c9; background-image: radial-gradient(175% 130% at 52% 130%, #2a170f 0 31%, rgba(52,45,29,.96) 42%, rgba(69,94,72,.84) 59%, rgba(122,146,129,.6) 74%, rgba(215,212,201,.14) 89%), radial-gradient(116% 82% at 3% 62%, rgba(83,111,92,.55), transparent 70%); }
 .web-example-card:nth-child(4) { background-image: radial-gradient(110% 85% at 14% 108%, rgba(190,83,40,.56), transparent 67%), radial-gradient(145% 105% at 72% 126%, #090b1e 0 28%, rgba(37,35,77,.96) 45%, rgba(107,88,142,.75) 65%, rgba(221,216,208,.12) 91%); }
 .web-example-card:hover { filter: saturate(1.04) brightness(1.02); transform: translateY(-.3rem); }
 .web-example-wide { grid-column: 1 / -1; }
 .web-example-wide { aspect-ratio: 2.05; }
+.web-example-annka { background-color: #e1d6ca; background-image: radial-gradient(150% 120% at 52% 124%, #30150c 0 27%, rgba(103,43,22,.94) 43%, rgba(184,91,48,.78) 61%, rgba(224,153,100,.55) 76%, rgba(247,244,232,.12) 91%), radial-gradient(90% 80% at 8% 34%, rgba(110,88,145,.48), transparent 72%), radial-gradient(85% 78% at 94% 30%, rgba(203,119,68,.46), transparent 70%); }
+.web-example-annka .web-example-media { width: min(64%, 41rem); }
+.web-example-copy { position: absolute; top: clamp(1.5rem, 3vw, 3rem); right: clamp(1.5rem, 3vw, 3rem); left: clamp(1.5rem, 3vw, 3rem); z-index: 2; color: var(--ink); }
+.web-example-copy h3 { margin: 0 0 1.2rem; font: 500 clamp(1.75rem, 3vw, 3.4rem)/.95 var(--display); letter-spacing: -.055em; }
+.web-example-copy p { max-width: 36rem; margin: 0; font-size: clamp(.78rem, 1.05vw, 1rem); font-weight: 400; line-height: 1.55; opacity: .6; }
+.web-example-media { position: absolute; top: 58%; left: 50%; z-index: 1; width: min(74%, 48rem); aspect-ratio: 2562 / 1836; overflow: hidden; border: 1px solid rgba(10,9,8,.78); border-radius: 8px; background: #17100c; box-shadow: 0 1.5rem 4rem rgba(7,8,12,.2); transform: translate(-50%, -50%); transition: transform 700ms var(--ease), box-shadow 500ms ease; }
+.web-example-media img, .web-example-media video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: brightness(.72) saturate(.76) contrast(1.04); transition: filter 500ms ease, transform 900ms var(--ease); }
+.web-example-annka:hover .web-example-media, .web-example-technical:hover .web-example-media { box-shadow: 0 2rem 4.5rem rgba(7,8,12,.28); transform: translate(-50%, -52%); }
+.web-example-annka:hover .web-example-media img, .web-example-technical:hover .web-example-media video { filter: brightness(1) saturate(1) contrast(1); transform: scale(1.012); }
+.web-example-technical .web-example-media { top: 62%; width: 68%; }
 
 .web-pricing { padding: clamp(8rem, 13vw, 15rem) 24px clamp(4rem, 6vw, 6rem); background: #ece8dc; }
 .web-pricing-intro { max-width: 60rem; margin: 0 auto clamp(4rem, 7vw, 7rem); text-align: center; }
@@ -323,6 +332,8 @@ img { display: block; max-width: 100%; }
   .web-example-wide { grid-column: auto; }
   .web-example-card, .web-example-wide { aspect-ratio: 1.12; }
   .web-example-card > div { font-size: .52rem; }
+  .web-example-annka { aspect-ratio: 1.12; }
+  .web-example-media, .web-example-annka .web-example-media { top: 57%; width: 80%; }
   .web-pricing { padding-right: 16px; padding-left: 16px; }
   .web-pricing-intro h2 { font-size: 14vw; }
   .web-price-grid { display: block; }
