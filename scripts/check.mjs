@@ -19,6 +19,8 @@ const requiredFiles = [
   "website-building-business.avif",
   "website-building-custom.avif",
   "website-building-footer.avif",
+  "social-media-hero.avif",
+  "grain.png",
   "website-building/page.js",
   "assets/wanzleben-DxA7B9Ty.js",
   "assets/mount-Dd9V1izd.css",

@@ -2,8 +2,17 @@ const header = document.querySelector("[data-header]");
 const menuButton = document.querySelector("[data-menu-button]");
 const mobileNav = document.querySelector("[data-mobile-nav]");
 
+let lastScrollY = window.scrollY;
+
 function updateHeader() {
-  header?.classList.toggle("is-scrolled", window.scrollY > 24);
+  const y = window.scrollY;
+  header?.classList.toggle("is-scrolled", y > 24);
+  if (header && !document.body.classList.contains("menu-open")) {
+    const delta = y - lastScrollY;
+    if (y < 80 || delta < -4) header.classList.remove("is-hidden");
+    else if (delta > 4) header.classList.add("is-hidden");
+  }
+  lastScrollY = y;
 }
 
 function closeMenu() {
@@ -20,6 +29,7 @@ menuButton?.addEventListener("click", () => {
   mobileNav.hidden = open;
   document.body.classList.toggle("menu-open", !open);
   header.classList.toggle("menu-active", !open);
+  header.classList.remove("is-hidden");
 });
 
 mobileNav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
