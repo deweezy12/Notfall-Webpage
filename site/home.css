@@ -533,3 +533,11 @@ a.example-card:hover .example-card__media img, a.example-card:hover .example-car
   .legal-body { padding-right: 16px; padding-left: 16px; }
   .legal-item { grid-template-columns: 1fr; gap: .9rem; }
 }
+
+/* Contact page */
+.contact-hero { position: relative; display: flex; min-height: 100svh; align-items: center; justify-content: center; overflow: hidden; padding: 7rem var(--side) 5rem; background: var(--web-paper) url("/website-building-hero.avif") center top / cover no-repeat; text-align: center; }
+.contact-hero-copy { position: relative; z-index: 1; width: min(60rem, 100%); }
+.contact-hero h1 { margin: 0; font: 300 clamp(3rem, 9vw, 9rem)/.95 var(--display); letter-spacing: -.07em; }
+.contact-mail { display: inline-block; margin-top: clamp(1.5rem, 3vw, 2.5rem); font: 400 clamp(1.1rem, 2.2vw, 2rem)/1.2 var(--display); letter-spacing: -.035em; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: .25em; transition: text-decoration-color 200ms ease; }
+.contact-mail:hover { text-decoration-color: currentColor; }
+.contact-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 2.25rem; }
