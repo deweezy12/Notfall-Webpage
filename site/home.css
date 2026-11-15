@@ -541,3 +541,12 @@ a.example-card:hover .example-card__media img, a.example-card:hover .example-car
 .contact-mail { display: inline-block; margin-top: clamp(1.5rem, 3vw, 2.5rem); font: 400 clamp(1.1rem, 2.2vw, 2rem)/1.2 var(--display); letter-spacing: -.035em; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: .25em; transition: text-decoration-color 200ms ease; }
 .contact-mail:hover { text-decoration-color: currentColor; }
 .contact-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 2.25rem; }
+
+/* About page */
+.about-page { background: var(--web-paper); }
+.about-hero { padding: clamp(9rem, 16vw, 14rem) var(--side) clamp(5rem, 9vw, 9rem); }
+.about-hero h1 { max-width: 62rem; margin: 0; font: 300 clamp(2.4rem, 6.6vw, 7rem)/.98 var(--display); letter-spacing: -.07em; text-wrap: balance; }
+.about-hero p { max-width: 26rem; margin: clamp(1.5rem, 3vw, 2.5rem) 0 0; font-size: 1rem; opacity: .6; }
+.about-team { padding-top: clamp(6rem, 10vw, 10rem); }
+.about-cta { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin-top: clamp(6rem, 10vw, 10rem); text-align: center; }
+.about-cta p { margin: 0; font: 300 clamp(1.5rem, 3vw, 3rem)/1.1 var(--display); letter-spacing: -.05em; }

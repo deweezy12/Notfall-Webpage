@@ -10,6 +10,7 @@ const requiredFiles = [
   "services/index.html",
   "contacts/index.html",
   "kontakt/index.html",
+  "ueber-uns/index.html",
   "datenschutz/index.html",
   "cookies/index.html",
   "impressum/index.html",
